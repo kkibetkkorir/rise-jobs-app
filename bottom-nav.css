@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7fafd;
+  color: #0b1a2f;
+  line-height: 1.5;
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 16px 24px;
+}
+
+/* ===== BOTTOM NAVIGATION ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e6edf5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 72px;
+  padding: 0 8px;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #8b9bb0;
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 12px;
+  transition: 0.15s;
+  min-width: 56px;
+  position: relative;
+  gap: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav .nav-item .icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: 0.15s;
+}
+
+.bottom-nav .nav-item .label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2px;
+}
+
+.bottom-nav .nav-item.active {
+  color: #0b1a2f;
+}
+
+.bottom-nav .nav-item.active .icon {
+  transform: scale(1.05);
+}
+
+.bottom-nav .nav-item .badge {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  background: #c62828;
+  color: white;
+  font-size: 0.55rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 2px solid white;
+}
+
+/* Center action button (floating) */
+.bottom-nav .nav-item.center-btn {
+  position: relative;
+  top: -12px;
+  background: #0b1a2f;
+  color: white;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  min-width: auto;
+  box-shadow: 0 4px 16px rgba(11, 26, 47, 0.2);
+  transition: 0.15s;
+}
+
+.bottom-nav .nav-item.center-btn:hover {
+  transform: scale(1.04);
+  background: #1d3452;
+}
+
+.bottom-nav .nav-item.center-btn .icon {
+  font-size: 1.8rem;
+}
+
+.bottom-nav .nav-item.center-btn .label {
+  display: none;
+}
+
+/* ===== PLACEHOLDER CONTENT ===== */
+.placeholder {
+  text-align: center;
+  padding: 60px 20px;
+  color: #4f6f8f;
+}
+
+.placeholder .big-icon {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.placeholder h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0b1a2f;
+  margin-bottom: 4px;
+}
+
+.placeholder p {
+  color: #6b8aa8;
+}
+
+.job-card-preview {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #eef4fa;
+}
+
+.job-card-preview .company-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.job-card-preview .company-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eef2f6;
+}
+
+.job-card-preview .job-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.job-card-preview .job-meta {
+  font-size: 0.85rem;
+  color: #4f6f8f;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .bottom-nav {
+    height: 64px;
+  }
+  .bottom-nav .nav-item {
+    min-width: 44px;
+    padding: 2px 8px;
+  }
+  .bottom-nav .nav-item .icon {
+    font-size: 1.3rem;
+  }
+  .bottom-nav .nav-item .label {
+    font-size: 0.5rem;
+  }
+  .bottom-nav .nav-item.center-btn {
+    width: 48px;
+    height: 48px;
+    top: -10px;
+  }
+  .bottom-nav .nav-item.center-btn .icon {
+    font-size: 1.5rem;
+  }
+  body {
+    padding-bottom: 72px;
+  }
+}
+
+@media (min-width: 769px) {
+  /* On desktop, bottom nav can still work or you can hide it */
+  .bottom-nav {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 24px 24px 0 0;
+    border: 1px solid #e6edf5;
+    border-bottom: none;
+  }
+}

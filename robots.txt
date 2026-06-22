@@ -1,0 +1,38 @@
+# robots.txt - Rise Job Board
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth.html
+Disallow: /account.html
+Disallow: /notifications.html
+Disallow: /terms-of-service.html
+Disallow: /privacy-policy.html
+Disallow: /single-job.html
+
+# Sitemap location
+Sitemap: https://rise.app/sitemap.xml
+
+# Crawl delay for bots
+Crawl-delay: 2
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing-specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Twitter/X bot
+User-agent: Twitterbot
+Allow: /
+
+# Facebook bot
+User-agent: Facebookbot
+Allow: /
+
+# Noindex for development environments
+User-agent: *
+Noindex: /dev/

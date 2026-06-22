@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        padding: 24px 16px 48px;
+        line-height: 1.7;
+      }
+
+      .about-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 32px;
+        padding: 40px 44px 48px;
+        box-shadow: 0 10px 30px -8px rgba(0, 20, 40, 0.06);
+        border: 1px solid #e6edf5;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #2b4d77;
+        text-decoration: none;
+        padding: 6px 16px;
+        border-radius: 40px;
+        background: #f0f6fe;
+        transition: 0.15s;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+      }
+
+      .back-link:hover {
+        background: #e3edfb;
+        border-color: #c7daf0;
+      }
+
+      .about-header {
+        text-align: center;
+        margin-bottom: 36px;
+        padding-bottom: 28px;
+        border-bottom: 2px solid #edf2f8;
+      }
+
+      .about-header .logo-icon {
+        font-size: 3.5rem;
+        margin-bottom: 8px;
+      }
+
+      .about-header h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .about-header .tagline {
+        font-size: 1.15rem;
+        color: #4f6f8f;
+        margin-top: 4px;
+      }
+
+      .about-content h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 32px 0 12px;
+        color: #0a1d32;
+      }
+
+      .about-content h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 20px 0 8px;
+        color: #0a1d32;
+      }
+
+      .about-content p {
+        color: #1e3853;
+        margin-bottom: 14px;
+      }
+
+      .about-content .highlight-box {
+        background: #f0f6fe;
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin: 20px 0 24px;
+        border-left: 4px solid #0b1a2f;
+      }
+
+      .about-content .highlight-box strong {
+        color: #0b1a2f;
+      }
+
+      .about-content ul {
+        padding-left: 24px;
+        margin: 10px 0 16px;
+        color: #1e3853;
+      }
+
+      .about-content ul li {
+        margin-bottom: 6px;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 16px 0 24px;
+      }
+
+      .value-card {
+        background: #fafcfe;
+        border: 1px solid #eef4fa;
+        border-radius: 16px;
+        padding: 20px 18px;
+        text-align: center;
+        transition: 0.15s;
+      }
+
+      .value-card:hover {
+        border-color: #d0dff0;
+        background: #f8fbfe;
+        transform: translateY(-2px);
+      }
+
+      .value-card .icon {
+        font-size: 2rem;
+        margin-bottom: 6px;
+      }
+
+      .value-card h4 {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+      }
+
+      .value-card p {
+        font-size: 0.85rem;
+        color: #4f6f8f;
+        margin-bottom: 0;
+      }
+
+      .team-section {
+        margin: 28px 0 16px;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 20px;
+        margin: 16px 0;
+      }
+
+      .team-member {
+        text-align: center;
+        padding: 16px;
+        background: #fafcfe;
+        border-radius: 16px;
+        border: 1px solid #eef4fa;
+      }
+
+      .team-member .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 8px;
+        background: #eef2f6;
+      }
+
+      .team-member h4 {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .team-member p {
+        font-size: 0.8rem;
+        color: #4f6f8f;
+        margin-bottom: 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 16px;
+        margin: 16px 0 24px;
+      }
+
+      .stat-card {
+        background: #f0f6fe;
+        border-radius: 16px;
+        padding: 16px;
+        text-align: center;
+      }
+
+      .stat-card .number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #0b1a2f;
+      }
+
+      .stat-card .label {
+        font-size: 0.85rem;
+        color: #4f6f8f;
+      }
+
+      .about-footer {
+        margin-top: 36px;
+        padding-top: 24px;
+        border-top: 1px solid #edf2f8;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        font-size: 0.9rem;
+        color: #4f6f8f;
+      }
+
+      .about-footer .links {
+        display: flex;
+        gap: 16px;
+      }
+
+      .about-footer .links a {
+        color: #0b1a2f;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .about-footer .links a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 640px) {
+        .about-container {
+          padding: 24px 18px;
+        }
+        .about-header h1 {
+          font-size: 1.8rem;
+        }
+        .values-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .about-footer {
+          flex-direction: column;
+          text-align: center;
+        }
+        .about-footer .links {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
+  </head>
+  <body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">🚀</span>
+          <span class="logo-text">Rise</span>
+          <span class="logo-badge">Jobs</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="notifications.html">🔔</a></li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="nav-actions">
+          <a href="auth.html" class="btn-outline">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+          <!-- User avatar (hidden by default, shown when logged in) -->
+          <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="notifications.html">🔔 Notifications</a>
+        <div class="mobile-actions">
+          <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary-mobile"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="about-container">
+      <a href="index.html" class="back-link">← Back to Job Board</a>
+
+      <div class="about-header">
+        <div class="logo-icon">🚀</div>
+        <h1>About Rise</h1>
+        <p class="tagline">
+          Connecting talent with opportunity — simply, transparently, and for
+          free.
+        </p>
+      </div>
+
+      <div class="about-content">
+        <h2>Our Mission</h2>
+        <p>
+          At Rise, we believe that finding your next career opportunity should
+          be simple, accessible, and transparent. Our mission is to connect job
+          seekers with meaningful opportunities while providing employers with a
+          platform to reach the right talent.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            <strong>✨ What makes Rise different?</strong> We're a free, open
+            job board that aggregates listings from thousands of companies
+            worldwide. No hidden fees, no paywalls, no gimmicks — just quality
+            job listings in one place.
+          </p>
+        </div>
+
+        <h2>What We Offer</h2>
+        <ul>
+          <li>
+            <strong>🔍 Comprehensive Job Search:</strong> Browse thousands of
+            jobs from companies of all sizes, from startups to Fortune 500s.
+          </li>
+          <li>
+            <strong>🏷️ Smart Filters:</strong> Find exactly what you're looking
+            for with filters for job type, location, company size, and more.
+          </li>
+          <li>
+            <strong>💾 Save &amp; Track:</strong> Save interesting jobs, track
+            your applications, and get notified about new opportunities.
+          </li>
+          <li>
+            <strong>📱 Responsive Design:</strong> Search and apply from any
+            device — desktop, tablet, or mobile.
+          </li>
+          <li>
+            <strong>🔗 Direct Applications:</strong> Apply directly on employer
+            websites — we never store your application data.
+          </li>
+        </ul>
+
+        <h2>Our Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="icon">🔓</div>
+            <h4>Transparency</h4>
+            <p>
+              We believe in being open about how we work and what we do with
+              your data.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="icon">💡</div>
+            <h4>Simplicity</h4>
+            <p>Clean, intuitive design that makes job hunting stress-free.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🤝</div>
+            <h4>Accessibility</h4>
+            <p>Free and open to everyone — no barriers to opportunity.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🌍</div>
+            <h4>Global Reach</h4>
+            <p>Connecting talent with opportunities around the world.</p>
+          </div>
+        </div>
+
+        <h2>By the Numbers</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="number">3,600+</div>
+            <div class="label">Active Jobs</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">1,200+</div>
+            <div class="label">Companies</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">75+</div>
+            <div class="label">Countries</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">100%</div>
+            <div class="label">Free to Use</div>
+          </div>
+        </div>
+
+        <h2>How It Works</h2>
+        <ol style="padding-left: 24px; color: #1e3853; margin: 10px 0 16px">
+          <li>
+            <strong>Browse:</strong> Search through thousands of job listings
+            using filters and keywords.
+          </li>
+          <li>
+            <strong>Discover:</strong> Click on any job to see the full
+            description, company details, and requirements.
+          </li>
+          <li>
+            <strong>Apply:</strong> Click "Apply now" to be redirected to the
+            employer's official application page.
+          </li>
+          <li>
+            <strong>Track:</strong> Create an account to save jobs, receive
+            notifications, and manage your applications.
+          </li>
+        </ol>
+
+        <h2>Our Technology</h2>
+        <p>
+          Rise is powered by the
+          <a
+            href="https://joinrise.io"
+            target="_blank"
+            style="color: #0b1a2f; text-decoration: underline"
+            >Rise API</a
+          >, which aggregates job listings from thousands of sources. We use
+          modern web technologies to deliver a fast, responsive, and secure
+          experience. Our platform is built with privacy and security in mind,
+          with encryption for all data in transit and at rest.
+        </p>
+
+        <h2>Join Our Community</h2>
+        <p>
+          Whether you're a job seeker looking for your next opportunity or an
+          employer wanting to reach top talent, Rise is here to help. We're
+          committed to building a platform that serves everyone — and we're just
+          getting started.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            <strong>📢 Have feedback or suggestions?</strong> We'd love to hear
+            from you!
+            <a
+              href="contact.html"
+              style="
+                color: #0b1a2f;
+                font-weight: 600;
+                text-decoration: underline;
+              "
+              >Get in touch with us →</a
+            >
+          </p>
+        </div>
+
+        <h2>Meet the Team</h2>
+        <p style="margin-bottom: 8px">
+          We're a small, passionate team dedicated to making job search better
+          for everyone.
+        </p>
+        <div class="team-grid">
+          <div class="team-member">
+            <img
+              src="https://ui-avatars.com/api/?name=Alex+Rivera&background=0b1a2f&color=fff&size=72"
+              alt="Alex Rivera"
+              class="avatar"
+            />
+            <h4>Alex Rivera</h4>
+            <p>CEO &amp; Co-founder</p>
+          </div>
+          <div class="team-member">
+            <img
+              src="https://ui-avatars.com/api/?name=Sarah+Chen&background=2a405c&color=fff&size=72"
+              alt="Sarah Chen"
+              class="avatar"
+            />
+            <h4>Sarah Chen</h4>
+            <p>CTO &amp; Co-founder</p>
+          </div>
+          <div class="team-member">
+            <img
+              src="https://ui-avatars.com/api/?name=Marcus+Johnson&background=1d3452&color=fff&size=72"
+              alt="Marcus Johnson"
+              class="avatar"
+            />
+            <h4>Marcus Johnson</h4>
+            <p>Lead Developer</p>
+          </div>
+          <div class="team-member">
+            <img
+              src="https://ui-avatars.com/api/?name=Emily+Wong&background=3a5a7a&color=fff&size=72"
+              alt="Emily Wong"
+              class="avatar"
+            />
+            <h4>Emily Wong</h4>
+            <p>Product Designer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-footer">
+        <div class="links">
+          <a href="index.html">Home</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms-of-service.html">Terms</a>
+          <a href="privacy-policy.html">Privacy</a>
+        </div>
+        <span>© 2026 Rise · Built with ❤️</span>
+      </div>
+    </div>
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Home -->
+      <a href="index.html" class="nav-item" data-tab="home">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+
+      <!-- Search -->
+      <a
+        href="#"
+        class="nav-item"
+        data-tab="search"
+        onclick="alert('🔍 Search page coming soon!')"
+      >
+        <span class="icon">🔍</span>
+        <span class="label">Search</span>
+      </a>
+
+      <!-- Center Action Button (Post/Apply) -->
+      <a href="auth.html" class="nav-item center-btn" data-tab="post">
+        <span class="icon">➕</span>
+        <span class="label">Post</span>
+      </a>
+
+      <!-- Saved Jobs -->
+      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+        <span class="icon">⭐</span>
+        <span class="label">Saved</span>
+        <span class="badge">3</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="account.html" class="nav-item" data-tab="profile">
+        <span class="icon">👤</span>
+        <span class="label">Profile</span>
+      </a>
+    </nav>
+
+    <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+  </body>
+</html>

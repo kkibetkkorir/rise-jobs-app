@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · App Walkthrough</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        padding: 32px 20px 60px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 32px;
+        padding: 40px 36px 48px;
+        box-shadow: 0 10px 30px -8px rgba(0, 20, 40, 0.06);
+        border: 1px solid #e6edf5;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+        background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        color: #4f6f8f;
+        font-size: 1.05rem;
+        margin-bottom: 36px;
+        border-bottom: 1px solid #edf2f8;
+        padding-bottom: 20px;
+      }
+
+      .step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+        padding: 24px 24px 24px 28px;
+        background: #fafcfe;
+        border-radius: 20px;
+        border: 1px solid #eef4fa;
+        transition: 0.15s;
+      }
+      .step:hover {
+        border-color: #d0dff0;
+        background: #f8fbfe;
+      }
+
+      .step-number {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #b3cce6;
+        min-width: 50px;
+        line-height: 1;
+        padding-top: 4px;
+      }
+
+      .step-content {
+        flex: 1;
+      }
+
+      .step-content h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #0a1d32;
+      }
+
+      .step-content p {
+        color: #2a4a68;
+        margin-bottom: 8px;
+      }
+
+      .step-content .code-block {
+        background: #0b1a2f;
+        color: #d4e2f5;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        margin: 8px 0 4px;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .step-content .code-block .highlight {
+        color: #f7c948;
+      }
+
+      .step-content .tag {
+        display: inline-block;
+        background: #eaf0f8;
+        padding: 2px 14px;
+        border-radius: 40px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #1d3d60;
+        margin-top: 4px;
+      }
+
+      .arrow-symbol {
+        color: #8aabce;
+        font-weight: 300;
+        margin: 0 4px;
+      }
+
+      .diagram {
+        background: #f0f6fe;
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin: 24px 0 8px;
+        font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: #1a3753;
+        border: 1px dashed #c4d6ed;
+        line-height: 2;
+      }
+      .diagram .arrow {
+        color: #4679b0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 36px;
+        flex-wrap: wrap;
+        border-top: 1px solid #edf2f8;
+        padding-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: 0.15s;
+        background: #0b1a2f;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #1d3452;
+        transform: scale(1.01);
+      }
+      .btn-outline {
+        background: transparent;
+        color: #0b1a2f;
+        border: 1px solid #d0dff0;
+      }
+      .btn-outline:hover {
+        background: #f0f6fe;
+        border-color: #b0c8e0;
+      }
+
+      .flow-badge {
+        display: inline-block;
+        background: #0b1a2f;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 2px 12px;
+        border-radius: 40px;
+        letter-spacing: 0.3px;
+        margin-right: 6px;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 24px 16px;
+        }
+        .step {
+          flex-direction: column;
+          gap: 8px;
+          padding: 18px;
+        }
+        .step-number {
+          min-width: auto;
+        }
+        .diagram {
+          font-size: 0.75rem;
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📋 Rise Jobs · Walkthrough</h1>
+      <div class="subtitle">
+        How the job board works — from browsing to applying
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>📌 Job board loads (<code>index.html</code>)</h3>
+          <p>
+            The app fetches live jobs from the Rise API using the
+            <span class="tag">/jobs/public</span> and
+            <span class="tag">/jobs/openjobs</span> endpoints. It displays job
+            cards with company name, title, location, and type.
+          </p>
+          <div class="code-block">
+            GET
+            https://api.joinrise.io/api/v1/jobs/public?page=1&limit=10&sort=desc&sortedBy=createdAt
+          </div>
+          <div style="margin-top: 8px; font-size: 0.9rem; color: #3d5f7e">
+            <span class="flow-badge">FEATURES</span>
+            Search · Filters (Hybrid, Remote, Startup, Legal, Growth,
+            Operations) · Pagination
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>🔎 User interaction — search &amp; filters</h3>
+          <p>
+            Users can search by job title, company name, or location. Filters
+            change the API endpoint to fetch category-specific jobs (e.g.,
+            <span class="tag">?jobType=Hybrid</span> or
+            <span class="tag">?department=Legal,Compliance</span>).
+          </p>
+          <div
+            class="code-block"
+            style="
+              background: #f0f6fe;
+              color: #0b1a2f;
+              border: 1px solid #d0dff0;
+            "
+          >
+            // Filter mapping → API parameters Hybrid → jobType=Hybrid Remote →
+            featuredCategory=Remote Startup → companySize=startup Legal →
+            department=Legal,Compliance Growth →
+            department=Growth,Strategy,Consulting,... Operations→
+            department=Growth,Strategy,Consulting,Operations,...
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>🖱️ Click "Apply →" on a job card</h3>
+          <p>
+            Each job card has an <strong>"Apply →"</strong> link that points to
+            <code>single-job.html</code> with the job ID as a query parameter.
+          </p>
+          <div class="code-block">
+            &lt;a href="<span class="highlight"
+              >single-job.html?id=6a300247e1138d5e3e591843</span
+            >" class="job-link"&gt; Apply → &lt;/a&gt;
+          </div>
+          <p style="margin-top: 8px; font-size: 0.9rem; color: #3d5f7e">
+            ⚡ The job ID is passed via URL so the detail page knows which job
+            to fetch.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>📄 Job detail page loads (<code>single-job.html</code>)</h3>
+          <p>
+            The detail page extracts the job ID from the URL, fetches the full
+            job data (including description), and displays a rich view with:
+          </p>
+          <ul style="padding-left: 20px; color: #1e3853; margin: 6px 0 10px">
+            <li>Company logo &amp; name</li>
+            <li>Full job title &amp; location</li>
+            <li>Complete job description (HTML formatted)</li>
+            <li>
+              <strong>"Apply now"</strong> button that leads to the actual
+              application URL
+            </li>
+          </ul>
+          <div
+            class="code-block"
+            style="
+              background: #f0f6fe;
+              color: #0b1a2f;
+              border: 1px solid #d0dff0;
+            "
+          >
+            // single-job.html reads the ID const jobId = new
+            URLSearchParams(window.location.search).get('id'); // Then fetches
+            job details from API
+            fetch(`https://api.joinrise.io/api/v1/jobs/public?includeDescription=true`)
+            .then(res => res.json()) .then(data => { const job =
+            data.result.jobs.find(j => j._id === jobId); // render full details
+            });
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>🚀 Click "Apply now" → external application</h3>
+          <p>
+            The <strong>"Apply now"</strong> button on the detail page links
+            directly to the company's application URL (e.g., Lever, Greenhouse,
+            SmartRecruiters, etc.). This opens in a new tab so the user can
+            apply on the official site.
+          </p>
+          <div class="code-block">
+            &lt;a href="<span class="highlight"
+              >https://jobs.lever.co/trustedhousesitters.com/...</span
+            >" target="_blank" rel="noopener noreferrer" class="apply-btn"&gt;
+            Apply now → &lt;/a&gt;
+          </div>
+          <p style="margin-top: 8px; font-size: 0.9rem; color: #3d5f7e">
+            ✅ The user sees the full job description <em>before</em> being
+            redirected, ensuring they have all the context.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual flow diagram -->
+      <div style="margin: 32px 0 12px">
+        <h3
+          style="
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #0a1d32;
+          "
+        >
+          🔄 Complete flow diagram
+        </h3>
+        <div class="diagram">
+          <span class="arrow">┌─────────────────┐</span><br />
+          <span class="arrow">│ index.html │</span> ← Loads job list from API<br />
+          <span class="arrow">│ (job board) │</span><br />
+          <span class="arrow">└────────┬────────┘</span><br />
+          <span class="arrow"> │</span> User clicks <strong>"Apply →"</strong
+          ><br />
+          <span class="arrow"> ▼</span><br />
+          <span class="arrow">┌─────────────────┐</span><br />
+          <span class="arrow">│ single-job.html │</span> ←
+          ?id=6a300247e1138d5e3e591843<br />
+          <span class="arrow">│ (detail view) │</span> ← Fetches full job
+          data<br />
+          <span class="arrow">└────────┬────────┘</span><br />
+          <span class="arrow"> │</span> User clicks <strong>"Apply now"</strong
+          ><br />
+          <span class="arrow"> ▼</span><br />
+          <span class="arrow">┌─────────────────┐</span><br />
+          <span class="arrow">│ External site │</span> ← lever.co /
+          greenhouse.io / etc.<br />
+          <span class="arrow">│ (application) │</span><br />
+          <span class="arrow">└─────────────────┘</span>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div
+        style="
+          background: #f0f6fe;
+          border-radius: 16px;
+          padding: 18px 22px;
+          margin: 24px 0 16px;
+          border-left: 4px solid #0b1a2f;
+        "
+      >
+        <p style="font-weight: 600; margin-bottom: 4px">📌 Key takeaways</p>
+        <ul style="padding-left: 20px; color: #1e3853">
+          <li>
+            <strong>Two-page flow</strong>: Job board → Detail page → External
+            application
+          </li>
+          <li>
+            <strong>Job ID</strong> is passed via URL query parameter
+            (<code>?id=...</code>)
+          </li>
+          <li>
+            <strong>Search &amp; filters</strong> are applied client-side or via
+            API parameters
+          </li>
+          <li>
+            <strong>Pagination</strong> is handled with <code>page</code> and
+            <code>limit</code> parameters
+          </li>
+          <li><strong>Responsive</strong> design works on all screen sizes</li>
+        </ul>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="nav-buttons">
+        <a href="index.html" class="btn">🏠 Go to Job Board</a>
+        <a
+          href="single-job.html?id=6a300247e1138d5e3e591843"
+          class="btn btn-outline"
+          >📄 View Sample Job</a
+        >
+        <a
+          href="https://api.joinrise.io/api/v1/jobs/public?page=1&limit=5"
+          target="_blank"
+          class="btn btn-outline"
+          >🔗 API Example</a
+        >
+      </div>
+
+      <div
+        style="
+          margin-top: 24px;
+          font-size: 0.85rem;
+          color: #6b8aa8;
+          border-top: 1px solid #edf2f8;
+          padding-top: 20px;
+        "
+      >
+        Built with ❤️ using the Rise API · All job data is fetched live from
+        <a
+          href="https://joinrise.io"
+          target="_blank"
+          style="
+            color: #0b1a2f;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+          "
+          >joinrise.io</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

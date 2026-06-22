@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Job details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        padding: 28px 20px 60px;
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 32px;
+        padding: 36px 32px 40px;
+        box-shadow: 0 10px 30px -8px rgba(0, 20, 40, 0.06),
+          0 1px 2px rgba(0, 0, 0, 0.02);
+        border: 1px solid #e6edf5;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #2b4d77;
+        text-decoration: none;
+        margin-bottom: 24px;
+        padding: 6px 12px;
+        border-radius: 40px;
+        background: #f0f6fe;
+        transition: 0.15s;
+        border: 1px solid transparent;
+      }
+      .back-link:hover {
+        background: #e3edfb;
+        border-color: #c7daf0;
+      }
+
+      .company-header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+      }
+
+      .company-avatar {
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+        object-fit: cover;
+        background: #eef2f6;
+        border: 1px solid #e2eaf2;
+        flex-shrink: 0;
+      }
+
+      .company-info h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .company-info .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin-top: 4px;
+        color: #3d5f7e;
+        font-size: 0.9rem;
+      }
+      .company-info .meta span {
+        background: #f0f5fc;
+        padding: 2px 14px;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .job-title {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 12px 0 8px;
+        letter-spacing: -0.02em;
+      }
+
+      .job-location-type {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 28px;
+        margin-bottom: 28px;
+        color: #2e4b6b;
+        font-size: 1rem;
+        border-bottom: 1px solid #edf2f8;
+        padding-bottom: 20px;
+      }
+      .job-location-type svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        vertical-align: middle;
+        margin-right: 4px;
+      }
+
+      .job-description {
+        margin: 16px 0 28px;
+      }
+      .job-description h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 24px 0 10px;
+        color: #0a1d32;
+      }
+      .job-description p {
+        color: #1e3853;
+        margin-bottom: 16px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .job-description ul {
+        padding-left: 22px;
+        margin: 12px 0 18px;
+        color: #1e3853;
+      }
+      .job-description li {
+        margin-bottom: 6px;
+      }
+
+      .apply-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #ecf2f9;
+        padding-top: 28px;
+        margin-top: 12px;
+      }
+      .apply-btn {
+        background: #0b1a2f;
+        color: white;
+        border: none;
+        padding: 14px 40px;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.15s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 10px rgba(11, 26, 47, 0.08);
+      }
+      .apply-btn:hover {
+        background: #1d3452;
+        transform: scale(1.01);
+      }
+
+      .external-badge {
+        font-size: 0.85rem;
+        color: #52718f;
+        background: #f0f5fc;
+        padding: 6px 18px;
+        border-radius: 40px;
+      }
+
+      .loading-shimmer {
+        padding: 40px 20px;
+        text-align: center;
+        color: #4f6f8f;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 24px 18px;
+        }
+        .job-title {
+          font-size: 1.6rem;
+        }
+        .company-avatar {
+          width: 56px;
+          height: 56px;
+        }
+        .apply-section {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .apply-btn {
+          justify-content: center;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
+  </head>
+  <body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">🚀</span>
+          <span class="logo-text">Rise</span>
+          <span class="logo-badge">Jobs</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="notifications.html">🔔</a></li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="nav-actions">
+          <a href="auth.html" class="btn-outline">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+          <!-- User avatar (hidden by default, shown when logged in) -->
+          <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="notifications.html">🔔 Notifications</a>
+        <div class="mobile-actions">
+          <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary-mobile"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div class="container" id="detailContainer">
+      <!-- back link -->
+      <a href="index.html" class="back-link" id="backLink">← Back to jobs</a>
+
+      <!-- dynamic content -->
+      <div id="jobDetailContent">
+        <!-- loading state -->
+        <div class="loading-shimmer">Loading job details …</div>
+      </div>
+    </div>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Home -->
+      <a href="index.html" class="nav-item active" data-tab="home">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+
+      <!-- Search -->
+      <a
+        href="#"
+        class="nav-item"
+        data-tab="search"
+        onclick="alert('🔍 Search page coming soon!')"
+      >
+        <span class="icon">🔍</span>
+        <span class="label">Search</span>
+      </a>
+
+      <!-- Center Action Button (Post/Apply) -->
+      <a href="auth.html" class="nav-item center-btn" data-tab="post">
+        <span class="icon">➕</span>
+        <span class="label">Post</span>
+      </a>
+
+      <!-- Saved Jobs -->
+      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+        <span class="icon">⭐</span>
+        <span class="label">Saved</span>
+        <span class="badge">3</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="account.html" class="nav-item" data-tab="profile">
+        <span class="icon">👤</span>
+        <span class="label">Profile</span>
+      </a>
+    </nav>
+
+    <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+
+    <script>
+      (function () {
+        'use strict';
+
+        // ----- parse job ID from URL query param ?id=xxxx -----
+        function getJobIdFromUrl() {
+          const params = new URLSearchParams(window.location.search);
+          return params.get('id') || params.get('jobId') || null;
+        }
+
+        // ----- render job detail -----
+        function renderJobDetail(job) {
+          const container = document.getElementById('jobDetailContent');
+          if (!job) {
+            container.innerHTML = `<div style="padding: 40px 0; text-align:center; color:#47658a;"><p style="font-size:1.3rem;">😕 Job not found</p><p style="margin-top:8px;">Please return to the job board.</p></div>`;
+            return;
+          }
+
+          // normalize fields (support both public & openjobs structures)
+          const title = job.title || 'Position';
+          const companyName =
+            job.owner?.companyName || job.companyName || 'Company';
+          const logo =
+            job.owner?.photo ||
+            job.photo ||
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              companyName
+            )}&background=eef2f6&color=1f3a57&size=80`;
+          const location =
+            job.locationAddress || job.location?.address || 'Remote';
+          const jobType = job.type || job.jobType || 'Hybrid';
+          const description =
+            job.description ||
+            job.job?.[0]?.description ||
+            'No description provided.';
+          const applyUrl = job.url || job.job?.[0]?.url || '#';
+          const sector = job.owner?.sector || job.sector || '';
+          const teamSize = job.owner?.teamSize || job.teamSize || '';
+
+          // format description: if it's HTML, we keep as is (trusted)
+          // but we'll wrap in a div to preserve formatting
+          const descHtml = description;
+
+          const html = `
+        <div class="company-header">
+          <img class="company-avatar" src="${logo}" alt="${companyName}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(
+            companyName
+          )}&background=eef2f6&color=1f3a57&size=80'">
+          <div class="company-info">
+            <h2>${companyName}</h2>
+            <div class="meta">
+              ${sector ? `<span>${sector}</span>` : ''}
+              ${teamSize ? `<span>${teamSize} employees</span>` : ''}
+              ${job.owner?.funding ? `<span>${job.owner.funding}</span>` : ''}
+            </div>
+          </div>
+        </div>
+
+        <div class="job-title">${title}</div>
+        <div class="job-location-type">
+          <span>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            ${location}
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            ${jobType}
+          </span>
+        </div>
+
+        <div class="job-description">
+          <h3>About this role</h3>
+          <div>${descHtml}</div>
+        </div>
+
+        <div class="apply-section">
+          <div class="external-badge">📌 Apply on company site</div>
+          <a href="${applyUrl}" target="_blank" rel="noopener noreferrer" class="apply-btn">
+            Apply now →
+          </a>
+        </div>
+      `;
+
+          container.innerHTML = html;
+        }
+
+        // ----- fetch job by ID (try both endpoints) -----
+        async function fetchJobById(jobId) {
+          if (!jobId) return null;
+
+          // try public endpoint first (includes full description)
+          try {
+            const url = `https://api.joinrise.io/api/v1/jobs/public?page=1&limit=50&sort=desc&sortedBy=createdAt&includeDescription=true`;
+
+            //const url = `https://api.joinrise.co/api/v1/jobs/openjobs?jobType=Hybrid&featured=false&featuredCategory=Remote&limit=5&page=1&isOpenJobs=true&sortedBy=createdAt&sort=desc&unique=true`;
+            const resp = await fetch(url);
+            if (!resp.ok) throw new Error('public api error');
+            const data = await resp.json();
+            let jobs = data.result?.jobs || [];
+            // find by _id
+            let found = jobs.find((j) => j._id === jobId || j.id === jobId);
+            console.log(found);
+            if (found) return found;
+
+            // try openjobs endpoint with all departments (fallback)
+            const openUrl = `https://api.joinrise.io/api/v1/jobs/openjobs?isOpenJobs=true&limit=50&page=1&unique=true&sortedBy=createdAt&sort=desc`;
+            const resp2 = await fetch(openUrl);
+            if (!resp2.ok) throw new Error('openjobs api error');
+            const data2 = await resp2.json();
+            let jobs2 = data2.result?.jobs || [];
+            found = jobs2.find((j) => j._id === jobId || j.id === jobId);
+            console.log(found);
+            if (found) return found;
+
+            // if still not found, try to fetch single via search? not supported, return null
+            return null;
+          } catch (e) {
+            console.warn('fetch error', e);
+            return null;
+          }
+        }
+
+        // ----- init -----
+        async function init() {
+          const jobId = getJobIdFromUrl();
+          const container = document.getElementById('jobDetailContent');
+          if (!jobId) {
+            container.innerHTML = `<div style="padding:40px 0; text-align:center; color:#47658a;"><p style="font-size:1.3rem;">🔍 No job ID provided</p><p style="margin-top:8px;">Please go back to the job board.</p></div>`;
+            return;
+          }
+
+          // show loading
+          container.innerHTML = `<div class="loading-shimmer">Loading job details …</div>`;
+
+          const job = await fetchJobById(jobId);
+          if (job) {
+            renderJobDetail(job);
+          } else {
+            container.innerHTML = `<div style="padding:40px 0; text-align:center; color:#47658a;"><p style="font-size:1.3rem;">😕 Could not load job</p><p style="margin-top:8px;">It may have been removed or the ID is invalid.</p></div>`;
+          }
+        }
+
+        // handle back link: if index.html not found, fallback to root
+        document
+          .getElementById('backLink')
+          ?.addEventListener('click', function (e) {
+            // default href is "index.html" – if you serve from root, adjust.
+          });
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

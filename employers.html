@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Employers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        padding: 16px;
+        padding-bottom: 80px;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .page-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .page-header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .page-header h1 span {
+        background: #f0f6fe;
+        font-size: 0.75rem;
+        padding: 2px 14px;
+        border-radius: 40px;
+        font-weight: 500;
+        color: #1d3d60;
+      }
+
+      .results-count {
+        color: #4f6f8f;
+        font-size: 0.9rem;
+      }
+
+      /* Search Bar */
+      .search-bar {
+        background: white;
+        border-radius: 16px;
+        padding: 12px 20px;
+        border: 1px solid #e6edf5;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .search-bar input {
+        flex: 1;
+        padding: 10px 16px;
+        border: 1px solid #dce5ef;
+        border-radius: 40px;
+        font-size: 0.9rem;
+        background: #fafcfe;
+        font-family: inherit;
+        outline: none;
+        min-width: 200px;
+      }
+
+      .search-bar input:focus {
+        border-color: #0b1a2f;
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.06);
+      }
+
+      .search-bar button {
+        padding: 10px 24px;
+        border-radius: 40px;
+        border: none;
+        background: #0b1a2f;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: 0.15s;
+      }
+
+      .search-bar button:hover {
+        background: #1d3452;
+      }
+
+      /* Employer Grid */
+      .employer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      .employer-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #eef4fa;
+        transition: 0.15s;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .employer-card:hover {
+        border-color: #c4d6ed;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px -8px rgba(0, 20, 40, 0.08);
+      }
+
+      .employer-card .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #eef2f6;
+        border: 1px solid #e2eaf2;
+        margin-bottom: 12px;
+      }
+
+      .employer-card .company-name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+
+      .employer-card .description {
+        color: #4f6f8f;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .employer-card .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #edf2f8;
+        font-size: 0.8rem;
+        color: #6b8aa8;
+      }
+
+      .employer-card .meta span {
+        background: #f0f5fc;
+        padding: 2px 10px;
+        border-radius: 40px;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .pagination button {
+        padding: 8px 20px;
+        border: 1px solid #dce5ef;
+        border-radius: 40px;
+        background: white;
+        font-weight: 500;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: 0.15s;
+      }
+
+      .pagination button:hover:not(:disabled) {
+        background: #0b1a2f;
+        color: white;
+        border-color: #0b1a2f;
+      }
+
+      .pagination button:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .pagination .page-info {
+        font-size: 0.9rem;
+        color: #4f6f8f;
+      }
+
+      /* Loading */
+      .loading {
+        text-align: center;
+        padding: 40px 20px;
+        color: #4f6f8f;
+      }
+
+      .loading .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #0b1a2f;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 12px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        color: #4f6f8f;
+      }
+
+      .no-results .icon {
+        font-size: 3rem;
+        margin-bottom: 8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .employer-grid {
+          grid-template-columns: 1fr;
+        }
+        .search-bar {
+          flex-direction: column;
+        }
+        .search-bar input {
+          width: 100%;
+        }
+        .search-bar button {
+          width: 100%;
+        }
+        .page-header h1 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="page-header">
+        <h1>
+          🏢 Employers
+          <span id="employerCount">0</span>
+        </h1>
+        <div class="results-count" id="resultsCount">Loading...</div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search employers by name..."
+        />
+        <button onclick="searchEmployers()">Search</button>
+      </div>
+
+      <!-- Employer Grid -->
+      <div class="employer-grid" id="employerGrid">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading employers...</p>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination">
+        <button id="prevPage" disabled>← Previous</button>
+        <span class="page-info" id="pageInfo">Page 1</span>
+        <button id="nextPage">Next →</button>
+      </div>
+    </div>
+
+    <script>
+      // ===== CONFIGURATION =====
+      const API_BASE = 'https://api.joinrise.io/api/v1';
+      let currentPage = 1;
+      const limit = 20;
+      let totalEmployers = 0;
+      let currentEmployers = [];
+
+      // ===== DOM REFS =====
+      const grid = document.getElementById('employerGrid');
+      const prevBtn = document.getElementById('prevPage');
+      const nextBtn = document.getElementById('nextPage');
+      const pageInfo = document.getElementById('pageInfo');
+      const employerCount = document.getElementById('employerCount');
+      const resultsCount = document.getElementById('resultsCount');
+      const searchInput = document.getElementById('searchInput');
+
+      // ===== FETCH EMPLOYERS =====
+      async function fetchEmployers(page = 1, search = '') {
+        let url = 'https://api.joinrise.co/api/v1/employers?limit=5'; //`${API_BASE}/employers?page=${page}&limit=${limit}`;
+        if (search) {
+          url += `&search=${encodeURIComponent(search)}`;
+        }
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          let employers = data.result || [];
+          // Handle the case where result might be an object with count
+          if (data.result && data.result.jobs) {
+            employers = data.result.jobs;
+          }
+
+          // If the response is directly an array
+          if (Array.isArray(data)) {
+            employers = data;
+          }
+
+          // If result has a count field
+          const total = data.result?.count || employers.length || 0;
+
+          currentEmployers = employers;
+          totalEmployers = total;
+          renderEmployers(employers);
+          updatePagination(page, total);
+
+          return { employers, total };
+        } catch (error) {
+          console.error('Error fetching employers:', error);
+          grid.innerHTML = `
+                <div class="no-results">
+                    <div class="icon">⚠️</div>
+                    <h3>Error loading employers</h3>
+                    <p>Please try again later.</p>
+                </div>
+            `;
+          return { employers: [], total: 0 };
+        }
+      }
+
+      // ===== RENDER EMPLOYERS =====
+      function renderEmployers(employers) {
+        if (!employers || employers.length === 0) {
+          grid.innerHTML = `
+                <div class="no-results">
+                    <div class="icon">🔍</div>
+                    <h3>No employers found</h3>
+                    <p>Try adjusting your search terms.</p>
+                </div>
+            `;
+          employerCount.textContent = '0';
+          resultsCount.textContent = 'No results found';
+          return;
+        }
+
+        grid.innerHTML = employers
+          .map((emp) => {
+            const name = emp.companyName || 'Unknown Company';
+            const photo = emp.photo || '';
+            const desc =
+              emp.descriptionShort || 'Leading employer in their industry.';
+            const sector = emp.sector || 'Various';
+            const location =
+              emp.location?.address || emp.locationAddress || 'Global';
+            const slug = emp.slug || emp._id;
+
+            return `
+                <a href="single-employer.html?slug=${slug}" class="employer-card">
+                    ${
+                      photo
+                        ? `<img class="logo" src="${photo}" alt="${name}" onerror="this.style.display='none'" />`
+                        : ''
+                    }
+                    <div class="company-name">${name}</div>
+                    <div class="description">${desc}</div>
+                    <div class="meta">
+                        <span>📍 ${location}</span>
+                        <span>${sector}</span>
+                        ${
+                          emp.teamSize ? `<span>👥 ${emp.teamSize}+</span>` : ''
+                        }
+                    </div>
+                </a>
+            `;
+          })
+          .join('');
+
+        employerCount.textContent = employers.length;
+        resultsCount.textContent = `Showing ${employers.length} of ${totalEmployers} employers`;
+      }
+
+      // ===== PAGINATION =====
+      function updatePagination(page, total) {
+        const totalPages = Math.ceil(total / limit);
+        pageInfo.textContent = `Page ${page} of ${totalPages || 1}`;
+        prevBtn.disabled = page <= 1;
+        nextBtn.disabled = page >= totalPages;
+        currentPage = page;
+      }
+
+      // ===== SEARCH =====
+      function searchEmployers() {
+        const query = searchInput.value.trim();
+        currentPage = 1;
+        fetchEmployers(1, query);
+      }
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') searchEmployers();
+      });
+
+      // ===== PAGINATION EVENTS =====
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          fetchEmployers(currentPage - 1, searchInput.value.trim());
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(totalEmployers / limit);
+        if (currentPage < totalPages) {
+          fetchEmployers(currentPage + 1, searchInput.value.trim());
+        }
+      });
+
+      // ===== INIT =====
+      fetchEmployers(1);
+
+      console.log('🏢 Employers page loaded successfully!');
+      console.log(
+        '📌 Features: Search, Pagination, Company cards with details'
+      );
+    </script>
+  </body>
+</html>

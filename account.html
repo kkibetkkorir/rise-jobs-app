@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · My Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        padding: 24px 16px 48px;
+        line-height: 1.6;
+      }
+
+      .account-container {
+        max-width: 1024px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 32px;
+        padding: 32px 36px 44px;
+        box-shadow: 0 10px 30px -8px rgba(0, 20, 40, 0.06);
+        border: 1px solid #e6edf5;
+      }
+
+      /* Header */
+      .account-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #edf2f8;
+      }
+
+      .account-header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .account-header h1 span {
+        background: #f0f6fe;
+        font-size: 0.75rem;
+        padding: 2px 14px;
+        border-radius: 40px;
+        font-weight: 500;
+        color: #1d3d60;
+      }
+
+      .logout-btn {
+        background: #ffebee;
+        color: #c62828;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+      }
+
+      .logout-btn:hover {
+        background: #ffcdd2;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        gap: 4px;
+        background: #f0f5fc;
+        border-radius: 60px;
+        padding: 4px;
+        margin-bottom: 28px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .tab-btn {
+        padding: 10px 24px;
+        border: none;
+        background: transparent;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #4f6f8f;
+        cursor: pointer;
+        transition: 0.15s;
+        white-space: nowrap;
+        font-family: inherit;
+      }
+
+      .tab-btn.active {
+        background: white;
+        color: #0b1a2f;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .tab-btn:hover:not(.active) {
+        color: #0b1a2f;
+      }
+
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.25s ease;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Profile Tab */
+      .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 28px;
+      }
+
+      .profile-avatar-section {
+        text-align: center;
+        padding: 16px;
+      }
+
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #eef2f6;
+        border: 3px solid white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        margin-bottom: 12px;
+      }
+
+      .profile-avatar-section h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .profile-avatar-section p {
+        color: #4f6f8f;
+        font-size: 0.9rem;
+      }
+
+      .change-photo-btn {
+        background: #f0f5fc;
+        border: 1px solid #dce5ef;
+        padding: 6px 18px;
+        border-radius: 40px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 8px;
+        transition: 0.15s;
+        font-family: inherit;
+      }
+
+      .change-photo-btn:hover {
+        background: #e3edfb;
+      }
+
+      .profile-form .form-group {
+        margin-bottom: 16px;
+      }
+
+      .profile-form label {
+        display: block;
+        font-weight: 500;
+        font-size: 0.85rem;
+        margin-bottom: 3px;
+        color: #1a3753;
+      }
+
+      .profile-form input,
+      .profile-form textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #dce5ef;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        transition: 0.15s;
+        background: #fafcfe;
+        font-family: inherit;
+      }
+
+      .profile-form input:focus,
+      .profile-form textarea:focus {
+        outline: none;
+        border-color: #0b1a2f;
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.06);
+        background: white;
+      }
+
+      .profile-form textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .save-btn {
+        background: #0b1a2f;
+        color: white;
+        border: none;
+        padding: 10px 32px;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+        margin-top: 4px;
+      }
+
+      .save-btn:hover {
+        background: #1d3452;
+      }
+
+      /* Saved Jobs Tab */
+      .saved-jobs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .saved-job-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: #fafcfe;
+        border-radius: 16px;
+        border: 1px solid #eef4fa;
+        transition: 0.15s;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .saved-job-item:hover {
+        border-color: #d0dff0;
+      }
+
+      .saved-job-info {
+        flex: 1;
+      }
+
+      .saved-job-info h4 {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 2px;
+      }
+
+      .saved-job-info p {
+        color: #4f6f8f;
+        font-size: 0.85rem;
+      }
+
+      .saved-job-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .saved-job-actions button {
+        padding: 6px 16px;
+        border-radius: 40px;
+        border: 1px solid #dce5ef;
+        background: white;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+      }
+
+      .saved-job-actions .apply-btn-small {
+        background: #0b1a2f;
+        color: white;
+        border: none;
+      }
+
+      .saved-job-actions .apply-btn-small:hover {
+        background: #1d3452;
+      }
+
+      .saved-job-actions .remove-btn:hover {
+        background: #ffebee;
+        border-color: #ffcdd2;
+        color: #c62828;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #4f6f8f;
+      }
+
+      .empty-state .big-icon {
+        font-size: 3rem;
+        margin-bottom: 8px;
+      }
+
+      /* Notifications Tab */
+      .notification-settings {
+        max-width: 600px;
+      }
+
+      .notification-group {
+        padding: 16px 0;
+        border-bottom: 1px solid #edf2f8;
+      }
+
+      .notification-group:last-child {
+        border-bottom: none;
+      }
+
+      .notification-group .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .notification-group .toggle-row .info {
+        flex: 1;
+      }
+
+      .notification-group .toggle-row .info h4 {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .notification-group .toggle-row .info p {
+        color: #4f6f8f;
+        font-size: 0.85rem;
+      }
+
+      /* Toggle Switch */
+      .toggle-switch {
+        position: relative;
+        width: 48px;
+        height: 28px;
+        flex-shrink: 0;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #d0d9e6;
+        transition: 0.2s;
+        border-radius: 34px;
+      }
+
+      .toggle-slider::before {
+        content: '';
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background: white;
+        transition: 0.2s;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .toggle-switch input:checked + .toggle-slider {
+        background: #0b1a2f;
+      }
+
+      .toggle-switch input:checked + .toggle-slider::before {
+        transform: translateX(20px);
+      }
+
+      /* Settings Tab */
+      .settings-section {
+        max-width: 600px;
+      }
+
+      .settings-group {
+        padding: 16px 0;
+        border-bottom: 1px solid #edf2f8;
+      }
+
+      .settings-group:last-child {
+        border-bottom: none;
+      }
+
+      .settings-group .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .settings-group .setting-row .info h4 {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .settings-group .setting-row .info p {
+        color: #4f6f8f;
+        font-size: 0.85rem;
+      }
+
+      .settings-group select,
+      .settings-group input[type='text'] {
+        padding: 6px 14px;
+        border: 1px solid #dce5ef;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        background: #fafcfe;
+        font-family: inherit;
+        min-width: 120px;
+      }
+
+      .settings-group select:focus {
+        outline: none;
+        border-color: #0b1a2f;
+      }
+
+      .danger-btn {
+        background: #ffebee;
+        color: #c62828;
+        border: none;
+        padding: 6px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+      }
+
+      .danger-btn:hover {
+        background: #ffcdd2;
+      }
+
+      .success-message {
+        background: #e8f5e9;
+        color: #1e7e34;
+        padding: 10px 16px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .account-container {
+          padding: 20px 16px;
+        }
+        .profile-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .profile-avatar-section {
+          padding: 0 0 12px 0;
+        }
+        .tabs {
+          border-radius: 16px;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+        }
+        .tab-btn {
+          padding: 8px 16px;
+          font-size: 0.8rem;
+        }
+        .saved-job-item {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .saved-job-actions {
+          justify-content: flex-end;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .account-header h1 {
+          font-size: 1.2rem;
+        }
+        .tab-btn {
+          padding: 6px 12px;
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
+  </head>
+  <body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">🚀</span>
+          <span class="logo-text">Rise</span>
+          <span class="logo-badge">Jobs</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="notifications.html">🔔</a></li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="nav-actions">
+          <a href="auth.html" class="btn-outline">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+          <!-- User avatar (hidden by default, shown when logged in) -->
+          <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="notifications.html">🔔 Notifications</a>
+        <div class="mobile-actions">
+          <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary-mobile"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="account-container">
+      <!-- Header -->
+      <div class="account-header">
+        <h1>👤 My Account <span>John Doe</span></h1>
+        <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button
+          class="tab-btn active"
+          data-tab="profile"
+          onclick="switchTab('profile')"
+        >
+          Profile
+        </button>
+        <button class="tab-btn" data-tab="saved" onclick="switchTab('saved')">
+          Saved Jobs
+        </button>
+        <button
+          class="tab-btn"
+          data-tab="notifications"
+          onclick="switchTab('notifications')"
+        >
+          Notifications
+        </button>
+        <button
+          class="tab-btn"
+          data-tab="settings"
+          onclick="switchTab('settings')"
+        >
+          Settings
+        </button>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="profile" class="tab-content active">
+        <div class="profile-grid">
+          <div class="profile-avatar-section">
+            <img
+              src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=120"
+              alt="Profile"
+              class="profile-avatar"
+              id="avatarImg"
+            />
+            <h3 id="displayName">John Doe</h3>
+            <p id="displayEmail">john.doe@example.com</p>
+            <button class="change-photo-btn" onclick="changePhoto()">
+              Change Photo
+            </button>
+          </div>
+          <div class="profile-form">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" value="John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" value="john.doe@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" value="+1 (555) 123-4567" />
+            </div>
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" placeholder="Tell us about yourself...">
+Software engineer passionate about building great products. Looking for new opportunities in tech.</textarea
+              >
+            </div>
+            <button class="save-btn" onclick="saveProfile()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Jobs Tab -->
+      <div id="saved" class="tab-content">
+        <div class="saved-jobs-list" id="savedJobsList">
+          <!-- Jobs will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Notifications Tab -->
+      <div id="notifications" class="tab-content">
+        <div class="notification-settings">
+          <div class="notification-group">
+            <div class="toggle-row">
+              <div class="info">
+                <h4>Job Alerts</h4>
+                <p>Get notified when new jobs match your preferences</p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="updateNotification('jobAlerts', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="notification-group">
+            <div class="toggle-row">
+              <div class="info">
+                <h4>Application Updates</h4>
+                <p>Receive status updates on your applications</p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="updateNotification('appUpdates', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="notification-group">
+            <div class="toggle-row">
+              <div class="info">
+                <h4>Saved Job Alerts</h4>
+                <p>Get notified when saved jobs are updated or closing soon</p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="updateNotification('savedAlerts', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="notification-group">
+            <div class="toggle-row">
+              <div class="info">
+                <h4>Weekly Newsletter</h4>
+                <p>Receive curated job recommendations every week</p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="updateNotification('newsletter', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="notification-group">
+            <div class="toggle-row">
+              <div class="info">
+                <h4>Marketing &amp; Promotions</h4>
+                <p>Receive occasional updates about new features and offers</p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="updateNotification('marketing', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settings" class="tab-content">
+        <div class="settings-section">
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="info">
+                <h4>Language</h4>
+                <p>Choose your preferred language</p>
+              </div>
+              <select
+                id="languageSelect"
+                onchange="updateSetting('language', this.value)"
+              >
+                <option value="en" selected>English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="pt">Portuguese</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="info">
+                <h4>Theme</h4>
+                <p>Choose your preferred theme</p>
+              </div>
+              <select
+                id="themeSelect"
+                onchange="updateSetting('theme', this.value)"
+              >
+                <option value="light" selected>Light</option>
+                <option value="dark">Dark</option>
+                <option value="system">System Default</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="info">
+                <h4>Job Alerts Frequency</h4>
+                <p>How often you'd like to receive job alerts</p>
+              </div>
+              <select
+                id="frequencySelect"
+                onchange="updateSetting('frequency', this.value)"
+              >
+                <option value="daily" selected>Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="realtime">Real-time</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="info">
+                <h4>Privacy</h4>
+                <p>Control your data privacy settings</p>
+              </div>
+              <button
+                class="btn-outline"
+                onclick="alert('Privacy settings opened in new window')"
+              >
+                Manage Privacy
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-group" style="border-bottom: none">
+            <div class="setting-row">
+              <div class="info">
+                <h4>Account</h4>
+                <p>Permanently delete your account and all data</p>
+              </div>
+              <button class="danger-btn" onclick="confirmDelete()">
+                Delete Account
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Home -->
+      <a href="index.html" class="nav-item" data-tab="home">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+
+      <!-- Search -->
+      <a
+        href="#"
+        class="nav-item"
+        data-tab="search"
+        onclick="alert('🔍 Search page coming soon!')"
+      >
+        <span class="icon">🔍</span>
+        <span class="label">Search</span>
+      </a>
+
+      <!-- Center Action Button (Post/Apply) -->
+      <a href="auth.html" class="nav-item center-btn" data-tab="post">
+        <span class="icon">➕</span>
+        <span class="label">Post</span>
+      </a>
+
+      <!-- Saved Jobs -->
+      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+        <span class="icon">⭐</span>
+        <span class="label">Saved</span>
+        <span class="badge">3</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="account.html" class="nav-item active" data-tab="profile">
+        <span class="icon">👤</span>
+        <span class="label">Profile</span>
+      </a>
+    </nav>
+
+    <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+
+    <script>
+      // ===== Tab Switching =====
+      function switchTab(tabId) {
+        // Hide all tabs
+        document
+          .querySelectorAll('.tab-content')
+          .forEach((el) => el.classList.remove('active'));
+        document
+          .querySelectorAll('.tab-btn')
+          .forEach((el) => el.classList.remove('active'));
+
+        // Show selected tab
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+
+        // If saved jobs tab, load data
+        if (tabId === 'saved') {
+          loadSavedJobs();
+        }
+      }
+
+      // ===== Profile Functions =====
+      function saveProfile() {
+        const name = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const bio = document.getElementById('bio').value;
+
+        // Update display name
+        document.getElementById('displayName').textContent = name;
+        document.getElementById('displayEmail').textContent = email;
+
+        // Update avatar
+        document.getElementById(
+          'avatarImg'
+        ).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+          name
+        )}&background=0b1a2f&color=fff&size=120`;
+
+        showMessage('✅ Profile updated successfully!', 'success');
+      }
+
+      function changePhoto() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              document.getElementById('avatarImg').src = event.target.result;
+              showMessage('✅ Profile photo updated!', 'success');
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        input.click();
+      }
+
+      // ===== Saved Jobs =====
+      function loadSavedJobs() {
+        const container = document.getElementById('savedJobsList');
+
+        // Sample saved jobs data (in real app, would come from API/localStorage)
+        const savedJobs = [
+          {
+            id: '1',
+            title: 'Senior Software Engineer',
+            company: 'Google',
+            location: 'Remote, USA',
+            type: 'Hybrid',
+          },
+          {
+            id: '2',
+            title: 'Product Manager',
+            company: 'Microsoft',
+            location: 'Seattle, WA',
+            type: 'Hybrid',
+          },
+          {
+            id: '3',
+            title: 'UX Designer',
+            company: 'Apple',
+            location: 'Cupertino, CA',
+            type: 'Onsite',
+          },
+        ];
+
+        if (savedJobs.length === 0) {
+          container.innerHTML = `
+                <div class="empty-state">
+                    <div class="big-icon">⭐</div>
+                    <h3>No saved jobs yet</h3>
+                    <p>Start saving jobs you're interested in to see them here.</p>
+                </div>
+            `;
+          return;
+        }
+
+        container.innerHTML = savedJobs
+          .map(
+            (job) => `
+            <div class="saved-job-item">
+                <div class="saved-job-info">
+                    <h4>${job.title}</h4>
+                    <p>${job.company} · ${job.location} · <span style="background:#eaf0f8;padding:2px 12px;border-radius:40px;font-size:0.75rem;">${job.type}</span></p>
+                </div>
+                <div class="saved-job-actions">
+                    <button class="apply-btn-small" onclick="applyJob('${job.id}')">Apply</button>
+                    <button class="remove-btn" onclick="removeSavedJob('${job.id}')">Remove</button>
+                </div>
+            </div>
+        `
+          )
+          .join('');
+      }
+
+      function removeSavedJob(jobId) {
+        if (confirm('Remove this job from your saved list?')) {
+          showMessage('✅ Job removed from saved list', 'success');
+          loadSavedJobs(); // Refresh list
+        }
+      }
+
+      function applyJob(jobId) {
+        window.location.href = `single-job.html?id=${jobId}`;
+      }
+
+      // ===== Notification Functions =====
+      function updateNotification(type, checked) {
+        const status = checked ? 'enabled' : 'disabled';
+        const messages = {
+          jobAlerts: 'Job alerts',
+          appUpdates: 'Application updates',
+          savedAlerts: 'Saved job alerts',
+          newsletter: 'Weekly newsletter',
+          marketing: 'Marketing & promotions',
+        };
+        showMessage(`✅ ${messages[type] || type} ${status}`, 'success');
+        console.log(`Notification ${type}: ${status}`);
+      }
+
+      // ===== Settings Functions =====
+      function updateSetting(type, value) {
+        const labels = {
+          language: 'Language',
+          theme: 'Theme',
+          frequency: 'Job alert frequency',
+        };
+        showMessage(
+          `✅ ${labels[type] || type} updated to "${value}"`,
+          'success'
+        );
+        console.log(`Setting ${type}: ${value}`);
+      }
+
+      function confirmDelete() {
+        if (
+          confirm(
+            'Are you sure you want to delete your account? This action cannot be undone.'
+          )
+        ) {
+          if (confirm('All your data will be permanently removed. Continue?')) {
+            showMessage(
+              '⚠️ Account deletion requested. You will be redirected.',
+              'success'
+            );
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 2000);
+          }
+        }
+      }
+
+      // ===== Logout =====
+      function handleLogout() {
+        if (confirm('Are you sure you want to sign out?')) {
+          showMessage('👋 Signed out successfully. Redirecting...', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        }
+      }
+
+      // ===== Message Helper =====
+      function showMessage(text, type) {
+        // Remove existing messages
+        document
+          .querySelectorAll('.success-message, .error-message')
+          .forEach((el) => el.remove());
+
+        const container = document.querySelector('.account-container');
+        const div = document.createElement('div');
+        div.className = 'success-message';
+        div.textContent = text;
+
+        // Insert after header
+        const header = container.querySelector('.account-header');
+        header.parentNode.insertBefore(div, header.nextSibling);
+
+        setTimeout(() => {
+          if (div.parentNode) div.remove();
+        }, 4000);
+      }
+
+      // ===== Initialize =====
+      // Load saved jobs when page loads
+      document.addEventListener('DOMContentLoaded', function () {
+        // Load saved jobs if tab is active
+        if (document.getElementById('saved').classList.contains('active')) {
+          loadSavedJobs();
+        }
+      });
+
+      // ===== Handle URL params (e.g., ?tab=saved) =====
+      (function checkTabFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get('tab');
+        if (
+          tab &&
+          ['profile', 'saved', 'notifications', 'settings'].includes(tab)
+        ) {
+          switchTab(tab);
+        }
+      })();
+
+      console.log(
+        '👤 Account page loaded. Features: Profile, Saved Jobs, Notifications, Settings'
+      );
+      console.log(
+        '💡 Try: account.html?tab=saved to open saved jobs tab directly'
+      );
+    </script>
+  </body>
+</html>

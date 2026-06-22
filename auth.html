@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Sign In / Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f7fafd;
+        color: #0b1a2f;
+        min-height: 100vh;
+        /*display: flex;
+        align-items: center;
+        justify-content: center;*/
+        padding: 24px 16px;
+      }
+
+      .auth-container {
+        background: white;
+        border-radius: 32px;
+        padding: 40px 36px 44px;
+        max-width: 460px;
+        width: 100%;
+        box-shadow: 0 20px 48px -12px rgba(0, 20, 40, 0.12);
+        border: 1px solid #e6edf5;
+        transition: all 0.2s;
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .auth-header h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .auth-header p {
+        color: #4f6f8f;
+        font-size: 0.95rem;
+        margin-top: 4px;
+      }
+
+      .tab-container {
+        display: flex;
+        gap: 4px;
+        background: #f0f5fc;
+        border-radius: 60px;
+        padding: 4px;
+        margin-bottom: 28px;
+      }
+
+      .tab-btn {
+        flex: 1;
+        padding: 10px 16px;
+        border: none;
+        background: transparent;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #4f6f8f;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+
+      .tab-btn.active {
+        background: white;
+        color: #0b1a2f;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .tab-btn:hover:not(.active) {
+        color: #0b1a2f;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+        color: #1a3753;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #dce5ef;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        transition: 0.15s;
+        background: #fafcfe;
+        font-family: inherit;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #0b1a2f;
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.08);
+        background: white;
+      }
+
+      .form-group .hint {
+        font-size: 0.8rem;
+        color: #6b8aa8;
+        margin-top: 4px;
+      }
+
+      .referral-input {
+        background: #f8fbfe;
+        border-style: dashed;
+      }
+
+      .referral-input:focus {
+        border-style: solid;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 16px 0 20px;
+      }
+
+      .checkbox-group input[type='checkbox'] {
+        width: 18px;
+        height: 18px;
+        accent-color: #0b1a2f;
+        cursor: pointer;
+      }
+
+      .checkbox-group label {
+        font-size: 0.9rem;
+        color: #2a4a68;
+        cursor: pointer;
+      }
+
+      .checkbox-group a {
+        color: #0b1a2f;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: #0b1a2f;
+        color: white;
+        border: none;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+      }
+
+      .submit-btn:hover {
+        background: #1d3452;
+        transform: scale(1.01);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 24px 0;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e2eaf2;
+      }
+
+      .divider span {
+        font-size: 0.85rem;
+        color: #6b8aa8;
+        white-space: nowrap;
+      }
+
+      .social-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border: 1px solid #dce5ef;
+        border-radius: 12px;
+        background: white;
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.15s;
+        font-family: inherit;
+        color: #0b1a2f;
+        text-decoration: none;
+      }
+
+      .social-btn:hover {
+        background: #f8fbfe;
+        border-color: #b0c8e0;
+        transform: translateY(-1px);
+      }
+
+      .social-btn img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .social-btn .icon {
+        font-size: 1.2rem;
+      }
+
+      .form-toggle {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.95rem;
+        color: #4f6f8f;
+      }
+
+      .form-toggle a {
+        color: #0b1a2f;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .form-toggle a:hover {
+        color: #1d3452;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .success-message {
+        background: #e8f5e9;
+        color: #1e7e34;
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+
+      .error-message {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .password-toggle {
+        position: relative;
+      }
+
+      .password-toggle input {
+        padding-right: 48px;
+      }
+
+      .toggle-visibility {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #6b8aa8;
+        cursor: pointer;
+        font-size: 1.1rem;
+        padding: 4px;
+      }
+
+      @media (max-width: 480px) {
+        .auth-container {
+          padding: 28px 20px;
+        }
+        .social-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
+  </head>
+  <body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">🚀</span>
+          <span class="logo-text">Rise</span>
+          <span class="logo-badge">Jobs</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="notifications.html">🔔</a></li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="nav-actions">
+          <a href="auth.html" class="btn-outline">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+          <!-- User avatar (hidden by default, shown when logged in) -->
+          <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="notifications.html">🔔 Notifications</a>
+        <div class="mobile-actions">
+          <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+          <a href="auth.html?tab=register" class="btn-primary-mobile"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div class="auth-container" id="authContainer">
+      <div class="auth-header">
+        <!--<h1>Rise</h1>-->
+        <p id="authSubtitle">Sign in to your account</p>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tab-container">
+        <button
+          class="tab-btn active"
+          data-tab="login"
+          onclick="switchTab('login')"
+        >
+          Sign In
+        </button>
+        <button
+          class="tab-btn"
+          data-tab="register"
+          onclick="switchTab('register')"
+        >
+          Sign Up
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginEmail">Email address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div class="form-group password-toggle">
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-visibility"
+            onclick="togglePassword('loginPassword', this)"
+          >
+            👁️
+          </button>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+          <span style="margin-left: auto">
+            <a
+              href="#"
+              onclick="alert('Password reset link sent to your email!'); return false;"
+              >Forgot password?</a
+            >
+          </span>
+        </div>
+        <button type="submit" class="submit-btn">Sign In</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="registerName">Full name</label>
+          <input
+            type="text"
+            id="registerName"
+            placeholder="John Doe"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email address</label>
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div class="form-group password-toggle">
+          <label for="registerPassword">Password</label>
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="Min 8 characters"
+            required
+            minlength="8"
+          />
+          <button
+            type="button"
+            class="toggle-visibility"
+            onclick="togglePassword('registerPassword', this)"
+          >
+            👁️
+          </button>
+        </div>
+        <div class="form-group password-toggle">
+          <label for="registerConfirmPassword">Confirm password</label>
+          <input
+            type="password"
+            id="registerConfirmPassword"
+            placeholder="Confirm your password"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-visibility"
+            onclick="togglePassword('registerConfirmPassword', this)"
+          >
+            👁️
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="referralCode"
+            >Referral code
+            <span style="font-weight: 400; color: #6b8aa8"
+              >(optional)</span
+            ></label
+          >
+          <input
+            type="text"
+            id="referralCode"
+            class="referral-input"
+            placeholder="Enter referral code (e.g., RISE2026)"
+          />
+          <div class="hint">
+            💡 Got a referral code? Enter it here to get started with benefits!
+          </div>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="termsCheck" required />
+          <label for="termsCheck"
+            >I agree to the
+            <a href="#" onclick="alert('Terms & Conditions'); return false;"
+              >Terms of Service</a
+            >
+            and
+            <a href="#" onclick="alert('Privacy Policy'); return false;"
+              >Privacy Policy</a
+            ></label
+          >
+        </div>
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>or continue with</span>
+      </div>
+
+      <!-- Social Buttons -->
+      <div class="social-buttons">
+        <button class="social-btn" onclick="handleSocialAuth('google')">
+          <span class="icon">🔵</span>
+          Google
+        </button>
+        <button class="social-btn" onclick="handleSocialAuth('facebook')">
+          <span class="icon">🔷</span>
+          Facebook
+        </button>
+        <button class="social-btn" onclick="handleSocialAuth('apple')">
+          <span class="icon">🍎</span>
+          Apple
+        </button>
+      </div>
+
+      <!-- Toggle between login/register -->
+      <div class="form-toggle">
+        <span id="toggleText">Don't have an account?</span>
+        <a id="toggleLink" onclick="switchTab('register')">Sign up</a>
+      </div>
+    </div>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Home -->
+      <a href="index.html" class="nav-item" data-tab="home">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+
+      <!-- Search -->
+      <a
+        href="#"
+        class="nav-item"
+        data-tab="search"
+        onclick="alert('🔍 Search page coming soon!')"
+      >
+        <span class="icon">🔍</span>
+        <span class="label">Search</span>
+      </a>
+
+      <!-- Center Action Button (Post/Apply) -->
+      <a href="auth.html" class="nav-item center-btn" data-tab="post">
+        <span class="icon">➕</span>
+        <span class="label">Post</span>
+      </a>
+
+      <!-- Saved Jobs -->
+      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+        <span class="icon">⭐</span>
+        <span class="label">Saved</span>
+        <span class="badge">3</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="account.html" class="nav-item active" data-tab="profile">
+        <span class="icon">👤</span>
+        <span class="label">Profile</span>
+      </a>
+    </nav>
+
+    <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+
+    <script>
+      // ===== Tab Switching =====
+      function switchTab(tab) {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const tabs = document.querySelectorAll('.tab-btn');
+        const subtitle = document.getElementById('authSubtitle');
+        const toggleText = document.getElementById('toggleText');
+        const toggleLink = document.getElementById('toggleLink');
+
+        if (tab === 'login') {
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+          tabs.forEach((t) => t.classList.remove('active'));
+          document.querySelector('[data-tab="login"]').classList.add('active');
+          subtitle.textContent = 'Sign in to your account';
+          toggleText.textContent = "Don't have an account?";
+          toggleLink.textContent = 'Sign up';
+          toggleLink.onclick = function () {
+            switchTab('register');
+          };
+        } else {
+          loginForm.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+          tabs.forEach((t) => t.classList.remove('active'));
+          document
+            .querySelector('[data-tab="register"]')
+            .classList.add('active');
+          subtitle.textContent = 'Create your account';
+          toggleText.textContent = 'Already have an account?';
+          toggleLink.textContent = 'Sign in';
+          toggleLink.onclick = function () {
+            switchTab('login');
+          };
+        }
+
+        // Clear messages
+        document
+          .querySelectorAll('.error-message, .success-message')
+          .forEach((el) => el.remove());
+      }
+
+      // ===== Password Toggle =====
+      function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (input.type === 'password') {
+          input.type = 'text';
+          btn.textContent = '🙈';
+        } else {
+          input.type = 'password';
+          btn.textContent = '👁️';
+        }
+      }
+
+      // ===== Form Handlers =====
+      function handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const remember = document.getElementById('rememberMe').checked;
+
+        // Remove old messages
+        document
+          .querySelectorAll('.error-message, .success-message')
+          .forEach((el) => el.remove());
+
+        if (!email || !password) {
+          showMessage('Please fill in all fields.', 'error');
+          return;
+        }
+
+        // Simulate login
+        showMessage('✅ Login successful! Redirecting...', 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      }
+
+      function handleRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('registerName').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirm = document.getElementById(
+          'registerConfirmPassword'
+        ).value;
+        const referral = document.getElementById('referralCode').value;
+        const terms = document.getElementById('termsCheck').checked;
+
+        // Remove old messages
+        document
+          .querySelectorAll('.error-message, .success-message')
+          .forEach((el) => el.remove());
+
+        if (!name || !email || !password || !confirm) {
+          showMessage('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        if (password.length < 8) {
+          showMessage('Password must be at least 8 characters.', 'error');
+          return;
+        }
+
+        if (password !== confirm) {
+          showMessage('Passwords do not match.', 'error');
+          return;
+        }
+
+        if (!terms) {
+          showMessage(
+            'Please agree to the Terms of Service and Privacy Policy.',
+            'error'
+          );
+          return;
+        }
+
+        // Simulate registration
+        let message = '✅ Account created successfully!';
+        if (referral) {
+          message += ` Referral code "${referral}" applied! 🎉`;
+        }
+        showMessage(message, 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+      }
+
+      // ===== Social Authentication =====
+      function handleSocialAuth(provider) {
+        const providerNames = {
+          google: 'Google',
+          facebook: 'Facebook',
+          apple: 'Apple',
+        };
+
+        // Remove old messages
+        document
+          .querySelectorAll('.error-message, .success-message')
+          .forEach((el) => el.remove());
+
+        showMessage(
+          `🔐 Connecting to ${providerNames[provider]}...`,
+          'success'
+        );
+        setTimeout(() => {
+          showMessage(
+            `✅ Successfully authenticated with ${providerNames[provider]}! Redirecting...`,
+            'success'
+          );
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1200);
+        }, 1000);
+      }
+
+      // ===== Message Helpers =====
+      function showMessage(text, type) {
+        const container = document.getElementById('authContainer');
+        const existing = container.querySelectorAll(
+          '.error-message, .success-message'
+        );
+        existing.forEach((el) => el.remove());
+
+        const div = document.createElement('div');
+        div.className = type === 'error' ? 'error-message' : 'success-message';
+        div.textContent = text;
+
+        // Insert after the header
+        const header = container.querySelector('.auth-header');
+        header.parentNode.insertBefore(div, header.nextSibling);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (div.parentNode) div.remove();
+        }, 5000);
+      }
+
+      // ===== Enter key support =====
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          const loginForm = document.getElementById('loginForm');
+          const registerForm = document.getElementById('registerForm');
+          if (!loginForm.classList.contains('hidden')) {
+            loginForm.dispatchEvent(new Event('submit'));
+          } else if (!registerForm.classList.contains('hidden')) {
+            registerForm.dispatchEvent(new Event('submit'));
+          }
+        }
+      });
+
+      // ===== Demo: Auto-fill referral code from URL =====
+      (function checkReferralFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get('ref');
+        if (ref) {
+          document.getElementById('referralCode').value = ref;
+        }
+      })();
+
+      console.log(
+        '🔐 Auth page loaded. Features: Login, Register, Referral codes, Social auth (Google, Facebook, Apple)'
+      );
+      console.log('💡 Try: auth.html?ref=RISE2026 to auto-fill referral code');
+    </script>
+  </body>
+</html>
