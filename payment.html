@@ -1223,7 +1223,7 @@
         const response = await fetch('https://api.flutterwave.com/v3/payments', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer FLWSECK_TEST-4ad6984f18be57b9efd80663a8cb46d2-X`,//`Bearer ${YOUR_SECRET_KEY}`,
+                'Authorization': `Bearer ${YOUR_SECRET_KEY}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(paymentData)

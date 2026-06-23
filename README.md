@@ -1081,11 +1081,7 @@ async function verifyPayment(transactionId) {
 You need Flutterwave API keys:
 
 ```javascript
-const FLUTTERWAVE_CONFIG = {
-    public_key: 'FLWPUBK-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',  // From dashboard
-    secret_key: 'FLWSECK-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',   // From dashboard
-    encryption_key: 'FLWSECK-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx' // From dashboard
-};
+
 ```
 
 ### 5. **Get your API Keys**
