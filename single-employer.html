@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise · Employer Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f7fafd;
+            color: #0b1a2f;
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #2b4d77;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            background: #f0f6fe;
+            transition: 0.15s;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover {
+            background: #e3edfb;
+            border-color: #c7daf0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 36px;
+            border: 1px solid #e6edf5;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .banner {
+            width: calc(100% + 72px);
+            margin: -32px -36px 20px -36px;
+            height: 200px;
+            object-fit: cover;
+            background: #eef2f6;
+        }
+
+        .hero .company-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            object-fit: cover;
+            background: #eef2f6;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .hero .company-info h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .company-info .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            color: #4f6f8f;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .hero .company-info .meta span {
+            background: #f0f5fc;
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+
+        .hero .description {
+            margin-top: 16px;
+            color: #1e3853;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .hero .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .hero .badges .badge {
+            background: #e8f0fe;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1d3d60;
+        }
+
+        .hero .website-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 28px;
+            background: #0b1a2f;
+            color: white;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.15s;
+        }
+
+        .hero .website-btn:hover {
+            background: #1d3452;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 28px 32px;
+            border: 1px solid #e6edf5;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0a1d32;
+        }
+
+        .section .content {
+            color: #1e3853;
+            line-height: 1.7;
+        }
+
+        .section .content ul {
+            padding-left: 24px;
+            margin: 8px 0;
+        }
+
+        .section .content ul li {
+            margin-bottom: 4px;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .values-grid .value-item {
+            background: #f8fbfe;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid #eef4fa;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #eef4fa;
+            transition: 0.15s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+            border-color: #c4d6ed;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4f6f8f;
+        }
+
+        .loading .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0b1a2f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4f6f8f;
+        }
+
+        .not-found .icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero { padding: 20px 16px; }
+            .hero .banner {
+                margin: -20px -16px 16px -16px;
+                width: calc(100% + 32px);
+                height: 140px;
+            }
+            .hero .company-row { flex-direction: column; text-align: center; }
+            .hero .company-info h1 { font-size: 1.4rem; }
+            .section { padding: 20px 16px; }
+            .values-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .hero .logo { width: 64px; height: 64px; }
+        }
+    </style>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <a href="employers.html" class="back-link">← Back to Employers</a>
+
+    <div id="content">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading employer details...</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+    <!-- Home -->
+    <a href="index.html" class="nav-item" data-tab="home">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+
+    <!-- Search -->
+    <a
+        href="search.html"
+        class="nav-item"
+        data-tab="search"
+      >
+      <span class="icon">🔍</span>
+      <span class="label">Search</span>
+    </a>
+
+    <!-- Center Action Button (Post/Apply) -->
+    <a href="employers.html" class="nav-item center-btn" data-tab="post">
+          <span class="icon">➕</span>
+          <span class="label">Employers</span>
+        </a>
+
+    <!-- Saved Jobs -->
+    <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+      <span class="icon">⭐</span>
+      <span class="label">Saved</span>
+      <span class="badge">3</span>
+    </a>
+
+    <!-- Profile -->
+    <a href="account.html" class="nav-item" data-tab="profile">
+      <span class="icon">👤</span>
+      <span class="label">Profile</span>
+    </a>
+</nav>
+
+<script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+    
+<script>
+    // ===== CONFIGURATION =====
+    const API_BASE = 'https://api.joinrise.io/api/v1';
+
+    // ===== GET SLUG FROM URL =====
+    function getSlugFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('slug') || params.get('id');
+    }
+
+    // ===== FETCH EMPLOYER =====
+    async function fetchEmployer(slug) {
+        const container = document.getElementById('content');
+
+        if (!slug) {
+            container.innerHTML = `
+                <div class="not-found">
+                    <div class="icon">🔍</div>
+                    <h3>No employer specified</h3>
+                    <p>Please provide a valid employer slug.</p>
+                    <a href="employers.html" style="display:inline-block;margin-top:12px;padding:8px 24px;background:#0b1a2f;color:white;border-radius:40px;text-decoration:none;">Browse Employers</a>
+                </div>
+            `;
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/employers/${slug}`);
+            const data = await response.json();
+
+            if (!data.success || !data.result) {
+                throw new Error('Employer not found');
+            }
+
+            renderEmployer(data.result);
+        } catch (error) {
+            console.error('Error fetching employer:', error);
+            container.innerHTML = `
+                <div class="not-found">
+                    <div class="icon">⚠️</div>
+                    <h3>Employer not found</h3>
+                    <p>The employer you're looking for doesn't exist or has been removed.</p>
+                    <a href="employers.html" style="display:inline-block;margin-top:12px;padding:8px 24px;background:#0b1a2f;color:white;border-radius:40px;text-decoration:none;">Browse Employers</a>
+                </div>
+            `;
+        }
+    }
+
+    // ===== RENDER EMPLOYER =====
+    function renderEmployer(emp) {
+        const container = document.getElementById('content');
+
+        const name = emp.companyName || 'Unknown Company';
+        const logo = emp.photo || '';
+        const banner = emp.banner || '';
+        const desc = emp.descriptionShort || '';
+        const sector = emp.sector || 'Various';
+        const location = emp.location?.address || emp.locationAddress || 'Global';
+        const website = emp.website || '';
+        const teamSize = emp.teamSize || '';
+        const type = emp.type || 'Hybrid';
+        const funding = emp.funding || emp.possibleFunding || '';
+        const badges = emp.badges || [];
+        const values = emp.values?.values || [];
+        const benefits = emp.benefits?.benefits || [];
+        const components = emp.components || [];
+
+        // Build sections from components
+        let sectionsHtml = '';
+
+        // Extract gallery images from components
+        let galleryImages = [];
+
+        components.forEach(comp => {
+            if (comp.name === 'universalComp' && comp.sections) {
+                comp.sections.forEach(section => {
+                    if (section.gallery && section.gallery.length > 0) {
+                        galleryImages = [...galleryImages, ...section.gallery];
+                    }
+                    if (section.content) {
+                        sectionsHtml += `
+                            <div class="section">
+                                <div class="content">${section.content}</div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            if (comp.name === 'imageTextComp') {
+                sectionsHtml += `
+                    <div class="section">
+                        ${comp.titleMain ? `<h2>${comp.titleMain}</h2>` : ''}
+                        ${comp.photo ? `<img src="${comp.photo}" alt="${comp.titleMain || ''}" style="width:100%;max-height:300px;object-fit:cover;border-radius:12px;margin-bottom:12px;" />` : ''}
+                        <div class="content">${comp.text || ''}</div>
+                    </div>
+                `;
+            }
+
+            if (comp.name === 'shortQuoteComp' && comp.title) {
+                sectionsHtml += `
+                    <div class="section" style="text-align:center;background:#f8fbfe;">
+                        <blockquote style="font-size:1.3rem;font-weight:600;color:#0a1d32;font-style:italic;">"${comp.title}"</blockquote>
+                        ${comp.photo ? `<img src="${comp.photo}" alt="Quote" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-top:8px;" />` : ''}
+                    </div>
+                `;
+            }
+
+            if (comp.name === 'imageSliderComp' && comp.cards) {
+                const sliderImages = comp.cards.map(c => c.photo).filter(Boolean);
+                galleryImages = [...galleryImages, ...sliderImages];
+            }
+        });
+
+        // Build HTML
+        let html = `
+            <!-- Hero -->
+            <div class="hero">
+                ${banner ? `<img class="banner" src="${banner}" alt="${name}" />` : ''}
+                <div class="company-row">
+                    ${logo ? `<img class="logo" src="${logo}" alt="${name}" onerror="this.style.display='none'" />` : ''}
+                    <div class="company-info">
+                        <h1>${name}</h1>
+                        <div class="meta">
+                            <span>📍 ${location}</span>
+                            <span>${sector}</span>
+                            ${teamSize ? `<span>👥 ${teamSize}+</span>` : ''}
+                            <span>${type}</span>
+                            ${funding ? `<span>💰 ${funding}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                ${desc ? `<div class="description">${desc}</div>` : ''}
+                ${badges.length > 0 ? `
+                    <div class="badges">
+                        ${badges.map(b => `<span class="badge">${b}</span>`).join('')}
+                    </div>
+                ` : ''}
+                ${website ? `<a href="${website}" target="_blank" rel="noopener" class="website-btn">Visit Website →</a>` : ''}
+            </div>
+        `;
+
+        // Values
+        if (values.length > 0) {
+            html += `
+                <div class="section">
+                    <h2>🌟 Values & Culture</h2>
+                    <div class="values-grid">
+                        ${values.map(v => `<div class="value-item">${v}</div>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Benefits
+        if (benefits.length > 0) {
+            html += `
+                <div class="section">
+                    <h2>🎁 Benefits</h2>
+                    <div class="content">
+                        <ul>
+                            ${benefits.map(b => `<li>${b}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Gallery
+        if (galleryImages.length > 0) {
+            html += `
+                <div class="section">
+                    <h2>📸 Gallery</h2>
+                    <div class="gallery-grid">
+                        ${galleryImages.slice(0, 8).map(img => `
+                            <img src="${img}" alt="${name} gallery" onerror="this.style.display='none'" />
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Additional sections from components
+        html += sectionsHtml;
+
+        container.innerHTML = html;
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== INIT =====
+    const slug = getSlugFromUrl();
+    fetchEmployer(slug);
+
+    console.log('🏢 Single employer page loaded successfully!');
+    console.log('📌 Slug:', slug);
+</script>
+</body>
+</html>

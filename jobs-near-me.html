@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Rise · Jobs Near Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f7fafd;
+            color: #0b1a2f;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e6edf5;
+        }
+
+        .header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header h1 .location-icon {
+            font-size: 1.5rem;
+        }
+
+        .header .location-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #4f6f8f;
+        }
+
+        .header .location-status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: inline-block;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .header .location-status .dot.inactive {
+            background: #ff9800;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 20px;
+            height: calc(100vh - 180px);
+            min-height: 500px;
+        }
+
+        /* Map Container */
+        .map-container {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e6edf5;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #4f6f8f;
+        }
+
+        .map-loading .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0b1a2f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .map-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .map-controls button {
+            background: #0b1a2f;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: inherit;
+        }
+
+        .map-controls button:hover {
+            background: #1d3452;
+        }
+
+        /* Job List */
+        .job-list-container {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e6edf5;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .job-list-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #eef2f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .job-list-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .job-list-header .count {
+            background: #f0f5fc;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #1d3d60;
+        }
+
+        .job-list-header .radius-selector {
+            display: flex;
+            gap: 4px;
+        }
+
+        .job-list-header .radius-selector button {
+            padding: 4px 12px;
+            border: 1px solid #dce5ef;
+            border-radius: 40px;
+            background: white;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.15s;
+        }
+
+        .job-list-header .radius-selector button.active {
+            background: #0b1a2f;
+            color: white;
+            border-color: #0b1a2f;
+        }
+
+        .job-list-header .radius-selector button:hover:not(.active) {
+            background: #f0f5fc;
+        }
+
+        .job-list-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 16px;
+        }
+
+        .job-list-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .job-list-scroll::-webkit-scrollbar-track {
+            background: #f0f5fc;
+        }
+
+        .job-list-scroll::-webkit-scrollbar-thumb {
+            background: #d0d9e6;
+            border-radius: 4px;
+        }
+
+        .job-item {
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #eef4fa;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .job-item:hover {
+            border-color: #c4d6ed;
+            background: #fafcfe;
+        }
+
+        .job-item .title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .job-item .company {
+            font-size: 0.85rem;
+            color: #4f6f8f;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .job-item .company img {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .job-item .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: #6b8aa8;
+        }
+
+        .job-item .meta span {
+            background: #f0f5fc;
+            padding: 2px 10px;
+            border-radius: 40px;
+        }
+
+        .job-item .distance {
+            font-size: 0.75rem;
+            color: #0b1a2f;
+            font-weight: 500;
+            background: #e8f0fe;
+            padding: 2px 10px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .job-item .apply-link {
+            margin-top: 8px;
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #0b1a2f;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .job-item .apply-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-jobs {
+            text-align: center;
+            padding: 40px 20px;
+            color: #4f6f8f;
+        }
+
+        .no-jobs .big-icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .loading-jobs {
+            text-align: center;
+            padding: 30px;
+            color: #4f6f8f;
+        }
+
+        .loading-jobs .spinner-small {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0b1a2f;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        /* Job Detail Popup */
+        .job-popup .popup-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .job-popup .popup-company {
+            color: #4f6f8f;
+            font-size: 0.85rem;
+        }
+
+        .job-popup .popup-meta {
+            font-size: 0.8rem;
+            color: #6b8aa8;
+            margin: 4px 0;
+        }
+
+        .job-popup .popup-link {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 16px;
+            background: #0b1a2f;
+            color: white;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: auto;
+            }
+
+            .map-container {
+                height: 400px;
+            }
+
+            .job-list-container {
+                height: 500px;
+            }
+
+            .header h1 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 12px 16px; flex-direction: column; align-items: stretch; }
+            .header .location-status { justify-content: center; }
+            .job-list-header { flex-direction: column; align-items: stretch; }
+            .job-list-header .radius-selector { justify-content: center; }
+            .map-container { height: 300px; }
+            .job-list-container { height: 400px; }
+        }
+
+        /* Custom marker colors */
+        .marker-cluster {
+            background: #0b1a2f;
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+        }
+    </style>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>
+            <span class="location-icon">📍</span>
+            Jobs Near Me
+        </h1>
+        <div class="location-status">
+            <span class="dot" id="locationDot"></span>
+            <span id="locationText">Detecting your location...</span>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid">
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-loading" id="mapLoading">
+                <div class="spinner"></div>
+                <p>Loading map...</p>
+            </div>
+            <div class="map-controls">
+                <button onclick="findMyLocation()">📍 My Location</button>
+                <button onclick="resetMapView()">🌍 Reset View</button>
+            </div>
+        </div>
+
+        <!-- Job List -->
+        <div class="job-list-container">
+            <div class="job-list-header">
+                <div>
+                    <h2>Nearby Jobs</h2>
+                    <span class="count" id="jobCount">0 found</span>
+                </div>
+                <div class="radius-selector">
+                    <button class="active" data-radius="10" onclick="setRadius(10)">10km</button>
+                    <button data-radius="25" onclick="setRadius(25)">25km</button>
+                    <button data-radius="50" onclick="setRadius(50)">50km</button>
+                    <button data-radius="100" onclick="setRadius(100)">100km</button>
+                    <button data-radius="150" onclick="setRadius(150)">150km</button>
+                </div>
+            </div>
+            <div class="job-list-scroll" id="jobList">
+                <div class="loading-jobs">
+                    <div class="spinner-small"></div>
+                    <p>Finding jobs near you...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+    <!-- Home -->
+    <a href="index.html" class="nav-item" data-tab="home">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+
+    <!-- Search -->
+    <a
+        href="search.html"
+        class="nav-item"
+        data-tab="search"
+      >
+      <span class="icon">🔍</span>
+      <span class="label">Search</span>
+    </a>
+
+    <!-- Center Action Button (Post/Apply) -->
+    <a href="employers.html" class="nav-item center-btn" data-tab="post">
+          <span class="icon">➕</span>
+          <span class="label">Employers</span>
+        </a>
+
+    <!-- Saved Jobs -->
+    <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+      <span class="icon">⭐</span>
+      <span class="label">Saved</span>
+      <span class="badge">3</span>
+    </a>
+
+    <!-- Profile -->
+    <a href="account.html" class="nav-item" data-tab="profile">
+      <span class="icon">👤</span>
+      <span class="label">Profile</span>
+    </a>
+</nav>
+
+<script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+<script>
+    // ===== CONFIGURATION =====
+    const RISE_API = 'https://api.joinrise.io/api/v1/jobs/public';
+    const DEFAULT_RADIUS = 10; // km
+    let userLat = null;
+    let userLon = null;
+    let currentRadius = DEFAULT_RADIUS;
+    let map = null;
+    let markers = [];
+    let jobsData = [];
+
+    // ===== LOCATION DETECTION =====
+    function detectLocation() {
+        const dot = document.getElementById('locationDot');
+        const text = document.getElementById('locationText');
+
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    userLat = position.coords.latitude;
+                    userLon = position.coords.longitude;
+                    dot.className = 'dot';
+                    text.textContent = `📍 ${userLat.toFixed(4)}, ${userLon.toFixed(4)}`;
+                    initializeMap(userLat, userLon);
+                    fetchNearbyJobs(userLat, userLon, currentRadius);
+                },
+                (error) => {
+                    console.warn('Geolocation error:', error);
+                    dot.className = 'dot inactive';
+                    text.textContent = '⚠️ Location access denied. Using IP-based location.';
+                    // Fallback: get location from IP
+                    getLocationFromIP();
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        } else {
+            dot.className = 'dot inactive';
+            text.textContent = '⚠️ Geolocation not supported. Using IP-based location.';
+            getLocationFromIP();
+        }
+    }
+
+    async function getLocationFromIP() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            if (data.latitude && data.longitude) {
+                userLat = data.latitude;
+                userLon = data.longitude;
+                document.getElementById('locationText').textContent = 
+                    `📍 ${data.city || 'Unknown'}, ${data.country_name || ''} (IP-based)`;
+                initializeMap(userLat, userLon);
+                fetchNearbyJobs(userLat, userLon, currentRadius);
+            } else {
+                // Fallback to a default location (e.g., New York)
+                userLat = 40.7128;
+                userLon = -74.0060;
+                document.getElementById('locationText').textContent = '📍 Using default location (New York)';
+                initializeMap(userLat, userLon);
+                fetchNearbyJobs(userLat, userLon, currentRadius);
+            }
+        } catch (error) {
+            console.error('IP location error:', error);
+            // Default to New York
+            userLat = 40.7128;
+            userLon = -74.0060;
+            document.getElementById('locationText').textContent = '📍 Using default location (New York)';
+            initializeMap(userLat, userLon);
+            fetchNearbyJobs(userLat, userLon, currentRadius);
+        }
+    }
+
+    // ===== MAP INITIALIZATION =====
+    function initializeMap(lat, lon) {
+        document.getElementById('mapLoading').style.display = 'none';
+
+        if (!map) {
+            map = L.map('map', {
+                center: [lat, lon],
+                zoom: 12,
+                zoomControl: true
+            });
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+        } else {
+            map.setView([lat, lon], 12);
+        }
+
+        // Add user marker
+        const userIcon = L.divIcon({
+            html: '📍',
+            className: 'user-marker',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        L.marker([lat, lon], { icon: userIcon })
+            .addTo(map)
+            .bindPopup('📍 You are here');
+
+        // Draw radius circle
+        const radiusCircle = L.circle([lat, lon], {
+            radius: currentRadius * 1000,
+            color: '#0b1a2f',
+            fillColor: '#0b1a2f',
+            fillOpacity: 0.05,
+            weight: 2,
+            dashArray: '5, 5'
+        }).addTo(map);
+
+        // Store circle for updates
+        map._radiusCircle = radiusCircle;
+
+        // Handle map move to load jobs in view
+        map.on('moveend', function() {
+            const center = map.getCenter();
+            // Only reload if user moved significantly (optional)
+        });
+    }
+
+    // ===== FETCH JOBS =====
+    async function fetchNearbyJobs(lat, lon, radius) {
+        const jobList = document.getElementById('jobList');
+        jobList.innerHTML = `
+            <div class="loading-jobs">
+                <div class="spinner-small"></div>
+                <p>Finding jobs within ${radius}km...</p>
+            </div>
+        `;
+
+        try {
+            // Fetch jobs from Rise API
+            const response = await fetch(`${RISE_API}?page=1&limit=50&sort=desc&sortedBy=createdAt&includeDescription=true`);
+            const data = await response.json();
+            const allJobs = data.result?.jobs || [];
+
+            // Filter jobs by location (if they have coordinates)
+            // Since the API doesn't directly provide coordinates, we'll use location text
+            // and estimate distance based on location name matching
+            const jobsWithLocation = allJobs.map(job => {
+                const location = job.locationAddress || job.location?.address || '';
+                const coords = extractCoordinatesFromLocation(location);
+                return {
+                    ...job,
+                    locationText: location,
+                    lat: coords?.lat || null,
+                    lon: coords?.lon || null
+                };
+            });
+
+            // Filter jobs within radius
+            const nearbyJobs = jobsWithLocation.filter(job => {
+                if (!job.lat || !job.lon) return false;
+                const distance = calculateDistance(lat, lon, job.lat, job.lon);
+                return distance <= radius;
+            });
+
+            jobsData = nearbyJobs;
+            document.getElementById('jobCount').textContent = `${nearbyJobs.length} found`;
+
+            if (nearbyJobs.length === 0) {
+                jobList.innerHTML = `
+                    <div class="no-jobs">
+                        <div class="big-icon">🔍</div>
+                        <h3>No jobs found nearby</h3>
+                        <p>Try increasing the search radius or check back later.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render jobs
+            renderJobList(nearbyJobs);
+            renderMapMarkers(nearbyJobs);
+
+        } catch (error) {
+            console.error('Error fetching jobs:', error);
+            jobList.innerHTML = `
+                <div class="no-jobs">
+                    <div class="big-icon">⚠️</div>
+                    <h3>Error loading jobs</h3>
+                    <p>Please try again later.</p>
+                </div>
+            `;
+        }
+    }
+
+    // ===== EXTRACT COORDINATES FROM LOCATION TEXT =====
+    function extractCoordinatesFromLocation(locationText) {
+        if (!locationText) return null;
+
+        // Try to match coordinates pattern: "40.7128, -74.0060"
+        const coordMatch = locationText.match(/([-+]?\d+\.\d+)\s*[,，]\s*([-+]?\d+\.\d+)/);
+        if (coordMatch) {
+            return { lat: parseFloat(coordMatch[1]), lon: parseFloat(coordMatch[2]) };
+        }
+
+        // Try to geocode location name using a simple mapping for common locations
+        // This is a fallback - in production, use a geocoding API
+        const locationMap = {
+            'new york': { lat: 40.7128, lon: -74.0060 },
+            'san francisco': { lat: 37.7749, lon: -122.4194 },
+            'los angeles': { lat: 34.0522, lon: -118.2437 },
+            'chicago': { lat: 41.8781, lon: -87.6298 },
+            'london': { lat: 51.5074, lon: -0.1278 },
+            'remote': { lat: 40.7128, lon: -74.0060 },
+            'usa': { lat: 39.8283, lon: -98.5795 },
+            'uk': { lat: 55.3781, lon: -3.4360 },
+            'canada': { lat: 56.1304, lon: -106.3468 },
+            'australia': { lat: -25.2744, lon: 133.7751 },
+            'germany': { lat: 51.1657, lon: 10.4515 },
+            'france': { lat: 46.6034, lon: 1.8883 },
+            'india': { lat: 20.5937, lon: 78.9629 },
+            'japan': { lat: 36.2048, lon: 138.2529 },
+            'brazil': { lat: -14.2350, lon: -51.9253 }
+        };
+
+        const lowerText = locationText.toLowerCase();
+        for (const [key, coords] of Object.entries(locationMap)) {
+            if (lowerText.includes(key)) {
+                return coords;
+            }
+        }
+
+        return null;
+    }
+
+    // ===== CALCULATE DISTANCE (Haversine) =====
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Earth's radius in km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    }
+
+    // ===== RENDER JOB LIST =====
+    function renderJobList(jobs) {
+        const jobList = document.getElementById('jobList');
+        
+        jobList.innerHTML = jobs.map((job, index) => {
+            const distance = userLat && userLon ? 
+                calculateDistance(userLat, userLon, job.lat, job.lon).toFixed(1) : '?';
+            const company = job.owner?.companyName || 'Unknown Company';
+            const logo = job.owner?.photo || '';
+            const type = job.type || 'Hybrid';
+            const location = job.locationAddress || 'Remote';
+
+            return `
+                <div class="job-item" onclick="focusJob(${index})">
+                    <div class="title">${job.title || 'Position Available'}</div>
+                    <div class="company">
+                        ${logo ? `<img src="${logo}" alt="${company}" onerror="this.style.display='none'" />` : ''}
+                        ${company}
+                        <span class="distance">📍 ${distance} km</span>
+                    </div>
+                    <div class="meta">
+                        <span>${type}</span>
+                        <span>${location}</span>
+                        ${job.owner?.sector ? `<span>${job.owner.sector}</span>` : ''}
+                    </div>
+                    <a href="single-job.html?id=${job._id}" class="apply-link">View Details →</a>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ===== RENDER MAP MARKERS =====
+    function renderMapMarkers(jobs) {
+        // Clear existing markers
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
+        // Add markers for each job
+        jobs.forEach(job => {
+            if (!job.lat || !job.lon) return;
+
+            const popupContent = `
+                <div class="job-popup">
+                    <div class="popup-title">${job.title || 'Position'}</div>
+                    <div class="popup-company">🏢 ${job.owner?.companyName || 'Company'}</div>
+                    <div class="popup-meta">📍 ${job.locationAddress || 'Remote'}</div>
+                    <div class="popup-meta">💼 ${job.type || 'Hybrid'}</div>
+                    <a href="single-job.html?id=${job._id}" class="popup-link">View Details →</a>
+                </div>
+            `;
+
+            const marker = L.marker([job.lat, job.lon])
+                .bindPopup(popupContent, { maxWidth: 250 })
+                .addTo(map);
+
+            markers.push(marker);
+        });
+
+        // Fit bounds to show all markers
+        if (markers.length > 0) {
+            const group = L.featureGroup(markers);
+            const bounds = group.getBounds();
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+    }
+
+    // ===== FOCUS JOB =====
+    function focusJob(index) {
+        const job = jobsData[index];
+        if (job && job.lat && job.lon) {
+            map.setView([job.lat, job.lon], 15);
+            // Open popup
+            markers[index]?.openPopup();
+        }
+    }
+
+    // ===== FIND MY LOCATION =====
+    function findMyLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    userLat = position.coords.latitude;
+                    userLon = position.coords.longitude;
+                    map.setView([userLat, userLon], 14);
+                    document.getElementById('locationText').textContent = 
+                        `📍 ${userLat.toFixed(4)}, ${userLon.toFixed(4)}`;
+                    fetchNearbyJobs(userLat, userLon, currentRadius);
+                },
+                (error) => {
+                    alert('Unable to get your location. Please check your permissions.');
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by your browser.');
+        }
+    }
+
+    // ===== RESET MAP VIEW =====
+    function resetMapView() {
+        if (userLat && userLon) {
+            map.setView([userLat, userLon], 12);
+        }
+    }
+
+    // ===== SET RADIUS =====
+    function setRadius(radius) {
+        currentRadius = radius;
+        document.querySelectorAll('.radius-selector button').forEach(btn => {
+            btn.classList.toggle('active', parseInt(btn.dataset.radius) === radius);
+        });
+        if (userLat && userLon) {
+            fetchNearbyJobs(userLat, userLon, radius);
+            // Update radius circle
+            if (map._radiusCircle) {
+                map.removeLayer(map._radiusCircle);
+            }
+            const circle = L.circle([userLat, userLon], {
+                radius: radius * 1000,
+                color: '#0b1a2f',
+                fillColor: '#0b1a2f',
+                fillOpacity: 0.05,
+                weight: 2,
+                dashArray: '5, 5'
+            }).addTo(map);
+            map._radiusCircle = circle;
+        }
+    }
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+        detectLocation();
+    });
+
+    console.log('📍 Jobs Near Me loaded successfully!');
+    console.log('🔍 Features: Location detection, Interactive map, Job listings, Radius filtering');
+</script>
+</body>
+</html>

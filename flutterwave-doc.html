@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flutterwave · Payment Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f4f9fe;
+            color: #0b1a2f;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .doc-wrapper {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .doc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .doc-header h1 {
+            font-weight: 700;
+            font-size: 1.9rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(145deg, #0b1a2f, #1f3b5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .doc-header .badge {
+            background: #0b1a2f;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            background: #1a3452;
+        }
+
+        .doc-header .badge span {
+            background: #2f5a85;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            margin-left: 6px;
+        }
+
+        /* grid cards */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .doc-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 20, 40, 0.08);
+            border: 1px solid #e9f0f7;
+            transition: 0.15s;
+        }
+
+        .doc-card:hover {
+            border-color: #c8d9ed;
+            box-shadow: 0 16px 40px -12px rgba(0, 20, 40, 0.12);
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #eef4fa;
+            color: #1a3b5c;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            margin-bottom: 0.8rem;
+        }
+
+        .doc-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .doc-card .sub {
+            font-size: 0.9rem;
+            color: #4f6f8f;
+            margin-bottom: 0.8rem;
+        }
+
+        .doc-card p,
+        .doc-card li {
+            font-size: 0.9rem;
+            color: #1f3b57;
+        }
+
+        .doc-card ul {
+            padding-left: 1.2rem;
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .doc-card ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .doc-card .highlight {
+            background: #f2f8ff;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0 0.4rem;
+            font-size: 0.85rem;
+            border-left: 4px solid #2f5a85;
+        }
+
+        .doc-card .highlight code {
+            font-family: 'Inter', monospace;
+            background: #e1ebf5;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .method-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .method-list .pill {
+            background: #f0f6fe;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1a3b5c;
+            border: 1px solid #dde8f2;
+        }
+
+        .method-list .pill strong {
+            font-weight: 600;
+            color: #0b1a2f;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #e6eef6;
+            margin: 1.6rem 0 1.2rem;
+        }
+
+        .flow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.7rem;
+            margin-top: 0.6rem;
+        }
+
+        .flow-steps .step {
+            background: #f4f9fe;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1d3e5e;
+            border: 1px solid #dce8f2;
+        }
+
+        .flow-steps .step span {
+            background: #0b1a2f;
+            color: white;
+            border-radius: 40px;
+            padding: 0 0.5rem;
+            margin-right: 4px;
+            font-size: 0.6rem;
+            display: inline-block;
+        }
+
+        .req-badge {
+            background: #ffeedb;
+            color: #8a6100;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 0.4rem;
+        }
+
+        /* two-col for bigger sections */
+        .doc-section {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #e9f0f7;
+            box-shadow: 0 6px 24px -6px rgba(0, 20, 40, 0.04);
+        }
+
+        .doc-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+        }
+
+        .doc-section .lead {
+            font-size: 1rem;
+            color: #4f6f8f;
+            margin-bottom: 1.2rem;
+        }
+
+        .flex-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .flex-cols .col {
+            min-width: 0;
+        }
+
+        .flex-cols .col h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .flex-cols .col ul {
+            padding-left: 1.2rem;
+            color: #1f3b57;
+            font-size: 0.9rem;
+        }
+
+        .flex-cols .col ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .country-tag {
+            display: inline-block;
+            background: #e5eff8;
+            border-radius: 40px;
+            padding: 0.1rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1a3b5c;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        .api-block {
+            background: #f6faff;
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            margin: 0.8rem 0;
+            border: 1px solid #e4edf6;
+            font-family: 'Inter', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .api-block .curl {
+            color: #0b1a2f;
+        }
+
+        .api-block .comment {
+            color: #5d7f9e;
+        }
+
+        @media (max-width: 760px) {
+            .flex-cols {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .doc-header h1 {
+                font-size: 1.5rem;
+            }
+            .doc-card {
+                padding: 1.4rem;
+            }
+            .doc-section {
+                padding: 1.4rem;
+            }
+        }
+
+        .small-note {
+            font-size: 0.8rem;
+            color: #5d7f9e;
+            margin-top: 0.2rem;
+        }
+
+        .icon-em {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+    </style>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
+<div class="doc-wrapper">
+    <!-- header -->
+    <div class="doc-header">
+        <h1>💳 Flutterwave · Payment Documentation</h1>
+        <div class="badge">v2.0 · <span>30+ currencies</span></div>
+    </div>
+
+    <!-- intro grid -->
+    <div class="doc-grid">
+        <!-- card: global -->
+        <div class="doc-card">
+            <div class="card-tag">🌍 Global reach</div>
+            <h3>Merchant operating countries</h3>
+            <div class="sub">Africa · North America · Europe · Middle East</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.2rem 0.4rem; margin: 0.4rem 0 0.6rem;">
+                <span class="country-tag">🇳🇬 Nigeria</span>
+                <span class="country-tag">🇰🇪 Kenya</span>
+                <span class="country-tag">🇿🇦 South Africa</span>
+                <span class="country-tag">🇪🇬 Egypt</span>
+                <span class="country-tag">🇬🇭 Ghana</span>
+                <span class="country-tag">🇺🇬 Uganda</span>
+                <span class="country-tag">🇹🇿 Tanzania</span>
+                <span class="country-tag">🇷🇼 Rwanda</span>
+                <span class="country-tag">🇿🇲 Zambia</span>
+                <span class="country-tag">🇨🇲 Cameroon</span>
+                <span class="country-tag">🇨🇮 Côte d'Ivoire</span>
+                <span class="country-tag">🇧🇫 Burkina Faso</span>
+                <span class="country-tag">🇺🇸 United States</span>
+                <span class="country-tag">🇬🇧 United Kingdom</span>
+                <span class="country-tag">🇫🇷 France</span>
+                <span class="country-tag">🇩🇪 Germany</span>
+                <span class="country-tag">🇪🇸 Spain</span>
+                <span class="country-tag">🇳🇱 Netherlands</span>
+            </div>
+            <div class="highlight">
+                <strong>Supported payment channels</strong><br />
+                <span class="method-list" style="margin-top: 4px;">
+                    <span class="pill"><strong>📱</strong> M-Pesa · MTN · Orange · Airtel · Wave</span>
+                    <span class="pill"><strong>💳</strong> Visa · Mastercard · Amex · Discover · Verve</span>
+                    <span class="pill"><strong>🍎</strong> Apple Pay</span>
+                    <span class="pill"><strong>🏦</strong> Bank Transfers · USSD</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- card: flows -->
+        <div class="doc-card">
+            <div class="card-tag">⚡ two integration flows</div>
+            <h3>General flow</h3>
+            <div class="sub">Customizable, step‑by‑step control</div>
+            <div class="flow-steps">
+                <span class="step"><span>1</span> Create customer</span>
+                <span class="step"><span>2</span> Create payment method</span>
+                <span class="step"><span>3</span> Initiate charge</span>
+                <span class="step"><span>4</span> Authorize</span>
+                <span class="step"><span>5</span> Verify status</span>
+            </div>
+            <div style="margin: 0.8rem 0 0.3rem;">
+                <span class="pill" style="background: #e3edfb;">Orchestrator flow</span>
+                <span style="font-size: 0.85rem; color: #2f4a6a; margin-left: 4px;">— simplified all‑in‑one</span>
+            </div>
+            <div class="highlight" style="margin-top: 0.6rem;">
+                <code>requires_pin · requires_otp · redirect_url · requires_additional_fields · payment_instructions</code>
+                <div class="small-note" style="margin-top: 4px;">next_action types guide the authorization step</div>
+            </div>
+        </div>
+
+        <!-- card: methods -->
+        <div class="doc-card">
+            <div class="card-tag">🧾 available payment methods</div>
+            <ul style="margin: 0.2rem 0 0.6rem 1rem;">
+                <li><strong>Card</strong> — Visa, Mastercard, Amex, Verve, Afrigo</li>
+                <li><strong>Mobile Money</strong> — M-Pesa, MTN, Airtel, Orange, Wave</li>
+                <li><strong>Virtual Accounts</strong> — dynamic &amp; static bank transfers</li>
+                <li><strong>OPay</strong> — wallet payments (NGN)</li>
+                <li><strong>USSD</strong> — offline, internet‑free (NGN)</li>
+                <li><strong>Apple Pay</strong> — seamless on Apple devices</li>
+            </ul>
+            <div class="req-badge">⚠️ Some methods require additional approval</div>
+        </div>
+    </div>
+
+    <!-- detailed section: general flow -->
+    <div class="doc-section">
+        <h2>🔁 General payment flow</h2>
+        <div class="lead">Full control over the customer, payment method, and charge on your server.</div>
+
+        <div class="flex-cols">
+            <div class="col">
+                <h4><span class="icon-em">①</span> Create customer</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Collect email, name, phone, address. Only email is required.</p>
+                <div class="api-block">
+                    <span class="comment">POST /customers</span>
+                    <span class="curl">
+{
+  "address": { "city": "Gotham", "country": "US", ... },
+  "name": { "first": "King", "last": "James" },
+  "email": "james@example.com"
+}
+                    </span>
+                </div>
+                <h4 style="margin-top: 0.8rem;"><span class="icon-em">②</span> Create payment method</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Card, mobile money, OPay, USSD, etc. Returns <code>payment_method_id</code></p>
+                <div class="api-block">
+                    <span class="comment">POST /payment-methods</span>
+                    <span class="curl">
+{
+  "type": "card",
+  "card": { "nonce": "...", "encrypted_card_number": "..." }
+}
+                    </span>
+                </div>
+            </div>
+            <div class="col">
+                <h4><span class="icon-em">③</span> Initiate charge</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Use <code>customer_id</code> + <code>payment_method_id</code> + amount, currency, reference.</p>
+                <div class="api-block">
+                    <span class="comment">POST /charges</span>
+                    <span class="curl">
+{
+  "reference": "cedfa85a...",
+  "currency": "USD",
+  "customer_id": "cus_...",
+  "payment_method_id": "pmd_...",
+  "amount": 1234.56
+}
+                    </span>
+                </div>
+                <h4 style="margin-top: 0.8rem;"><span class="icon-em">④</span> Authorize</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Handle <code>next_action</code> (pin, otp, redirect, additional fields, instructions).</p>
+                <h4 style="margin-top: 0.8rem;"><span class="icon-em">⑤</span> Verify</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Use webhook or GET <code>/charges/{id}</code> to confirm <code>status: succeeded</code>.</p>
+            </div>
+        </div>
+        <div class="highlight" style="margin-top: 0.2rem;">
+            <strong>🔐 Security:</strong> Encrypt sensitive card data with nonce &amp; encryption before sending.
+        </div>
+    </div>
+
+    <!-- orchestrator flow -->
+    <div class="doc-section" style="background: #f9fcff;">
+        <h2>⚡ Orchestrator flow</h2>
+        <div class="lead">Simplified all‑in‑one charge — create customer &amp; payment method in a single request.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Direct charge endpoint</h4>
+                <div class="api-block">
+                    <span class="comment">POST /orchestration/direct-charges</span>
+                    <span class="curl">
+{
+  "amount": 1234.56,
+  "currency": "USD",
+  "reference": "YOUR_REF",
+  "payment_method": { "type": "card", "card": { ... } },
+  "customer": { "email": "...", "name": { ... }, "phone": { ... } }
+}
+                    </span>
+                </div>
+                <div class="small-note">Supports card, mobile money, OPay, USSD, bank transfer.</div>
+            </div>
+            <div class="col">
+                <h4>Next actions &amp; verification</h4>
+                <p style="font-size: 0.9rem; color: #1f3b57;">Same <code>next_action</code> types as general flow. Verify via webhook or GET <code>/charges/{id}</code>.</p>
+                <div class="highlight" style="margin-top: 0.6rem;">
+                    <strong>🚧</strong> Still need required fields for customer &amp; payment method.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- method deep dive: card -->
+    <div class="doc-section">
+        <h2>💳 Card payments</h2>
+        <div class="lead">Accept Visa, Mastercard, Amex, Verve, Afrigo.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Steps</h4>
+                <ul>
+                    <li>Create customer (email required)</li>
+                    <li>Create card payment method (encrypted details + nonce)</li>
+                    <li>Initiate charge with <code>customer_id</code> &amp; <code>payment_method_id</code></li>
+                    <li>Authorize: handle <strong>3DS, AVS, PIN, OTP</strong> or redirect</li>
+                    <li>Verify via webhook or GET charge</li>
+                </ul>
+                <div class="highlight" style="margin-top: 0.6rem;">
+                    <strong>Recurring payments</strong> — use <code>recurring: true</code> with stored <code>payment_method_id</code>.
+                </div>
+            </div>
+            <div class="col">
+                <h4>Auth models</h4>
+                <ul>
+                    <li><strong>3DS / VBVSECURECODE</strong> — redirect to bank</li>
+                    <li><strong>External 3DS</strong> — your own verification provider</li>
+                    <li><strong>AVS</strong> — address verification (US/CA)</li>
+                    <li><strong>PIN</strong> — encrypted PIN + optional OTP</li>
+                </ul>
+                <div class="api-block" style="margin-top: 0.4rem;">
+                    <span class="comment">PUT /charges/{id}</span>
+                    <span class="curl">
+{ "authorization": { "type": "pin", "pin": { "nonce": "...", "encrypted_pin": "..." } } }
+                    </span>
+                </div>
+                <div class="small-note">Test with <code>X-Scenario-Key: scenario:auth_3ds&amp;issuer:approved</code></div>
+            </div>
+        </div>
+        <div class="req-badge" style="margin-top: 0.4rem;">💡 Credential‑on‑File (COF) available on request</div>
+    </div>
+
+    <!-- mobile money -->
+    <div class="doc-section" style="background: #f9fcff;">
+        <h2>📱 Mobile money</h2>
+        <div class="lead">M‑Pesa, MTN, Airtel, Orange, Wave · push notification or redirect.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Flow</h4>
+                <ul>
+                    <li>Create customer (email + phone)</li>
+                    <li>Create <code>mobile_money</code> payment method with <code>country_code</code>, <code>network</code>, <code>phone_number</code></li>
+                    <li>Initiate charge (currency must match country)</li>
+                    <li>Customer authorises via push or redirect</li>
+                    <li>Verify webhook / GET charge</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Supported networks</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 0.6rem;">
+                    <span class="pill">🇰🇪 M‑Pesa</span>
+                    <span class="pill">🇬🇭 MTN</span>
+                    <span class="pill">🇬🇭 Airtel</span>
+                    <span class="pill">🇨🇮 Orange</span>
+                    <span class="pill">🇸🇳 Wave</span>
+                </div>
+                <div class="highlight">
+                    <strong>next_action</strong> <code>payment_instruction</code> or <code>redirect_url</code>
+                </div>
+                <div class="small-note">Test with <code>X-Scenario-Key: scenario:auth_redirect</code> for mock redirect.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bank transfer (virtual accounts) -->
+    <div class="doc-section">
+        <h2>🏦 Pay with bank transfer (virtual accounts)</h2>
+        <div class="lead">NGN &amp; GHS · dynamic (per‑transaction) or static (reusable) accounts.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Static account</h4>
+                <ul>
+                    <li>Set <code>amount: 0</code>, <code>account_type: "static"</code></li>
+                    <li>Requires <code>bvn</code> or <code>nin</code> for NGN</li>
+                    <li>Reusable for 1000 years</li>
+                </ul>
+                <h4 style="margin-top: 0.6rem;">Dynamic account</h4>
+                <ul>
+                    <li>Set <code>expiry</code> (seconds), <code>account_type: "dynamic"</code></li>
+                    <li>One‑time use, expires after set time</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Create &amp; verify</h4>
+                <div class="api-block">
+                    <span class="comment">POST /virtual-accounts</span>
+                    <span class="curl">
+{
+  "reference": "...",
+  "customer_id": "cus_...",
+  "amount": 1500,
+  "currency": "NGN",
+  "account_type": "dynamic",
+  "expiry": 3600,
+  "bank_code": "090567"
+}
+                    </span>
+                </div>
+                <div class="highlight" style="margin-top: 0.4rem;">
+                    <strong>Webhook</strong> <code>charge.completed</code> — verify <code>status: succeeded</code> and amount.
+                </div>
+                <div class="small-note">Test with <code>X-Scenario-Key: issuer:approved</code> or <code>issuer:failed</code></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USSD -->
+    <div class="doc-section" style="background: #f9fcff;">
+        <h2>📞 USSD payments</h2>
+        <div class="lead">Offline, internet‑free · NGN only.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Flow</h4>
+                <ul>
+                    <li>Create customer</li>
+                    <li>Get bank list (<code>GET /banks?country=NG</code>)</li>
+                    <li>Create USSD payment method with <code>account_bank</code></li>
+                    <li>Initiate charge → <code>next_action.payment_instruction</code> with USSD string</li>
+                    <li>Customer dials, enters PIN</li>
+                    <li>Verify webhook / GET charge</li>
+                </ul>
+            </div>
+            <div class="col">
+                <div class="highlight">
+                    <strong>Example next_action</strong><br />
+                    <code>"note": "Please dial *1414# to complete this transaction"</code>
+                </div>
+                <div class="small-note" style="margin-top: 0.4rem;">No extra test configuration needed — use sandbox credentials.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPay -->
+    <div class="doc-section">
+        <h2>⚡ OPay payments</h2>
+        <div class="lead">NGN only · redirect to OPay for authorisation.</div>
+        <div class="flex-cols">
+            <div class="col">
+                <ul>
+                    <li>Create customer</li>
+                    <li>Create <code>opay</code> payment method (no extra fields)</li>
+                    <li>Initiate charge → <code>next_action.redirect_url</code></li>
+                    <li>Customer logs into OPay and authorises</li>
+                    <li>Verify via webhook or GET charge</li>
+                </ul>
+            </div>
+            <div class="col">
+                <div class="api-block">
+                    <span class="comment">POST /payment-methods</span>
+                    <span class="curl">{ "type": "opay" }</span>
+                </div>
+                <div class="highlight" style="margin-top: 0.4rem;">
+                    Redirect to Flutterwave mock page in test mode.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- verification & testing -->
+    <div class="doc-section" style="border-top: 2px solid #dce8f2;">
+        <h2>✅ Verification &amp; testing</h2>
+        <div class="flex-cols">
+            <div class="col">
+                <h4>Webhooks</h4>
+                <p style="font-size: 0.9rem;">Configure in dashboard. Listen for <code>charge.completed</code> events. Always verify:</p>
+                <ul>
+                    <li><code>status</code> = succeeded</li>
+                    <li><code>amount</code> matches expected</li>
+                    <li><code>customer.id</code> matches user</li>
+                    <li><code>reference</code> consistent</li>
+                </ul>
+                <div class="api-block" style="margin-top: 0.2rem;">
+                    <span class="comment">Sample webhook payload</span>
+                    <span class="curl">
+{
+  "type": "charge.completed",
+  "data": { "status": "succeeded", "amount": 200, "currency": "NGN", ... }
+}
+                    </span>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Manual verification</h4>
+                <p style="font-size: 0.9rem;"><code>GET /charges/{id}</code> with your access token.</p>
+                <div class="highlight" style="margin-top: 0.4rem;">
+                    <strong>Scenario keys</strong> — mock auth models &amp; issuer responses.<br />
+                    <code>X-Scenario-Key: scenario:auth_pin&amp;issuer:approved</code>
+                </div>
+                <div class="small-note" style="margin-top: 0.3rem;">Refer to testing helpers for full list.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div style="margin-top: 2.2rem; font-size: 0.8rem; color: #5d7f9e; border-top: 1px solid #e3edf5; padding-top: 1.2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem;">
+        <span>Flutterwave · global payment orchestration</span>
+        <span>📘 30+ currencies · 35+ payout countries</span>
+    </div>
+</div>
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+    <!-- Home -->
+    <a href="index.html" class="nav-item" data-tab="home">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+
+    <!-- Search -->
+    <a
+        href="search.html"
+        class="nav-item"
+        data-tab="search"
+      >
+      <span class="icon">🔍</span>
+      <span class="label">Search</span>
+    </a>
+
+    <!-- Center Action Button (Post/Apply) -->
+    <a href="employers.html" class="nav-item center-btn" data-tab="post">
+          <span class="icon">➕</span>
+          <span class="label">Employers</span>
+        </a>
+
+    <!-- Saved Jobs -->
+    <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+      <span class="icon">⭐</span>
+      <span class="label">Saved</span>
+      <span class="badge">3</span>
+    </a>
+
+    <!-- Profile -->
+    <a href="account.html" class="nav-item" data-tab="profile">
+      <span class="icon">👤</span>
+      <span class="label">Profile</span>
+    </a>
+</nav>
+
+    <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+</body>
+</html>

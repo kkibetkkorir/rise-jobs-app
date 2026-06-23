@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rise · Jobs</title>
-    <!-- minimalist + modern UI, clean typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rise · Jobs</title>
+  <!-- minimalist + modern UI, clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  
+  <link
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
     />
-
     <!-- ===== SEO META TAGS ===== -->
     <!-- Primary Meta Tags -->
     <title>Rise - Find Your Next Career Opportunity | Job Board</title>
@@ -175,648 +176,596 @@
     <link rel="dns-prefetch" href="https://api.joinrise.io" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0b1a2f;
+      padding: 24px 16px 40px;
+      line-height: 1.5;
+    }
 
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: #f8fafc;
-        color: #0b1a2f;
-        padding: 24px 16px 40px;
-        line-height: 1.5;
-      }
+    .app {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
 
-      .app {
-        max-width: 1280px;
-        margin: 0 auto;
-      }
+    /* header / branding */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
 
-      /* header / branding */
-      .header {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 32px;
-        gap: 16px;
-      }
+    .logo h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-      .logo h1 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+    .logo span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      background: #eef2f6;
+      padding: 4px 12px;
+      border-radius: 40px;
+      -webkit-text-fill-color: #1f3a57;
+      color: #1f3a57;
+      margin-left: 8px;
+    }
 
-      .logo span {
-        font-weight: 400;
-        font-size: 0.9rem;
-        background: #eef2f6;
-        padding: 4px 12px;
-        border-radius: 40px;
-        -webkit-text-fill-color: #1f3a57;
-        color: #1f3a57;
-        margin-left: 8px;
-      }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 60px;
+      padding: 4px 4px 4px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 0 0 1px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s;
+      flex: 1 1 300px;
+      max-width: 480px;
+    }
+    .search-box:focus-within {
+      box-shadow: 0 4px 14px rgba(0,20,50,0.06), 0 0 0 2px #b3cef0;
+    }
+    .search-box input {
+      border: none;
+      padding: 12px 0;
+      font-size: 0.95rem;
+      width: 100%;
+      background: transparent;
+      outline: none;
+      font-weight: 450;
+      color: #0b1a2f;
+    }
+    .search-box input::placeholder {
+      color: #8b9bb0;
+      font-weight: 400;
+    }
+    .search-box button {
+      background: #0b1a2f;
+      border: none;
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 10px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.15s;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+    .search-box button:hover {
+      background: #1d3450;
+    }
 
-      .search-box {
-        display: flex;
-        align-items: center;
-        background: white;
-        border-radius: 60px;
-        padding: 4px 4px 4px 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.02);
-        transition: box-shadow 0.2s;
-        flex: 1 1 300px;
-        max-width: 480px;
-        max-height: 40px;
+    /* filter chips */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+    .filter-chip {
+      background: white;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1f3a57;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      border: 1px solid #e2e9f2;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #f9fbfd;
+    }
+    .filter-chip:hover {
+      background: #eef4fa;
+      border-color: #b8cee6;
+    }
+    .filter-chip.active {
+      background: #0b1a2f;
+      border-color: #0b1a2f;
+      color: white;
+      box-shadow: 0 2px 6px rgba(11,26,47,0.12);
+    }
 
-        margin-top: 20px;
-      }
-      .search-box:focus-within {
-        box-shadow: 0 4px 14px rgba(0, 20, 50, 0.06), 0 0 0 2px #b3cef0;
-      }
-      .search-box input {
-        border: none;
-        padding: 12px 0;
-        font-size: 0.95rem;
-        width: 100%;
-        background: transparent;
-        outline: none;
-        font-weight: 450;
-        color: #0b1a2f;
-      }
-      .search-box input::placeholder {
-        color: #8b9bb0;
-        font-weight: 400;
-      }
-      .search-box button {
-        background: #0b1a2f;
-        border: none;
-        color: white;
-        font-weight: 500;
-        font-size: 0.9rem;
-        padding: 10px 22px;
-        border-radius: 40px;
-        cursor: pointer;
-        transition: 0.15s;
-        white-space: nowrap;
-        letter-spacing: 0.3px;
-      }
-      .search-box button:hover {
-        background: #1d3450;
-      }
+    /* job grid */
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
 
-      /* filter chips */
-      .filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 12px;
-        margin-bottom: 28px;
-        align-items: center;
-      }
-      .filter-chip {
-        background: white;
-        padding: 8px 20px;
-        border-radius: 40px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #1f3a57;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
-        border: 1px solid #e2e9f2;
-        cursor: pointer;
-        transition: all 0.15s;
-        background: #f9fbfd;
-      }
-      .filter-chip:hover {
-        background: #eef4fa;
-        border-color: #b8cee6;
-      }
-      .filter-chip.active {
-        background: #0b1a2f;
-        border-color: #0b1a2f;
-        color: white;
-        box-shadow: 0 2px 6px rgba(11, 26, 47, 0.12);
-      }
+    .job-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px 20px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0,0,0,0.02);
+      border: 1px solid #eef2f6;
+      transition: transform 0.12s, box-shadow 0.18s;
+      display: flex;
+      flex-direction: column;
+    }
+    .job-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -10px rgba(0,20,40,0.08), 0 1px 2px rgba(0,0,0,0.02);
+      border-color: #dce5ef;
+    }
 
-      /* job grid */
-      .job-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        margin-bottom: 40px;
-      }
+    .company-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .company-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #eef2f6;
+      flex-shrink: 0;
+      border: 1px solid #eaedf2;
+    }
+    .company-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0b1a2f;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .company-meta {
+      font-size: 0.75rem;
+      color: #637a94;
+      margin-top: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+    }
+    .company-meta span {
+      background: #f0f4fa;
+      padding: 2px 10px;
+      border-radius: 30px;
+    }
 
-      .job-card {
-        background: white;
-        border-radius: 20px;
-        padding: 22px 20px 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02),
-          0 1px 2px rgba(0, 0, 0, 0.02);
-        border: 1px solid #eef2f6;
-        transition: transform 0.12s, box-shadow 0.18s;
-        display: flex;
-        flex-direction: column;
-      }
-      .job-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 28px -10px rgba(0, 20, 40, 0.08),
-          0 1px 2px rgba(0, 0, 0, 0.02);
-        border-color: #dce5ef;
-      }
+    .job-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 6px 0 10px;
+      line-height: 1.3;
+      color: #0b1a2f;
+    }
 
-      .company-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
-      }
-      .company-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        object-fit: cover;
-        background: #eef2f6;
-        flex-shrink: 0;
-        border: 1px solid #eaedf2;
-      }
-      .company-name {
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: #0b1a2f;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .company-meta {
-        font-size: 0.75rem;
-        color: #637a94;
-        margin-top: 2px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px 12px;
-      }
-      .company-meta span {
-        background: #f0f4fa;
-        padding: 2px 10px;
-        border-radius: 30px;
-      }
+    .job-location {
+      font-size: 0.9rem;
+      color: #3f5b78;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .job-location svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-      .job-title {
-        font-weight: 700;
-        font-size: 1.1rem;
-        margin: 6px 0 10px;
-        line-height: 1.3;
-        color: #0b1a2f;
-      }
+    .job-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #eff2f7;
+    }
+    .job-type {
+      background: #eaf0f8;
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1d3d60;
+      letter-spacing: 0.2px;
+    }
+    .job-link {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #0b1a2f;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: 0.1s;
+    }
+    .job-link:hover {
+      color: #2b4d77;
+      text-decoration: underline;
+    }
 
-      .job-location {
-        font-size: 0.9rem;
-        color: #3f5b78;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .job-location svg {
-        width: 16px;
-        height: 16px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
+    /* pagination */
+    .pagination {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px 16px;
+      margin-top: 20px;
+    }
+    .pagination button {
+      background: white;
+      border: 1px solid #dde5ef;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1f3a57;
+      cursor: pointer;
+      transition: 0.1s;
+      background: #fafcfe;
+    }
+    .pagination button:hover:not(:disabled) {
+      background: #0b1a2f;
+      color: white;
+      border-color: #0b1a2f;
+    }
+    .pagination button:disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .page-info {
+      font-size: 0.9rem;
+      color: #2f4b6b;
+      font-weight: 450;
+    }
 
-      .job-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: auto;
-        padding-top: 16px;
-        border-top: 1px solid #eff2f7;
-      }
-      .job-type {
-        background: #eaf0f8;
-        padding: 4px 16px;
-        border-radius: 40px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #1d3d60;
-        letter-spacing: 0.2px;
-      }
-      .job-link {
-        font-weight: 500;
-        font-size: 0.9rem;
-        color: #0b1a2f;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        transition: 0.1s;
-      }
-      .job-link:hover {
-        color: #2b4d77;
-        text-decoration: underline;
-      }
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #4a6885;
+      background: white;
+      border-radius: 40px;
+      border: 1px solid #e8eef5;
+    }
 
-      /* pagination */
-      .pagination {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 12px 16px;
-        margin-top: 20px;
-      }
-      .pagination button {
-        background: white;
-        border: 1px solid #dde5ef;
-        padding: 8px 18px;
-        border-radius: 40px;
-        font-weight: 500;
-        font-size: 0.9rem;
-        color: #1f3a57;
-        cursor: pointer;
-        transition: 0.1s;
-        background: #fafcfe;
-      }
-      .pagination button:hover:not(:disabled) {
-        background: #0b1a2f;
-        color: white;
-        border-color: #0b1a2f;
-      }
-      .pagination button:disabled {
-        opacity: 0.3;
-        pointer-events: none;
-      }
-      .page-info {
-        font-size: 0.9rem;
-        color: #2f4b6b;
-        font-weight: 450;
-      }
+    /* responsiveness */
+    @media (max-width: 640px) {
+      .header { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; }
+      .job-grid { grid-template-columns: 1fr; }
+      .filters { gap: 6px; }
+      .filter-chip { padding: 6px 14px; font-size: 0.8rem; }
+    }
+  </style>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
 
-      .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: #4a6885;
-        background: white;
-        border-radius: 40px;
-        border: 1px solid #e8eef5;
-      }
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
 
-      /* responsiveness */
-      @media (max-width: 640px) {
-        .header {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .search-box {
-          max-width: 100%;
-        }
-        .job-grid {
-          grid-template-columns: 1fr;
-        }
-        .filters {
-          gap: 6px;
-        }
-        .filter-chip {
-          padding: 6px 14px;
-          font-size: 0.8rem;
-        }
-      }
-    </style>
-
-    <link rel="stylesheet" href="nav.css" />
-    <link rel="stylesheet" href="bottom-nav.css" />
-  </head>
-  <body>
-    <!-- ===== NAVIGATION ===== -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <!-- Logo -->
-        <a href="index.html" class="nav-logo">
-          <span class="logo-icon">🚀</span>
-          <span class="logo-text">Rise</span>
-          <span class="logo-badge">Jobs</span>
-        </a>
-
-        <!-- Desktop Links -->
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="notifications.html">🔔</a></li>
-        </ul>
-
-        <!-- Right Actions -->
-        <div class="nav-actions">
-          <a href="auth.html" class="btn-outline">Sign In</a>
-          <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
-          <!-- User avatar (hidden by default, shown when logged in) -->
-          <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
-          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            ☰
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="notifications.html">🔔 Notifications</a>
-        <div class="mobile-actions">
-          <a href="auth.html" class="btn-outline-mobile">Sign In</a>
-          <a href="auth.html?tab=register" class="btn-primary-mobile"
-            >Sign Up</a
-          >
-        </div>
-      </div>
-    </nav>
-
-    <div class="app" id="app">
-      <header class="header">
-        <div class="logo">
-          <h1>Rise <span>jobs</span></h1>
-        </div>
-        <div class="search-box">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search jobs, companies, location…"
-            aria-label="Search jobs"
-          />
-          <button id="searchBtn">Search</button>
-        </div>
-      </header>
-
-      <!-- filter chips (categories) -->
-      <div class="filters" id="filterContainer">
-        <button class="filter-chip active" data-filter="all">All</button>
-        <button class="filter-chip" data-filter="Hybrid">Hybrid</button>
-        <button class="filter-chip" data-filter="Remote">Remote</button>
-        <button class="filter-chip" data-filter="Startup">Startup</button>
-        <button class="filter-chip" data-filter="Legal">Legal</button>
-        <button class="filter-chip" data-filter="Growth">Growth</button>
-        <button class="filter-chip" data-filter="Operations">Operations</button>
-      </div>
-
-      <!-- job grid -->
-      <div id="jobGrid" class="job-grid"></div>
-
-      <!-- pagination -->
-      <div class="pagination" id="paginationControls">
-        <button id="prevPage" disabled>← Previous</button>
-        <span class="page-info" id="pageInfo">Page 1</span>
-        <button id="nextPage">Next →</button>
-      </div>
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
     </div>
+  </div>
 
-    <!-- ===== BOTTOM NAVIGATION ===== -->
-    <nav class="bottom-nav" id="bottomNav">
-      <!-- Home -->
-      <a href="index.html" class="nav-item active" data-tab="home">
-        <span class="icon">🏠</span>
-        <span class="label">Home</span>
-      </a>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
+<div class="app" id="app">
+  <header class="header">
+    <div class="logo">
+      <h1>Rise <span>jobs</span></h1>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search jobs, companies, location…" aria-label="Search jobs">
+      <button id="searchBtn">Search</button>
+    </div>
+  </header>
 
-      <!-- Search -->
-      <a
-        href="#"
+  <!-- filter chips (categories) -->
+  <div class="filters" id="filterContainer">
+    <button class="filter-chip active" data-filter="all">All</button>
+    <button class="filter-chip" data-filter="Hybrid">Hybrid</button>
+    <button class="filter-chip" data-filter="Remote">Remote</button>
+    <button class="filter-chip" data-filter="Startup">Startup</button>
+    <button class="filter-chip" data-filter="Legal">Legal</button>
+    <button class="filter-chip" data-filter="Growth">Growth</button>
+    <button class="filter-chip" data-filter="Operations">Operations</button>
+  </div>
+
+  <!-- job grid -->
+  <div id="jobGrid" class="job-grid"></div>
+
+  <!-- pagination -->
+  <div class="pagination" id="paginationControls">
+    <button id="prevPage" disabled>← Previous</button>
+    <span class="page-info" id="pageInfo">Page 1</span>
+    <button id="nextPage">Next →</button>
+  </div>
+</div>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+  <!-- Home -->
+  <a href="index.html" class="nav-item active" data-tab="home">
+    <span class="icon">🏠</span>
+    <span class="label">Home</span>
+  </a>
+
+  <!-- Search -->
+  <a
+        href="search.html"
         class="nav-item"
         data-tab="search"
-        onclick="alert('🔍 Search page coming soon!')"
       >
-        <span class="icon">🔍</span>
-        <span class="label">Search</span>
-      </a>
+    <span class="icon">🔍</span>
+    <span class="label">Search</span>
+  </a>
 
-      <!-- Center Action Button (Post/Apply) -->
-      <a href="auth.html" class="nav-item center-btn" data-tab="post">
-        <span class="icon">➕</span>
-        <span class="label">Post</span>
-      </a>
+  <!-- Center Action Button (Post/Apply) -->
+  <a href="employers.html" class="nav-item center-btn" data-tab="post">
+    <span class="icon">➕</span>
+    <span class="label">Employers</span>
+  </a>
 
-      <!-- Saved Jobs -->
-      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
-        <span class="icon">⭐</span>
-        <span class="label">Saved</span>
-        <span class="badge">3</span>
-      </a>
+  <!-- Saved Jobs -->
+  <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+    <span class="icon">⭐</span>
+    <span class="label">Saved</span>
+    <span class="badge">3</span>
+  </a>
 
-      <!-- Profile -->
-      <a href="account.html" class="nav-item" data-tab="profile">
-        <span class="icon">👤</span>
-        <span class="label">Profile</span>
-      </a>
-    </nav>
-
-    <script src="./nav.js"></script>
+  <!-- Profile -->
+  <a href="account.html" class="nav-item" data-tab="profile">
+    <span class="icon">👤</span>
+    <span class="label">Profile</span>
+  </a>
+</nav>
+<script src="./nav.js"></script>
     <script src="./bottom-nav.js"></script>
+<script>
+  (function() {
+    "use strict";
 
-    <script>
-      (function () {
-        'use strict';
+    // ---- state ----
+    let currentPage = 1;
+    const limit = 10;          // jobs per page (clean)
+    let totalJobs = 0;
+    let currentJobs = [];
+    let activeFilter = 'all';
+    let searchQuery = '';
 
-        // ---- state ----
-        let currentPage = 1;
-        const limit = 10; // jobs per page (clean)
-        let totalJobs = 0;
-        let currentJobs = [];
-        let activeFilter = 'all';
-        let searchQuery = '';
+    // DOM refs
+    const grid = document.getElementById('jobGrid');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const filterChips = document.querySelectorAll('.filter-chip');
 
-        // DOM refs
-        const grid = document.getElementById('jobGrid');
-        const prevBtn = document.getElementById('prevPage');
-        const nextBtn = document.getElementById('nextPage');
-        const pageInfo = document.getElementById('pageInfo');
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const filterChips = document.querySelectorAll('.filter-chip');
+    // ---- helpers ----
+    function buildUrl(page, filter = activeFilter, query = searchQuery) {
+      // base: public jobs with pagination & trending
+      let url = `https://api.joinrise.io/api/v1/jobs/public?page=${page}&limit=${limit}&sort=desc&sortedBy=createdAt&includeDescription=true&isTrending=true`;
+      // if search query present -> we'll use the /searches/top-keywords? but we need to filter client-side or use search param.
+      // but endpoints don't have search query param; we'll fetch all and filter client-side (simpler, consistent)
+      // However we also need to support 'filter' by category — we'll fetch from /openjobs endpoints with department/featuredCategory
+      // For simplicity and to use real endpoints we do a hybrid:
+      // - if filter is 'all' and no search: fetch from /jobs/public (already)
+      // - for specific filters we call the /openjobs endpoints with department/category.
+      // Because the provided endpoints have many variations:
+      // for 'Hybrid' we use /openjobs?jobType=Hybrid
+      // for 'Remote' we use /openjobs?featuredCategory=Remote
+      // for 'Startup' we use /openjobs?companySize=startup
+      // for 'Legal' /openjobs?department=Legal,Compliance
+      // for 'Growth' /openjobs?department=Growth,Strategy...
+      // for 'Operations' /openjobs?department=Growth,Strategy,Consulting,Operations...
+      // else fallback to public
 
-        // ---- helpers ----
-        function buildUrl(page, filter = activeFilter, query = searchQuery) {
-          // base: public jobs with pagination & trending
-          let url = `https://api.joinrise.io/api/v1/jobs/public?page=${page}&limit=${limit}&sort=desc&sortedBy=createdAt&includeDescription=true&isTrending=true`;
-          // if search query present -> we'll use the /searches/top-keywords? but we need to filter client-side or use search param.
-          // but endpoints don't have search query param; we'll fetch all and filter client-side (simpler, consistent)
-          // However we also need to support 'filter' by category — we'll fetch from /openjobs endpoints with department/featuredCategory
-          // For simplicity and to use real endpoints we do a hybrid:
-          // - if filter is 'all' and no search: fetch from /jobs/public (already)
-          // - for specific filters we call the /openjobs endpoints with department/category.
-          // Because the provided endpoints have many variations:
-          // for 'Hybrid' we use /openjobs?jobType=Hybrid
-          // for 'Remote' we use /openjobs?featuredCategory=Remote
-          // for 'Startup' we use /openjobs?companySize=startup
-          // for 'Legal' /openjobs?department=Legal,Compliance
-          // for 'Growth' /openjobs?department=Growth,Strategy...
-          // for 'Operations' /openjobs?department=Growth,Strategy,Consulting,Operations...
-          // else fallback to public
+      if (filter === 'all' && !query) {
+        return url;
+      }
 
-          if (filter === 'all' && !query) {
-            return url;
-          }
+      // Build openjobs request with parameters
+      let openUrl = 'https://api.joinrise.io/api/v1/jobs/openjobs?';
+      const params = new URLSearchParams();
+      params.set('page', page);
+      params.set('limit', limit);
+      params.set('isOpenJobs', 'true');
+      params.set('sortedBy', 'createdAt');
+      params.set('sort', 'desc');
+      params.set('unique', 'true');
 
-          // Build openjobs request with parameters
-          let openUrl = 'https://api.joinrise.io/api/v1/jobs/openjobs?';
-          const params = new URLSearchParams();
-          params.set('page', page);
-          params.set('limit', limit);
-          params.set('isOpenJobs', 'true');
-          params.set('sortedBy', 'createdAt');
-          params.set('sort', 'desc');
-          params.set('unique', 'true');
+      // mapping filter -> openjobs parameter
+      if (filter === 'Hybrid') {
+        params.set('jobType', 'Hybrid');
+      } else if (filter === 'Remote') {
+        params.set('featuredCategory', 'Remote');
+      } else if (filter === 'Startup') {
+        params.set('companySize', 'startup');
+      } else if (filter === 'Legal') {
+        params.set('department', 'Legal,Compliance');
+      } else if (filter === 'Growth') {
+        params.set('department', 'Growth,Strategy,Consulting,Operations,Program+and+Project+Management,Purchasing');
+      } else if (filter === 'Operations') {
+        params.set('department', 'Growth,Strategy,Consulting,Operations,Program+and+Project+Management,Purchasing');
+      } else {
+        // fallback to public
+        return url;
+      }
 
-          // mapping filter -> openjobs parameter
-          if (filter === 'Hybrid') {
-            params.set('jobType', 'Hybrid');
-          } else if (filter === 'Remote') {
-            params.set('featuredCategory', 'Remote');
-          } else if (filter === 'Startup') {
-            params.set('companySize', 'startup');
-          } else if (filter === 'Legal') {
-            params.set('department', 'Legal,Compliance');
-          } else if (filter === 'Growth') {
-            params.set(
-              'department',
-              'Growth,Strategy,Consulting,Operations,Program+and+Project+Management,Purchasing'
-            );
-          } else if (filter === 'Operations') {
-            params.set(
-              'department',
-              'Growth,Strategy,Consulting,Operations,Program+and+Project+Management,Purchasing'
-            );
-          } else {
-            // fallback to public
-            return url;
-          }
+      // if query present, we filter client-side anyway — but we'll still use openjobs.
+      // we append query as a client-side filter after fetch.
+      return openUrl + params.toString();
+    }
 
-          // if query present, we filter client-side anyway — but we'll still use openjobs.
-          // we append query as a client-side filter after fetch.
-          return openUrl + params.toString();
+    // client-side filtering by search query (title, company, location)
+    function filterJobsBySearch(jobs, query) {
+      if (!query.trim()) return jobs;
+      const q = query.trim().toLowerCase();
+      return jobs.filter(job => {
+        const title = (job.title || '').toLowerCase();
+        const company = (job.owner?.companyName || job.companyName || '').toLowerCase();
+        const loc = (job.locationAddress || job.location?.address || '').toLowerCase();
+        return title.includes(q) || company.includes(q) || loc.includes(q);
+      });
+    }
+
+    // ---- fetch & render ----
+    async function fetchJobs(page, filter, query) {
+      try {
+        const url = buildUrl(page, filter, query);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+
+        let jobs = [];
+        let total = 0;
+
+        // parse different response structures
+        if (data.result && data.result.jobs) {
+          jobs = data.result.jobs;
+          total = data.result.count || jobs.length;
+        } else if (data.result && Array.isArray(data.result)) {
+          jobs = data.result;
+          total = data.result.length;
+        } else if (data.result && data.result.jobs) {
+          // already handled
+        } else if (Array.isArray(data)) {
+          jobs = data;
+          total = data.length;
+        } else {
+          // fallback for public endpoint
+          if (data.result && data.result.jobs) jobs = data.result.jobs;
+          else if (data.jobs) jobs = data.jobs;
+          else jobs = [];
+          total = data.result?.count || jobs.length;
         }
 
-        // client-side filtering by search query (title, company, location)
-        function filterJobsBySearch(jobs, query) {
-          if (!query.trim()) return jobs;
-          const q = query.trim().toLowerCase();
-          return jobs.filter((job) => {
-            const title = (job.title || '').toLowerCase();
-            const company = (
-              job.owner?.companyName ||
-              job.companyName ||
-              ''
-            ).toLowerCase();
-            const loc = (
-              job.locationAddress ||
-              job.location?.address ||
-              ''
-            ).toLowerCase();
-            return title.includes(q) || company.includes(q) || loc.includes(q);
-          });
+        // if we have a search query, filter client-side
+        if (query.trim()) {
+          jobs = filterJobsBySearch(jobs, query);
+          total = jobs.length;
         }
 
-        // ---- fetch & render ----
-        async function fetchJobs(page, filter, query) {
-          try {
-            const url = buildUrl(page, filter, query);
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('API error');
-            const data = await response.json();
-
-            let jobs = [];
-            let total = 0;
-
-            // parse different response structures
-            if (data.result && data.result.jobs) {
-              jobs = data.result.jobs;
-              total = data.result.count || jobs.length;
-            } else if (data.result && Array.isArray(data.result)) {
-              jobs = data.result;
-              total = data.result.length;
-            } else if (data.result && data.result.jobs) {
-              // already handled
-            } else if (Array.isArray(data)) {
-              jobs = data;
-              total = data.length;
-            } else {
-              // fallback for public endpoint
-              if (data.result && data.result.jobs) jobs = data.result.jobs;
-              else if (data.jobs) jobs = data.jobs;
-              else jobs = [];
-              total = data.result?.count || jobs.length;
-            }
-
-            // if we have a search query, filter client-side
-            if (query.trim()) {
-              jobs = filterJobsBySearch(jobs, query);
-              total = jobs.length;
-            }
-
-            // ensure we have consistent job shape
-            const normalized = jobs.map((job) => {
-              // if job has nested 'job' array (from openjobs) flatten
-              if (job.job && Array.isArray(job.job) && job.job.length > 0) {
-                const inner = job.job[0];
-                return { ...job, ...inner, owner: job.owner || inner.owner };
-              }
-              return job;
-            });
-
-            return { jobs: normalized, total };
-          } catch (err) {
-            console.warn('Fetch error:', err);
-            return { jobs: [], total: 0 };
+        // ensure we have consistent job shape
+        const normalized = jobs.map(job => {
+          // if job has nested 'job' array (from openjobs) flatten
+          if (job.job && Array.isArray(job.job) && job.job.length > 0) {
+            const inner = job.job[0];
+            return { ...job, ...inner, owner: job.owner || inner.owner };
           }
-        }
+          return job;
+        });
 
-        function renderJobs(jobs, page, total) {
-          grid.innerHTML = '';
-          if (!jobs || jobs.length === 0) {
-            grid.innerHTML = `<div class="empty-state"><p style="font-size:1.2rem; font-weight:500;">✨ No jobs found</p><p style="color:#6b85a0; margin-top:8px;">Try adjusting filters or search</p></div>`;
-            return;
-          }
+        return { jobs: normalized, total };
+      } catch (err) {
+        console.warn('Fetch error:', err);
+        return { jobs: [], total: 0 };
+      }
+    }
 
-          jobs.slice(0, limit).forEach((job) => {
-            const card = document.createElement('div');
-            card.className = 'job-card';
+    function renderJobs(jobs, page, total) {
+      grid.innerHTML = '';
+      if (!jobs || jobs.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><p style="font-size:1.2rem; font-weight:500;">✨ No jobs found</p><p style="color:#6b85a0; margin-top:8px;">Try adjusting filters or search</p></div>`;
+        return;
+      }
 
-            const companyName =
-              job.owner?.companyName || job.companyName || 'Company';
-            const logo =
-              job.owner?.photo ||
-              job.photo ||
-              'https://ui-avatars.com/api/?name=' +
-                encodeURIComponent(companyName) +
-                '&background=eef2f6&color=1f3a57&size=44';
-            const title = job.title || 'Position';
-            const location =
-              job.locationAddress || job.location?.address || 'Remote';
-            const type = job.type || job.jobType || 'Hybrid';
-            const url = job.url || job.redirectUrl || '#';
+      jobs.slice(0, limit).forEach(job => {
+        const card = document.createElement('div');
+        card.className = 'job-card';
 
-            card.innerHTML = `
+        const companyName = job.owner?.companyName || job.companyName || 'Company';
+        const logo = job.owner?.photo || job.photo || 'https://ui-avatars.com/api/?name='+encodeURIComponent(companyName)+'&background=eef2f6&color=1f3a57&size=44';
+        const title = job.title || 'Position';
+        const location = job.locationAddress || job.location?.address || 'Remote';
+        const type = job.type || job.jobType || 'Hybrid';
+        const url = job.url || job.redirectUrl || '#';
+
+        card.innerHTML = `
           <div class="company-row">
-            <img class="company-avatar" src="${logo}" alt="${companyName}" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(
-              companyName
-            )}&background=eef2f6&color=1f3a57&size=44'">
+            <img class="company-avatar" src="${logo}" alt="${companyName}" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(companyName)}&background=eef2f6&color=1f3a57&size=44'">
             <div>
               <div class="company-name">${companyName}</div>
-              <div class="company-meta"><span>${
-                job.owner?.sector || job.sector || ''
-              }</span></div>
+              <div class="company-meta"><span>${job.owner?.sector || job.sector || ''}</span></div>
             </div>
           </div>
           <div class="job-title">${title}</div>
@@ -826,65 +775,57 @@
           </div>
           <div class="job-footer">
             <span class="job-type">${type}</span>
-            <a href="single-job.html?id=${
-              job._id
-            }" rel="noopener" class="job-link">Apply →</a>
+            <a href="single-job.html?id=${job._id}" class="job-link">Apply →</a>
           </div>
         `;
-            grid.appendChild(card);
-          });
+        grid.appendChild(card);
+      });
 
-          // update pagination
-          const totalPages = Math.ceil(total / limit);
-          pageInfo.textContent = `Page ${page} of ${totalPages || 1}`;
-          prevBtn.disabled = page <= 1;
-          nextBtn.disabled = page >= totalPages;
-        }
+      // update pagination
+      const totalPages = Math.ceil(total / limit);
+      pageInfo.textContent = `Page ${page} of ${totalPages || 1}`;
+      prevBtn.disabled = page <= 1;
+      nextBtn.disabled = page >= totalPages;
+    }
 
-        async function loadPage(page) {
-          const { jobs, total } = await fetchJobs(
-            page,
-            activeFilter,
-            searchQuery
-          );
-          currentJobs = jobs;
-          totalJobs = total;
-          renderJobs(jobs, page, total);
-          currentPage = page;
-        }
+    async function loadPage(page) {
+      const { jobs, total } = await fetchJobs(page, activeFilter, searchQuery);
+      currentJobs = jobs;
+      totalJobs = total;
+      renderJobs(jobs, page, total);
+      currentPage = page;
+    }
 
-        // ---- event listeners ----
-        function handleSearch() {
-          searchQuery = searchInput.value.trim();
-          loadPage(1);
-        }
+    // ---- event listeners ----
+    function handleSearch() {
+      searchQuery = searchInput.value.trim();
+      loadPage(1);
+    }
 
-        searchBtn.addEventListener('click', handleSearch);
-        searchInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') handleSearch();
-        });
+    searchBtn.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSearch(); });
 
-        filterChips.forEach((chip) => {
-          chip.addEventListener('click', function () {
-            filterChips.forEach((c) => c.classList.remove('active'));
-            this.classList.add('active');
-            activeFilter = this.dataset.filter || 'all';
-            // reset search input when filter changes? keep but we refetch
-            loadPage(1);
-          });
-        });
-
-        prevBtn.addEventListener('click', () => {
-          if (currentPage > 1) loadPage(currentPage - 1);
-        });
-        nextBtn.addEventListener('click', () => {
-          const totalPages = Math.ceil(totalJobs / limit);
-          if (currentPage < totalPages) loadPage(currentPage + 1);
-        });
-
-        // ---- init ----
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', function() {
+        filterChips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        activeFilter = this.dataset.filter || 'all';
+        // reset search input when filter changes? keep but we refetch
         loadPage(1);
-      })();
-    </script>
-  </body>
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) loadPage(currentPage - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(totalJobs / limit);
+      if (currentPage < totalPages) loadPage(currentPage + 1);
+    });
+
+    // ---- init ----
+    loadPage(1);
+  })();
+</script>
+</body>
 </html>

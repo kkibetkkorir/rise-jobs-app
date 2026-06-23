@@ -376,8 +376,54 @@
         }
       }
     </style>
-  </head>
-  <body>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
     <div class="container">
       <h1>📋 Rise Jobs · Walkthrough</h1>
       <div class="subtitle">
@@ -624,5 +670,45 @@
         >
       </div>
     </div>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Home -->
+      <a href="index.html" class="nav-item" data-tab="home">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+
+      <!-- Search -->
+      <a
+        href="search.html"
+        class="nav-item"
+        data-tab="search"
+      >
+        <span class="icon">🔍</span>
+        <span class="label">Search</span>
+      </a>
+
+      <!-- Center Action Button (Post/Apply) -->
+      <a href="employers.html" class="nav-item center-btn" data-tab="post">
+        <span class="icon">➕</span>
+        <span class="label">Employers</span>
+      </a>
+
+      <!-- Saved Jobs -->
+      <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+        <span class="icon">⭐</span>
+        <span class="label">Saved</span>
+        <span class="badge">3</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="account.html" class="nav-item" data-tab="profile">
+        <span class="icon">👤</span>
+        <span class="label">Profile</span>
+      </a>
+  </nav>
+  <script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
   </body>
 </html>

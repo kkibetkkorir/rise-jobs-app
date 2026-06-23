@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise · Explore Jobs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ===== SEO META TAGS ===== -->
+    <!-- Primary Meta Tags -->
+    <title>Rise - Find Your Next Career Opportunity | Job Board</title>
+    <meta
+      name="title"
+      content="Rise - Find Your Next Career Opportunity | Job Board"
+    />
+    <meta
+      name="description"
+      content="Browse thousands of jobs from top companies. Search by title, location, or category. Apply directly to employers with Rise - the modern job board."
+    />
+    <meta
+      name="keywords"
+      content="jobs, career, hiring, employment, job search, remote jobs, hybrid jobs, technology jobs"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 day" />
+    <link rel="canonical" href="https://rise.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rise.app/" />
+    <meta
+      property="og:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="og:image" content="https://rise.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rise.app/" />
+    <meta
+      property="twitter:title"
+      content="Rise - Find Your Next Career Opportunity"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse thousands of jobs from top companies. Apply directly with Rise - the modern job board."
+    />
+    <meta property="twitter:image" content="https://rise.app/og-image.jpg" />
+
+    <!-- ===== PWA / MANIFEST ===== -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0b1a2f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rise Jobs" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registered successfully');
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed:', err);
+            });
+        });
+      }
+    </script>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rise Job Board",
+        "url": "https://rise.app/",
+        "description": "Find your next career opportunity with Rise - the modern job board connecting talent with opportunity.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rise.app/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rise",
+        "url": "https://rise.app/",
+        "logo": "https://rise.app/icon-512x512.png",
+        "description": "Modern job board connecting talent with opportunity.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@rise.app",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://twitter.com/risejobs",
+          "https://linkedin.com/company/risejobs",
+          "https://github.com/risejobs"
+        ]
+      }
+    </script>
+
+    <!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rise.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Jobs",
+            "item": "https://rise.app/?tab=jobs"
+          }
+        ]
+      }
+    </script>
+
+    <!-- ===== JOB SEARCH STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Job Search Results",
+        "description": "Search results for jobs on Rise",
+        "about": {
+          "@type": "Thing",
+          "name": "Job Search",
+          "description": "Find jobs by title, company, location, or category"
+        },
+        "mainEntity": {
+          "@type": "WebPageElement",
+          "name": "Job Listings",
+          "description": "List of available job opportunities"
+        }
+      }
+    </script>
+
+    <!-- ===== WEB APP SHORTCUTS ===== -->
+    <link rel="preconnect" href="https://api.joinrise.io" />
+    <link rel="dns-prefetch" href="https://api.joinrise.io" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f7fafd;
+            color: #0b1a2f;
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-header h1 span {
+            background: #f0f6fe;
+            font-size: 0.75rem;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #1d3d60;
+        }
+
+        .results-count {
+            color: #4f6f8f;
+            font-size: 0.9rem;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid #e6edf5;
+            margin-bottom: 20px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #4f6f8f;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 14px;
+            border: 1px solid #dce5ef;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            background: #fafcfe;
+            font-family: inherit;
+            color: #0b1a2f;
+            outline: none;
+            min-width: 120px;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            border-color: #0b1a2f;
+            box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.06);
+        }
+
+        .filter-group input[type="date"] {
+            min-width: 150px;
+        }
+
+        .filter-group .search-input {
+            min-width: 200px;
+            padding-left: 36px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b8aa8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            background-size: 16px;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .filter-actions button {
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.15s;
+        }
+
+        .btn-primary {
+            background: #0b1a2f;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d3452;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #0b1a2f;
+            border: 1px solid #dce5ef;
+        }
+
+        .btn-outline:hover {
+            background: #f0f5fc;
+        }
+
+        /* Chips */
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 0 4px;
+            border-top: 1px solid #edf2f8;
+            margin-top: 12px;
+        }
+
+        .chip {
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid #dce5ef;
+            background: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+            color: #2a4a68;
+            white-space: nowrap;
+        }
+
+        .chip:hover {
+            border-color: #b0c8e0;
+            background: #f8fbfe;
+        }
+
+        .chip.active {
+            background: #0b1a2f;
+            color: white;
+            border-color: #0b1a2f;
+        }
+
+        .chip .count {
+            background: rgba(255,255,255,0.2);
+            padding: 0 8px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+
+        .chip.active .count {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Job Grid */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid #eef4fa;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            border-color: #c4d6ed;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -8px rgba(0, 20, 40, 0.06);
+        }
+
+        .job-card .company-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .job-card .company-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #eef2f6;
+            border: 1px solid #e2eaf2;
+        }
+
+        .job-card .company-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .job-card .company-sector {
+            font-size: 0.7rem;
+            color: #6b8aa8;
+        }
+
+        .job-card .job-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .job-card .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            font-size: 0.8rem;
+            color: #4f6f8f;
+            margin-bottom: 10px;
+        }
+
+        .job-card .job-meta span {
+            background: #f0f5fc;
+            padding: 2px 10px;
+            border-radius: 40px;
+        }
+
+        .job-card .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #edf2f8;
+        }
+
+        .job-card .job-footer .apply-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0b1a2f;
+            text-decoration: none;
+        }
+
+        .job-card .job-footer .apply-link:hover {
+            text-decoration: underline;
+        }
+
+        .job-card .job-footer .date {
+            font-size: 0.75rem;
+            color: #6b8aa8;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .pagination button {
+            padding: 8px 20px;
+            border: 1px solid #dce5ef;
+            border-radius: 40px;
+            background: white;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.15s;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #0b1a2f;
+            color: white;
+            border-color: #0b1a2f;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .pagination .page-info {
+            font-size: 0.9rem;
+            color: #4f6f8f;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #4f6f8f;
+        }
+
+        .loading .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0b1a2f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4f6f8f;
+        }
+
+        .no-results .icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid #e6edf5;
+            margin-bottom: 20px;
+        }
+
+        .recommendations h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0a1d32;
+        }
+
+        .recommendation-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .recommendation-chips .chip {
+            background: #f0f6fe;
+            border-color: #d0dff0;
+        }
+
+        .recommendation-chips .chip:hover {
+            background: #e3edfb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-group {
+                flex: 1;
+            }
+            .filter-group select,
+            .filter-group input {
+                width: 100%;
+                min-width: unset;
+            }
+            .filter-actions {
+                margin-left: 0;
+                justify-content: stretch;
+            }
+            .filter-actions button {
+                flex: 1;
+                text-align: center;
+            }
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-header h1 {
+                font-size: 1.2rem;
+            }
+            .chips-container {
+                gap: 6px;
+            }
+            .chip {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 8px; padding-bottom: 72px; }
+            .filter-bar { padding: 12px 14px; }
+            .job-card { padding: 14px 16px; }
+        }
+    </style>
+<link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="bottom-nav.css" />
+</head>
+<body>
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Rise</span>
+      <span class="logo-badge">Jobs</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="notifications.html">🔔</a></li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="nav-actions">
+      <a href="auth.html" class="btn-outline">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="notifications.html">🔔 Notifications</a>
+    <div class="mobile-actions">
+      <a href="auth.html" class="btn-outline-mobile">Sign In</a>
+      <a href="auth.html?tab=register" class="btn-primary-mobile"
+        >Sign Up</a
+      >
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <!-- Header -->
+    <div class="page-header">
+        <h1>
+            🔍 Explore Jobs
+            <span id="jobCount">0</span>
+        </h1>
+        <div class="results-count" id="resultsCount">Loading...</div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="recommendations">
+        <h3>🔥 Trending &amp; Recommended</h3>
+        <div class="recommendation-chips" id="recommendationChips">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>🔎</label>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search jobs, companies..." />
+            </div>
+            <div class="filter-group">
+                <label>📍</label>
+                <select id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Onsite">Onsite</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>🏢</label>
+                <select id="sectorFilter">
+                    <option value="">All Sectors</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>📅</label>
+                <input type="date" id="dateFilter" />
+            </div>
+            <div class="filter-actions">
+                <button class="btn-primary" onclick="applyFilters()">Apply</button>
+                <button class="btn-outline" onclick="resetFilters()">Reset</button>
+            </div>
+        </div>
+
+        <!-- Chips -->
+        <div class="chips-container" id="chipsContainer">
+            <!-- Dynamically populated from top keywords -->
+        </div>
+    </div>
+
+    <!-- Job Grid -->
+    <div class="job-grid" id="jobGrid">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading jobs...</p>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+        <button id="prevPage" disabled>← Previous</button>
+        <span class="page-info" id="pageInfo">Page 1</span>
+        <button id="nextPage">Next →</button>
+    </div>
+</div>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+    <!-- Home -->
+    <a href="index.html" class="nav-item" data-tab="home">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+
+    <!-- Search -->
+    <a
+        href="search.html"
+        class="nav-item active"
+        data-tab="search"
+      >
+      <span class="icon">🔍</span>
+      <span class="label">Search</span>
+    </a>
+
+    <!-- Center Action Button (Post/Apply) -->
+    <a href="employers.html" class="nav-item center-btn" data-tab="post">
+          <span class="icon">➕</span>
+          <span class="label">Employers</span>
+        </a>
+
+    <!-- Saved Jobs -->
+    <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+      <span class="icon">⭐</span>
+      <span class="label">Saved</span>
+      <span class="badge">3</span>
+    </a>
+
+    <!-- Profile -->
+    <a href="account.html" class="nav-item" data-tab="profile">
+      <span class="icon">👤</span>
+      <span class="label">Profile</span>
+    </a>
+</nav>
+
+<script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+
+<script>
+    // ===== CONFIGURATION =====
+    const API_BASE = 'https://api.joinrise.io/api/v1';
+    let currentPage = 1;
+    const limit = 20;
+    let totalJobs = 0;
+    let currentJobs = [];
+    let allSectors = [];
+    let topKeywords = [];
+
+    // ===== DOM REFS =====
+    const jobGrid = document.getElementById('jobGrid');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
+    const jobCount = document.getElementById('jobCount');
+    const resultsCount = document.getElementById('resultsCount');
+
+    const searchInput = document.getElementById('searchInput');
+    const locationFilter = document.getElementById('locationFilter');
+    const sectorFilter = document.getElementById('sectorFilter');
+    const dateFilter = document.getElementById('dateFilter');
+    const chipsContainer = document.getElementById('chipsContainer');
+    const recommendationChips = document.getElementById('recommendationChips');
+
+    // ===== FETCH FILTERS =====
+    async function fetchFilters() {
+        try {
+            // Fetch sectors
+            const sectorRes = await fetch(`${API_BASE}/employers/filters`);
+            const sectorData = await sectorRes.json();
+            if (sectorData.success && sectorData.sectors) {
+                allSectors = sectorData.sectors;
+                populateSectorFilter(allSectors);
+            }
+
+            // Fetch top keywords
+            const keywordRes = await fetch(`${API_BASE}/searches/top-keywords?limit=11`);
+            const keywordData = await keywordRes.json();
+            if (keywordData.success && keywordData.result) {
+                topKeywords = keywordData.result;
+                populateChips(topKeywords);
+                populateRecommendations(topKeywords.slice(0, 6));
+            }
+        } catch (error) {
+            console.error('Error fetching filters:', error);
+        }
+    }
+
+    function populateSectorFilter(sectors) {
+        const select = sectorFilter;
+        sectors.forEach(sector => {
+            const option = document.createElement('option');
+            option.value = sector.slug;
+            option.textContent = sector.category;
+            select.appendChild(option);
+        });
+    }
+
+    function populateChips(keywords) {
+        chipsContainer.innerHTML = '';
+        keywords.forEach(item => {
+            const chip = document.createElement('button');
+            chip.className = 'chip';
+            chip.dataset.keyword = item.keyword;
+            chip.innerHTML = `${item.keyword} <span class="count">${item.count}</span>`;
+            chip.onclick = () => {
+                searchInput.value = item.keyword;
+                applyFilters();
+            };
+            chipsContainer.appendChild(chip);
+        });
+    }
+
+    function populateRecommendations(keywords) {
+        recommendationChips.innerHTML = '';
+        keywords.forEach(item => {
+            const chip = document.createElement('button');
+            chip.className = 'chip';
+            chip.textContent = `🔥 ${item.keyword}`;
+            chip.onclick = () => {
+                searchInput.value = item.keyword;
+                applyFilters();
+            };
+            recommendationChips.appendChild(chip);
+        });
+    }
+
+    // ===== FETCH JOBS =====
+    async function fetchJobs(page = 1) {
+        const search = searchInput.value.trim();
+        const location = locationFilter.value;
+        const sector = sectorFilter.value;
+        const date = dateFilter.value;
+
+        // Build URL with elastic endpoint
+        let url = `${API_BASE}/jobs/elastic?page=${page}&limit=${limit}`;
+
+        if (date) {
+            url += `&after=${date}`;
+        }
+
+        // For other filters, we'll use the public endpoint with search params
+        // Use the elastic endpoint for date filtering, and public for others
+        // Let's use the public endpoint for full filtering
+        let publicUrl = `${API_BASE}/jobs/public?page=${page}&limit=${limit}&sort=desc&sortedBy=createdAt&includeDescription=true`;
+
+        if (search) {
+            publicUrl += `&search=${encodeURIComponent(search)}`;
+        }
+
+        try {
+            const response = await fetch(publicUrl);
+            const data = await response.json();
+
+            let jobs = data.result?.jobs || [];
+            let total = data.result?.count || jobs.length;
+
+            // Apply additional client-side filters
+            if (location) {
+                jobs = jobs.filter(job => {
+                    const jobType = job.type || job.jobType || '';
+                    return jobType.toLowerCase() === location.toLowerCase();
+                });
+                total = jobs.length;
+            }
+
+            if (sector) {
+                jobs = jobs.filter(job => {
+                    const jobSector = job.owner?.sector || job.sector || '';
+                    return jobSector.toLowerCase().includes(sector.toLowerCase());
+                });
+                total = jobs.length;
+            }
+
+            currentJobs = jobs;
+            totalJobs = total;
+            renderJobs(jobs);
+            updatePagination(page, total);
+
+            return { jobs, total };
+        } catch (error) {
+            console.error('Error fetching jobs:', error);
+            jobGrid.innerHTML = `
+                <div class="no-results">
+                    <div class="icon">⚠️</div>
+                    <h3>Error loading jobs</h3>
+                    <p>Please try again later.</p>
+                </div>
+            `;
+            return { jobs: [], total: 0 };
+        }
+    }
+
+    // ===== RENDER JOBS =====
+    function renderJobs(jobs) {
+        if (!jobs || jobs.length === 0) {
+            jobGrid.innerHTML = `
+                <div class="no-results">
+                    <div class="icon">🔍</div>
+                    <h3>No jobs found</h3>
+                    <p>Try adjusting your filters or search terms.</p>
+                </div>
+            `;
+            jobCount.textContent = '0';
+            resultsCount.textContent = 'No results found';
+            return;
+        }
+
+        jobGrid.innerHTML = jobs.map(job => {
+            const company = job.owner?.companyName || job.companyName || 'Unknown Company';
+            const logo = job.owner?.photo || job.photo || '';
+            const sector = job.owner?.sector || job.sector || '';
+            const type = job.type || job.jobType || 'Hybrid';
+            const location = job.locationAddress || job.location?.address || 'Remote';
+            const title = job.title || 'Position Available';
+            const url = job.url || '#';
+            const createdAt = job.createdAt ? new Date(job.createdAt).toLocaleDateString() : '';
+
+            return `
+                <div class="job-card" onclick="window.location.href='single-job.html?id=${job._id}'">
+                    <div class="company-row">
+                        ${logo ? `<img class="company-avatar" src="${logo}" alt="${company}" onerror="this.style.display='none'" />` : ''}
+                        <div>
+                            <div class="company-name">${company}</div>
+                            <div class="company-sector">${sector || 'Various'}</div>
+                        </div>
+                    </div>
+                    <div class="job-title">${title}</div>
+                    <div class="job-meta">
+                        <span>${type}</span>
+                        <span>📍 ${location}</span>
+                        ${sector ? `<span>${sector}</span>` : ''}
+                    </div>
+                    <div class="job-footer">
+                        <a href="single-job.html?id=${job._id}" class="apply-link">View Details →</a>
+                        <span class="date">${createdAt || 'New'}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        jobCount.textContent = jobs.length;
+        resultsCount.textContent = `Showing ${jobs.length} of ${totalJobs} jobs`;
+    }
+
+    // ===== PAGINATION =====
+    function updatePagination(page, total) {
+        const totalPages = Math.ceil(total / limit);
+        pageInfo.textContent = `Page ${page} of ${totalPages || 1}`;
+        prevBtn.disabled = page <= 1;
+        nextBtn.disabled = page >= totalPages;
+        currentPage = page;
+    }
+
+    // ===== FILTERS =====
+    function applyFilters() {
+        currentPage = 1;
+        fetchJobs(1);
+        // Close mobile keyboard
+        document.activeElement?.blur();
+    }
+
+    function resetFilters() {
+        searchInput.value = '';
+        locationFilter.value = '';
+        sectorFilter.value = '';
+        dateFilter.value = '';
+        applyFilters();
+    }
+
+    // ===== EVENT LISTENERS =====
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') applyFilters();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) fetchJobs(currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(totalJobs / limit);
+        if (currentPage < totalPages) fetchJobs(currentPage + 1);
+    });
+
+    // ===== INIT =====
+    async function init() {
+        await fetchFilters();
+        await fetchJobs(1);
+    }
+
+    init();
+
+    console.log('🔍 Explore page loaded successfully!');
+    console.log('📌 Features: Search, Filters (Location, Sector, Date), Chips, Recommendations, Pagination');
+</script>
+</body>
+</html>
