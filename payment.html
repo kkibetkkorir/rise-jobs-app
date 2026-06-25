@@ -1144,7 +1144,7 @@
             
             switch(selectedMethod) {
                 case 'card':
-                    apiEndpoint = `${API_BASE_URL}/api/initiate/card`;
+                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
                     payload = {
                         card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
                         cvv: document.getElementById('cvv').value,
@@ -1161,7 +1161,7 @@
                     break;
                     
                 case 'mobile_money':
-                    apiEndpoint = `${API_BASE_URL}/api/mpesa`;
+                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: currency,
@@ -1173,7 +1173,7 @@
                     break;
                     
                 case 'bank_transfer':
-                    apiEndpoint = `${API_BASE_URL}/api/initiate/bank-transfer`;
+                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/bank-transfer`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: currency,
@@ -1185,7 +1185,7 @@
                     
                 case 'ussd':
                     // USSD goes through the same endpoint as mobile money
-                    apiEndpoint = `${API_BASE_URL}/api/initiate/mpesa`;
+                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: 'NGN',
@@ -1197,7 +1197,7 @@
                     break;
                     
                 case 'apple_pay':
-                    apiEndpoint = `${API_BASE_URL}/api/initiate/card`;
+                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
                     payload = {
                         card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
                         cvv: document.getElementById('cvv').value,
