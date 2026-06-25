@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
     />
-    <!-- ===== SEO META TAGS ===== -->
+    <!-- ===== SEO META TAGS ===== --> 
     <!-- Primary Meta Tags -->
     <title>Rise - Find Your Next Career Opportunity | Job Board</title>
     <meta
@@ -179,6 +179,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <style>
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -618,6 +619,8 @@
     <div class="nav-actions">
       <a href="auth.html" class="btn-outline">Sign In</a>
       <a href="auth.html?tab=register" class="btn-primary">Sign Up</a>
+      <!-- User avatar (hidden by default, shown when logged in) -->
+      <!-- <img src="https://ui-avatars.com/api/?name=John+Doe&background=0b1a2f&color=fff&size=36" alt="User" class="user-avatar" onclick="window.location.href='account.html'" /> -->
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
         ☰
       </button>
@@ -638,6 +641,7 @@
     </div>
   </div>
 </nav>
+<link rel="stylesheet" href="bottom-nav.css" />
 <div class="app-container" id="paymentContainer">
     <a href="javascript:history.back()" class="back-link">← Back</a>
 
@@ -847,7 +851,6 @@
     
 <script>
     // ===== CONFIGURATION =====
-    const API_BASE_URL = 'https://powerful-flexibility-production-bbe5.up.railway.app';
     const BASE_AMOUNT_USD = 2.00;
     const EXCHANGE_RATES = {
         USD: 1,
@@ -866,7 +869,6 @@
     let selectedCountry = 'NG';
     let jobData = null;
     let paymentProcessing = false;
-    let checkoutId = null;
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
@@ -874,7 +876,6 @@
         setupEventListeners();
         updateAmountDisplay();
         updateMethodInfo();
-        updateMethodVisibility();
     });
 
     // ===== LOAD JOB DATA =====
@@ -910,6 +911,7 @@
                 if (job) {
                     jobData = job;
                     updateJobSummary(job);
+                    // Cache for later
                     sessionStorage.setItem('selectedJob', JSON.stringify(job));
                 } else {
                     document.getElementById('jobTitle').textContent = 'Position Available';
@@ -982,6 +984,7 @@
             e.target.value = value;
         });
 
+        // Phone number formatting
         document.getElementById('phoneNumber').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 15) value = value.slice(0, 15);
@@ -1025,6 +1028,7 @@
         const mobileInput = document.getElementById('mobileInput');
         const cardDetails = document.getElementById('cardDetails');
 
+        // Show/hide based on method
         if (method === 'mobile_money' || method === 'ussd') {
             mobileInput.style.display = 'block';
             cardDetails.style.display = 'none';
@@ -1084,337 +1088,215 @@
         }
     }
 
-    function getCustomerEmail() {
-        let email = sessionStorage.getItem('userEmail');
-        if (!email) {
-            email = prompt('Please enter your email address:');
-            if (email) {
-                sessionStorage.setItem('userEmail', email);
-            }
-        }
-        return email || 'customer@example.com';
-    }
-
-    function getPaymentOptions(method) {
-        const options = {
-            card: 'card',
-            mobile_money: 'mobilemoney',
-            bank_transfer: 'banktransfer',
-            ussd: 'ussd',
-            opay: 'opay',
-            apple_pay: 'applepay'
-        };
-        return options[method] || 'card';
-    }
-
     // ===== PROCESS PAYMENT =====
-    async function processPayment() {
+    /*async function processPayment() {
         if (paymentProcessing) return;
-        
+
         const payBtn = document.getElementById('payBtn');
         const errorMsg = document.getElementById('errorMessage');
-        
+
+        // Reset error
         errorMsg.style.display = 'none';
-        
+
+        // Validate based on method
         if (!validatePaymentMethod()) {
             return;
         }
-        
+
+        // Show loading
         paymentProcessing = true;
         payBtn.classList.add('loading');
         payBtn.disabled = true;
-        
+
         try {
-            // Get transaction details
-            const amount = BASE_AMOUNT_USD * (EXCHANGE_RATES[selectedCurrency] || 1);
-            const currency = selectedCurrency;
-            const email = getCustomerEmail();
-            const phone = document.getElementById('phoneNumber').value;
-            const countryCode = document.getElementById('countryCode').value;
-            const fullPhone = phone ? `${countryCode}${phone}` : '';
-            
-            // Determine which API endpoint to use based on payment method
-            let apiEndpoint = '';
-            let payload = {};
-            
-            switch(selectedMethod) {
-                case 'card':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
-                    payload = {
-                        card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
-                        cvv: document.getElementById('cvv').value,
-                        expiry_month: document.getElementById('expiryDate').value.split('/')[0],
-                        expiry_year: document.getElementById('expiryDate').value.split('/')[1],
-                        amount: amount.toFixed(2),
-                        currency: currency,
-                        email: email,
-                        fullname: document.getElementById('cardName').value || 'Customer',
-                        phone_number: fullPhone || '09000000000',
-                        redirect_url: window.location.origin + '/payment-success.html',
-                        userId: sessionStorage.getItem('userId') || null
-                    };
-                    break;
-                    
-                case 'mobile_money':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
-                    payload = {
-                        amount: amount.toFixed(2),
-                        currency: currency,
-                        email: email,
-                        phone: fullPhone,
-                        fullname: document.getElementById('cardName').value || 'Customer',
-                        userId: sessionStorage.getItem('userId') || null
-                    };
-                    break;
-                    
-                case 'bank_transfer':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/bank-transfer`;
-                    payload = {
-                        amount: amount.toFixed(2),
-                        currency: currency,
-                        email: email,
-                        phone_number: fullPhone || '054709929220',
-                        userId: sessionStorage.getItem('userId') || null
-                    };
-                    break;
-                    
-                case 'ussd':
-                    // USSD goes through the same endpoint as mobile money
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
-                    payload = {
-                        amount: amount.toFixed(2),
-                        currency: 'NGN',
-                        email: email,
-                        phone: fullPhone,
-                        fullname: document.getElementById('cardName').value || 'Customer',
-                        userId: sessionStorage.getItem('userId') || null
-                    };
-                    break;
-                    
-                case 'apple_pay':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
-                    payload = {
-                        card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
-                        cvv: document.getElementById('cvv').value,
-                        expiry_month: document.getElementById('expiryDate').value.split('/')[0],
-                        expiry_year: document.getElementById('expiryDate').value.split('/')[1],
-                        amount: amount.toFixed(2),
-                        currency: currency,
-                        email: email,
-                        fullname: document.getElementById('cardName').value || 'Customer',
-                        phone_number: fullPhone || '09000000000',
-                        redirect_url: window.location.origin + '/payment-success.html',
-                        userId: sessionStorage.getItem('userId') || null
-                    };
-                    break;
-                    
-                default:
-                    throw new Error('Unsupported payment method');
-            }
-            
-            // Add job metadata to payload
-            if (jobData) {
-                payload.meta = {
-                    job_id: jobData._id,
-                    job_title: jobData.title,
-                    company: jobData.owner?.companyName || ''
-                };
-            }
-            
-            // Make API call to your backend
-            console.log('📤 Sending payment request:', { apiEndpoint, payload });
-            
-            const response = await fetch(apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
-            
-            const data = await response.json();
-            console.log('📥 Payment response:', data);
-            
-            if (data.success) {
-                checkoutId = data.checkoutId;
-                
-                // Store checkout ID for status checking
-                sessionStorage.setItem('currentCheckoutId', checkoutId);
-                sessionStorage.setItem('jobId', jobData?._id || '');
-                
-                // If we have a redirect URL from the payment, redirect
-                if (data.data?.meta?.authorization?.redirect) {
-                    window.location.href = data.data.meta.authorization.redirect;
-                } else if (data.data?.link) {
-                    window.location.href = data.data.link;
-                } else {
-                    // For mobile money or bank transfer, show payment instructions
-                    showPaymentInstructions(data);
-                }
-                
-            } else {
-                throw new Error(data.error || 'Payment initiation failed');
-            }
-            
-        } catch (error) {
-            console.error('❌ Payment error:', error);
+            // Simulate payment processing
+            await simulatePayment();
+
+            // Success
             paymentProcessing = false;
             payBtn.classList.remove('loading');
             payBtn.disabled = false;
-            showError(error.message || 'Payment failed. Please try again or use a different payment method.');
-        }
-    }
 
-    function showPaymentInstructions(data) {
-        // Show payment instructions based on method
-        const instructions = document.createElement('div');
-        instructions.className = 'payment-instructions';
-        instructions.style.cssText = `
-            background: #f0f7ff;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 16px 0;
-            border: 1px solid #d0e0f0;
-        `;
-        
-        if (selectedMethod === 'mobile_money') {
-            instructions.innerHTML = `
-                <h3 style="margin-bottom: 8px;">📱 M-Pesa Payment Instructions</h3>
-                <p>Please complete the payment on your phone:</p>
-                <ol style="margin: 12px 0 0 20px; color: #1a3753;">
-                    <li>Check your phone for the M-Pesa prompt</li>
-                    <li>Enter your M-Pesa PIN to confirm</li>
-                    <li>Wait for confirmation message</li>
-                    <li>You'll be redirected automatically</li>
-                </ol>
-                <p style="margin-top: 12px; color: #4f6f8f; font-size: 0.85rem;">
-                    <strong>Checkout ID:</strong> ${checkoutId}
-                </p>
-            `;
-        } else if (selectedMethod === 'bank_transfer') {
-            const accountDetails = data.data?.meta?.authorization || {};
-            instructions.innerHTML = `
-                <h3 style="margin-bottom: 8px;">🏦 Bank Transfer Instructions</h3>
-                <p>Please transfer the exact amount to:</p>
-                <div style="background: white; padding: 16px; border-radius: 8px; margin: 12px 0;">
-                    <p><strong>Bank:</strong> ${accountDetails.transfer_bank || 'Access Bank'}</p>
-                    <p><strong>Account Number:</strong> ${accountDetails.transfer_account || '0067100155'}</p>
-                    <p><strong>Amount:</strong> ${accountDetails.transfer_amount || '2.00'}</p>
-                    <p><strong>Reference:</strong> ${accountDetails.transfer_reference || 'MockFLWRef'}</p>
-                </div>
-                <p style="color: #4f6f8f; font-size: 0.85rem;">
-                    <strong>Checkout ID:</strong> ${checkoutId}
-                </p>
-            `;
-        } else if (selectedMethod === 'ussd') {
-            const ussdCode = data.data?.payment_code || '4517159';
-            instructions.innerHTML = `
-                <h3 style="margin-bottom: 8px;">📞 USSD Payment Instructions</h3>
-                <p>Dial the following USSD code on your phone:</p>
-                <div style="background: white; padding: 16px; border-radius: 8px; margin: 12px 0; text-align: center; font-size: 1.2rem; font-weight: 600;">
-                    *566*002*${ussdCode}#
-                </div>
-                <p style="color: #4f6f8f; font-size: 0.85rem;">
-                    <strong>Checkout ID:</strong> ${checkoutId}
-                </p>
-            `;
-        }
-        
-        // Insert instructions before the pay button
-        const payBtn = document.getElementById('payBtn');
-        payBtn.parentNode.insertBefore(instructions, payBtn);
-        
-        // Hide the pay button and show a "Checking Status" button
-        payBtn.style.display = 'none';
-        
-        const checkBtn = document.createElement('button');
-        checkBtn.className = 'pay-btn';
-        checkBtn.innerHTML = 'Check Payment Status';
-        checkBtn.onclick = async function() {
-            await checkPaymentStatus(checkoutId);
-        };
-        payBtn.parentNode.insertBefore(checkBtn, payBtn.nextSibling);
-        
-        // Start auto-checking status
-        startStatusChecker(checkoutId);
-    }
+            // Show success
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
 
-    async function checkPaymentStatus(checkoutId) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/flow/status`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ checkoutId })
-            });
-            
-            const data = await response.json();
-            console.log('Status check:', data);
-            
-            if (data.success && data.status === 'completed') {
-                // Payment completed!
-                showSuccess();
-                return true;
-            } else if (data.success && data.status === 'failed') {
-                showError('Payment failed. Please try again.');
-                return false;
-            } else if (data.success && data.status === 'timeout') {
-                showError('Payment timed out. Please try again.');
-                return false;
+            // Set apply link
+            const applyLink = document.getElementById('applyNowLink');
+            if (jobData && jobData.url) {
+                applyLink.href = jobData.url;
+            } else {
+                applyLink.href = '#';
+                applyLink.textContent = 'Back to Jobs';
+                applyLink.onclick = function(e) {
+                    e.preventDefault();
+                    window.location.href = 'index.html';
+                };
             }
-            
-            return false;
+
         } catch (error) {
-            console.error('Status check error:', error);
-            return false;
+            paymentProcessing = false;
+            payBtn.classList.remove('loading');
+            payBtn.disabled = false;
+            showError('Payment failed. Please try again or use a different payment method.');
         }
     }
 
-    function startStatusChecker(checkoutId) {
-        let attempts = 0;
-        const maxAttempts = 60; // 5 minutes at 5-second intervals
+    */
+    
+
+    async function processPayment() {
+    if (paymentProcessing) return;
+    
+    const payBtn = document.getElementById('payBtn');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    errorMsg.style.display = 'none';
+    
+    if (!validatePaymentMethod()) {
+        return;
+    }
+    
+    paymentProcessing = true;
+    payBtn.classList.add('loading');
+    payBtn.disabled = true;
+
+
+    
+    /*try {
+        // Get transaction details
+        const amount = BASE_AMOUNT_USD * (EXCHANGE_RATES[selectedCurrency] || 1);
+        const currency = selectedCurrency;
+        const email = getCustomerEmail(); // Get from user or session
+        const phone = document.getElementById('phoneNumber').value;
+        const countryCode = document.getElementById('countryCode').value;
         
-        const interval = setInterval(async () => {
-            attempts++;
-            const completed = await checkPaymentStatus(checkoutId);
-            
-            if (completed) {
-                clearInterval(interval);
-            } else if (attempts >= maxAttempts) {
-                clearInterval(interval);
-                showError('Payment status check timed out. Please check your email for confirmation.');
+        // Prepare payment data
+        const paymentData = {
+            tx_ref: `job-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            amount: amount,
+            currency: currency,
+            redirect_url: `${window.location.origin}/payment-success.html`,
+            payment_options: getPaymentOptions(selectedMethod),
+            customer: {
+                email: email || 'customer@example.com',
+                phone_number: phone ? `${countryCode}${phone}` : null,
+                name: document.getElementById('cardName')?.value || 'Customer'
+            },
+            customizations: {
+                title: 'Rise Job Application',
+                description: `Application fee for ${jobData?.title || 'Job'}`,
+                logo: 'https://rise.app/logo.png'
+            },
+            meta: {
+                job_id: jobData?._id || '',
+                job_title: jobData?.title || '',
+                company: jobData?.owner?.companyName || ''
             }
-        }, 5000);
+        };
         
-        // Store interval ID for cleanup
-        window._statusInterval = interval;
-    }
-
-    function showSuccess() {
-        // Clean up interval
-        if (window._statusInterval) {
-            clearInterval(window._statusInterval);
-        }
+        // Use Flutterwave Inline Payment (recommended)
+        const response = await fetch('https://api.flutterwave.com/v3/payments', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${YOUR_SECRET_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(paymentData)
+        });
         
-        document.getElementById('paymentForm').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
+        const data = await response.json();
         
-        // Set apply link
-        const applyLink = document.getElementById('applyNowLink');
-        if (jobData && jobData.url) {
-            applyLink.href = jobData.url;
-        } else if (jobData && jobData._id) {
-            applyLink.href = `https://api.joinrise.io/api/v1/jobs/apply/${jobData._id}`;
+        if (data.status === 'success') {
+            // Redirect to Flutterwave payment page
+            window.location.href = data.data.link;
         } else {
-            applyLink.href = '#';
-            applyLink.textContent = 'Back to Jobs';
-            applyLink.onclick = function(e) {
-                e.preventDefault();
-                window.location.href = 'index.html';
-            };
+            throw new Error(data.message || 'Payment initialization failed');
         }
+        
+    } catch (error) {
+        paymentProcessing = false;
+        payBtn.classList.remove('loading');
+        payBtn.disabled = false;
+        showError(error.message || 'Payment failed. Please try again.');
+    }*/
+    const amount = BASE_AMOUNT_USD * (EXCHANGE_RATES[selectedCurrency] || 1);
+    const currency = selectedCurrency;
+    
+    FlutterwaveCheckout({
+        public_key: 'FLWPUBK-40a5224fd98f788a9f1a79d4d03b80d2-X',
+        tx_ref: `job-${Date.now()}`,
+        amount: amount,
+        currency: currency,
+        payment_options: 'card,mobilemoney,ussd,banktransfer',
+        customer: {
+            email: 'customer@example.com',
+            phone_number: '+254797814027',
+            name: 'Customer Name'
+        },
+        customizations: {
+            title: 'Rise Job Application',
+            description: `Application fee for ${jobData?.title || 'Job'}`,
+            logo: 'https://rise.app/logo.png'
+        },
+        callback: function(response) {
+            // Payment completed
+            console.log('Payment successful:', response);
+            if (response.status === 'successful') {
+                // Verify payment
+                verifyPayment(response.transaction_id);
+            }
+        },
+        onclose: function() {
+            // Modal closed
+            paymentProcessing = false;
+            payBtn.classList.remove('loading');
+            payBtn.disabled = false;
+        }
+    });
+}
+
+async function verifyPayment(transactionId) {
+    try {
+        const response = await fetch(`https://api.flutterwave.com/v3/transactions/${transactionId}/verify`, {
+            headers: {
+                'Authorization': `Bearer FLWSECK-faeb43596b55d5a74480d602324ca24f-19ef53d86a0vt-X`
+            }
+        });
+        const data = await response.json();
+        
+        if (data.status === 'success' && data.data.status === 'successful') {
+            // Payment verified - show success
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Set apply link
+            const applyLink = document.getElementById('applyNowLink');
+            applyLink.href = jobData?.url || '#';
+        } else {
+            showError('Payment verification failed. Please contact support.');
+        }
+    } catch (error) {
+        showError('Payment verification failed. Please contact support.');
     }
+}
+
+function getPaymentOptions(method) {
+    const options = {
+        card: 'card',
+        mobile_money: 'mobilemoney',
+        bank_transfer: 'banktransfer',
+        ussd: 'ussd',
+        opay: 'opay',
+        apple_pay: 'applepay'
+    };
+    return options[method] || 'card';
+}
+
+function getCustomerEmail() {
+    // Get from session or prompt user
+    return sessionStorage.getItem('userEmail') || prompt('Enter your email address:');
+}
     
     function validatePaymentMethod() {
         const errorMsg = document.getElementById('errorMessage');
@@ -1458,23 +1340,38 @@
         const errorMsg = document.getElementById('errorMessage');
         errorMsg.textContent = '⚠️ ' + message;
         errorMsg.style.display = 'block';
+        // Auto-hide after 5 seconds
         setTimeout(() => {
             errorMsg.style.display = 'none';
-        }, 8000);
+        }, 5000);
+    }
+
+    // ===== SIMULATE PAYMENT =====
+    function simulatePayment() {
+        return new Promise((resolve, reject) => {
+            // Random success (95% success rate for demo)
+            const success = Math.random() < 0.95;
+            setTimeout(() => {
+                if (success) {
+                    resolve();
+                } else {
+                    reject(new Error('Payment failed'));
+                }
+            }, 2500);
+        });
     }
 
     // ===== KEYBOARD SUPPORT =====
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             const payBtn = document.getElementById('payBtn');
-            if (!payBtn.disabled && payBtn.style.display !== 'none') {
+            if (!payBtn.disabled) {
                 processPayment();
             }
         }
     });
 
     console.log('💳 Payment page loaded successfully!');
-    console.log('📍 API Base URL:', API_BASE_URL);
     console.log('📍 Supported countries: NG, KE, GH, ZA, EG, UG, TZ, RW, ZM, CM, CI, BF, US, GB, FR, DE, ES, NL');
     console.log('💱 Supported currencies: USD, KES, NGN, GHS, GBP, EUR, ZAR, EGP');
     console.log('📱 Payment methods: Card, Mobile Money, Bank Transfer, USSD, OPay, Apple Pay');

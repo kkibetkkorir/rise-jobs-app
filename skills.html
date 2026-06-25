@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* Reuse styles from jobs page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0b1a2f;
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .app {
+            max-width: 1440px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #f8fafc;
+            transition: background 0.3s ease;
+        }
+        body.dark-mode .app {
+            background: #0f172a;
+        }
+
+        /* Header - same as jobs page */
+        .header {
+            background: #ffffff;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        body.dark-mode .header {
+            background: #1e293b;
+            border-bottom-color: #334155;
+        }
+        .header-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        body.dark-mode .header-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #0b1a2f;
+            cursor: pointer;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        body.dark-mode .logo {
+            color: #e2e8f0;
+        }
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+        .logo span {
+            background: #0b1a2f; /*#2563eb;*/
+            color: white;
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .header-menu {
+            display: flex;
+            gap: 4px;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .header-menu {
+            background: #334155;
+        }
+        .header-menu a {
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .header-menu a:hover {
+            color: #0b1a2f;/*#2563eb;*/
+        }
+        .header-menu a.active {
+            background: #0b1a2f;/*#ffffff;*/
+            color: #ffffff;/*#2563eb;*/
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        body.dark-mode .header-menu a.active {
+            background: #0b1a2f;/*#1e293b;*/
+            color: #ffffff;/*#60a5fa;*/
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-settings {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+        .dark-light {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            transition: background 0.2s ease;
+        }
+        .dark-light:hover {
+            background: #e2e8f0;
+        }
+        .dark-light svg {
+            width: 20px;
+            height: 20px;
+            stroke: #64748b;
+        }
+        body.dark-mode .dark-light {
+            background: #334155;
+        }
+        body.dark-mode .dark-light svg {
+            stroke: #94a3b8;
+        }
+
+        .wrapper {
+            padding: 20px 24px 24px;
+            transition: background 0.3s ease;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+         /* Skills specific styles */
+        .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .skills-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .skills-header input {
+            padding: 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #f8fafc;
+            color: #0b1a2f;
+            outline: none;
+            font-family: inherit;
+            min-width: 200px;
+        }
+        body.dark-mode .skills-header input {
+            background: #334155;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        .skills-header input:focus {
+            border-color: #0b1a2f;/*#2563eb;*/
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-card {
+            background: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border-color: #dce5ef;
+        }
+        body.dark-mode .skill-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-mode .skill-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card .name {
+            font-weight: 500;
+            font-size: 14px;
+            color: #0b1a2f;
+        }
+        body.dark-mode .skill-card .name {
+            color: #e2e8f0;
+        }
+
+        .skill-card .count {
+            font-size: 12px;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        body.dark-mode .skill-card .count {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        .skill-card .badge {
+            font-size: 10px;
+            font-weight: 600;
+            color: #0b1a2f;/*#2563eb;*/
+            background: #e8f0fe;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        body.dark-mode .skill-card .badge {
+            background: #1a2d4a;/*#1a3a5c;*/
+            color: #e2e8f0;/*#60a5fa;*/
+        }
+
+         /* Pagination - same as jobs */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 8px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.15s;
+            color: #0b1a2f;
+        }
+        body.dark-mode .pagination button {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+        .pagination button:hover:not(:disabled) {
+            background: #0b1a2f;/*#2563eb;*/
+            color: #fff;
+            border-color: #0b1a2f;/*#2563eb;*/
+        }
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .pagination .page-info {
+            font-size: 14px;
+            color: #64748b;
+        }
+        body.dark-mode .pagination .page-info {
+            color: #94a3b8;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        body.dark-mode .loading-state {
+            color: #94a3b8;
+        }
+        .loading-state .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #0b1a2f;/*#2563eb;*/
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        body.dark-mode .loading-state .spinner {
+            border-color: #334155;
+            border-top-color: #0b1a2f;/*#2563eb;*/
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            grid-column: 1 / -1;
+        }
+        .empty-state h3 {
+            color: #0b1a2f;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        body.dark-mode .empty-state h3 {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+            .header-menu a {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+            .skills-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .skills-header input {
+                width: 100%;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .wrapper {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+            }
+            .logo svg {
+                width: 26px;
+                height: 26px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .skill-card {
+                padding: 12px 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../bottom-nav.css" />
+</head>
+<body>
+
+    <div class="app">
+        <!-- ===== HEADER ===== -->
+        <header class="header" id="mainHeader">
+            <a href="jobs.html" class="logo">
+                <svg viewBox="0 0 512 512">
+                    <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
+                    <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+                    <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+                </svg>
+                Rise <span>Skills</span>
+            </a>
+            <nav class="header-menu">
+                <a href="jobs.html">Jobs</a>
+                <a href="skills.html" class="active">Skills</a>
+                <a href="roles.html">Roles</a>
+            </nav>
+            <div class="user-settings">
+                <div class="dark-light" id="darkModeToggle" title="Toggle dark mode">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </div>
+                <span class="user-name" style="font-size:14px;font-weight:600;">John Doe</span>
+            </div>
+        </header>
+
+        <!-- ===== WRAPPER ===== -->
+        <div class="wrapper" id="mainWrapper">
+            <div class="skills-header">
+                <h2>⚡ Popular Skills</h2>
+                <input type="text" id="skillSearch" placeholder="Search skills..." oninput="filterSkills()" />
+            </div>
+
+            <div class="skills-grid" id="skillsGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading skills...</p>
+                </div>
+            </div>
+
+            <div class="pagination" id="pagination">
+                <button id="prevPage" disabled onclick="changePage('prev')">← Previous</button>
+                <span class="page-info" id="pageInfo">Page 1</span>
+                <button id="nextPage" onclick="changePage('next')">Next →</button>
+            </div>
+        </div>
+
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav class="bottom-nav">
+            <a href="jobs.html" class="nav-item">
+                <span class="icon">💼</span>
+                <span class="label">Jobs</span>
+            </a>
+            <a href="skills.html" class="nav-item active">
+                <span class="icon">🔍</span>
+                <span class="label">Search</span>
+            </a>
+            <a href="jobs.html" class="nav-item center-btn">
+                <span class="icon">➕</span>
+                <span class="label">Jobs</span>
+            </a>
+            <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+                <span class="icon">⭐</span>
+                <span class="label">Saved</span>
+                <span class="badge">3</span>
+            </a>
+            <a href="account.html" class="nav-item" data-tab="profile">
+                <span class="icon">👤</span>
+                <span class="label">Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // ============================================================
+        // BRAINTRUST SKILLS API
+        // ============================================================
+        const API_BASE = 'https://app.usebraintrust.com/api';
+        let allSkills = [];
+        let filteredSkills = [];
+        let currentPage = 1;
+        const pageSize = 24;
+
+        const skillsGrid = document.getElementById('skillsGrid');
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const skillSearch = document.getElementById('skillSearch');
+
+        // ============================================================
+        // FETCH SKILLS
+        // ============================================================
+        async function fetchSkills() {
+            try {
+                const response = await fetch(`${API_BASE}/skills/`);
+                const data = await response.json();
+                allSkills = data.results || data || [];
+                filteredSkills = allSkills;
+                renderSkills();
+            } catch (error) {
+                console.error('Error fetching skills:', error);
+                skillsGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>⚠️ Failed to load skills</h3>
+                        <p>Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================================
+        // RENDER SKILLS
+        // ============================================================
+        function renderSkills() {
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageSkills = filteredSkills.slice(start, end);
+
+            if (pageSkills.length === 0) {
+                skillsGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>🔍 No skills found</h3>
+                        <p>Try adjusting your search.</p>
+                    </div>
+                `;
+                updatePagination(0);
+                return;
+            }
+
+            skillsGrid.innerHTML = '';
+            pageSkills.forEach(skill => {
+                const card = document.createElement('div');
+                card.className = 'skill-card';
+                const isDefault = skill.is_default ? '<span class="badge">Popular</span>' : '';
+                card.innerHTML = `
+                    <span class="name">${skill.name}</span>
+                    <span class="count">${skill.usage_count || skill.order || ''}</span>
+                    ${isDefault}
+                `;
+                card.addEventListener('click', () => {
+                    window.location.href = `skill.html?skill=${skill.id}&name=${encodeURIComponent(skill.name)}`;
+                });
+                skillsGrid.appendChild(card);
+            });
+
+            updatePagination(filteredSkills.length);
+        }
+
+        // ============================================================
+        // FILTER SKILLS
+        // ============================================================
+        function filterSkills() {
+            const query = skillSearch.value.toLowerCase().trim();
+            if (!query) {
+                filteredSkills = allSkills;
+            } else {
+                filteredSkills = allSkills.filter(s =>
+                    s.name.toLowerCase().includes(query)
+                );
+            }
+            currentPage = 1;
+            renderSkills();
+        }
+
+        // ============================================================
+        // PAGINATION
+        // ============================================================
+        function updatePagination(total) {
+            const totalPages = Math.ceil(total / pageSize) || 1;
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredSkills.length / pageSize);
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+                renderSkills();
+            } else if (direction === 'next' && currentPage < totalPages) {
+                currentPage++;
+                renderSkills();
+            }
+        }
+
+        // ============================================================
+        // DARK MODE
+        // ============================================================
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // ============================================================
+        // HEADER SHADOW
+        // ============================================================
+        const wrapper = document.getElementById('mainWrapper');
+        const header = document.getElementById('mainHeader');
+        wrapper.addEventListener('scroll', function() {
+            header.classList.toggle('header-shadow', this.scrollTop > 30);
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        fetchSkills();
+        console.log('⚡ Braintrust Skills loaded successfully!');
+    </script>
+
+</body>
+</html>

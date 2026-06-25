@@ -4,7 +4,7 @@ const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach((item) => {
   item.addEventListener('click', function (e) {
     // Don't remove active from center button if it's a link
-    if (this.dataset.tab === 'post') return;
+    if (this.dataset.tab === 'jobs') return;
 
     // Remove active from all
     navItems.forEach((i) => i.classList.remove('active'));
@@ -63,8 +63,5 @@ function updateBadge(tab, count) {
 // updateBadge('notifications', 5);
 
 console.log('✅ Bottom navigation ready.');
-console.log('📌 Tabs: Home, Search, Post (center), Saved, Profile');
-console.log(
-  '💡 The center button is a call-to-action for posting jobs or applying.'
-);
+console.log('📌 Tabs: Home, Search, Jobs (center), Saved, Profile');
 console.log('🔔 Saved jobs badge shows 3 by default (demo).');

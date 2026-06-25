@@ -176,32 +176,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: #f7fafd;
-        color: #0b1a2f;
-        min-height: 100vh;
-        /*display: flex;
-        align-items: center;
-        justify-content: center;*/
-        padding: 24px 16px;
-      }
-
       .auth-container {
         background: white;
-        border-radius: 32px;
-        padding: 40px 36px 44px;
+        border-radius: 20px;
+        padding: 32px 36px 44px;
         max-width: 460px;
         width: 100%;
         box-shadow: 0 20px 48px -12px rgba(0, 20, 40, 0.12);
         border: 1px solid #e6edf5;
         transition: all 0.2s;
+        margin: 0 auto;
       }
 
       .auth-header {
@@ -492,6 +476,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="styles.css" /> 
     <link rel="stylesheet" href="nav.css" />
     <link rel="stylesheet" href="bottom-nav.css" />
   </head>
@@ -723,8 +708,8 @@
     <nav class="bottom-nav" id="bottomNav">
       <!-- Home -->
       <a href="index.html" class="nav-item" data-tab="home">
-        <span class="icon">🏠</span>
-        <span class="label">Home</span>
+        <span class="icon">💼</span>
+        <span class="label">Jobs</span>
       </a>
 
       <!-- Search -->
@@ -738,9 +723,9 @@
       </a>
 
       <!-- Center Action Button (Post/Apply) -->
-      <a href="employers.html" class="nav-item center-btn" data-tab="post">
+      <a href="jobs.html" class="nav-item center-btn" data-tab="jobs">
         <span class="icon">➕</span>
-        <span class="label">Employers</span>
+        <span class="label">Jobs</span>
       </a>
 
       <!-- Saved Jobs -->

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Job Roles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* Reuse styles from skills page - same structure */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0b1a2f;
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .app {
+            max-width: 1440px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #f8fafc;
+            transition: background 0.3s ease;
+        }
+        body.dark-mode .app {
+            background: #0f172a;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        body.dark-mode .header {
+            background: #1e293b;
+            border-bottom-color: #334155;
+        }
+        .header-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        body.dark-mode .header-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #0b1a2f;
+            cursor: pointer;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        body.dark-mode .logo {
+            color: #e2e8f0;
+        }
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+        .logo span {
+            background: #0b1a2f;
+            color: white;
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .header-menu {
+            display: flex;
+            gap: 4px;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .header-menu {
+            background: #334155;
+        }
+        .header-menu a {
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .header-menu a:hover {
+            color: #0b1a2f;
+        }
+        .header-menu a.active {
+            background: #ffffff;
+            color: #0b1a2f;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        body.dark-mode .header-menu a.active {
+            background: #1e293b;
+            color: #60a5fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-settings {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+        .dark-light {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            transition: background 0.2s ease;
+        }
+        .dark-light:hover {
+            background: #e2e8f0;
+        }
+        .dark-light svg {
+            width: 20px;
+            height: 20px;
+            stroke: #64748b;
+        }
+        body.dark-mode .dark-light {
+            background: #334155;
+        }
+        body.dark-mode .dark-light svg {
+            stroke: #94a3b8;
+        }
+
+        .wrapper {
+            padding: 20px 24px 24px;
+            transition: background 0.3s ease;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .roles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .roles-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .roles-header input {
+            padding: 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #f8fafc;
+            color: #0b1a2f;
+            outline: none;
+            font-family: inherit;
+            min-width: 200px;
+        }
+        body.dark-mode .roles-header input {
+            background: #334155;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        .roles-header input:focus {
+            border-color: #0b1a2f;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .role-card {
+            background: #ffffff;
+            padding: 18px 22px;
+            border-radius: 14px;
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .role-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-color: #dce5ef;
+        }
+        body.dark-mode .role-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-mode .role-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .role-card .role-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #0b1a2f;
+        }
+        body.dark-mode .role-card .role-name {
+            color: #e2e8f0;
+        }
+
+        .role-card .role-plural {
+            font-size: 13px;
+            color: #64748b;
+        }
+        body.dark-mode .role-card .role-plural {
+            color: #94a3b8;
+        }
+
+        .role-card .role-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 20px;
+            margin-top: 6px;
+            align-self: flex-start;
+        }
+        .role-card .role-badge.green {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .role-card .role-badge.violet {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+        .role-card .role-badge.blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .role-card .role-badge.teal {
+            background: #ccfbf1;
+            color: #0d6b63;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        body.dark-mode .loading-state {
+            color: #94a3b8;
+        }
+        .loading-state .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #0b1a2f;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        body.dark-mode .loading-state .spinner {
+            border-color: #334155;
+            border-top-color: #0b1a2f;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            grid-column: 1 / -1;
+        }
+        .empty-state h3 {
+            color: #0b1a2f;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        body.dark-mode .empty-state h3 {
+            color: #e2e8f0;
+        }
+
+    
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+            .header-menu a {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+            .roles-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .roles-header input {
+                width: 100%;
+            }
+            .roles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .wrapper {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+            }
+            .logo svg {
+                width: 26px;
+                height: 26px;
+            }
+            .roles-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .role-card {
+                padding: 14px 16px;
+            }
+            .role-card .role-name {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../bottom-nav.css" />
+</head>
+<body>
+
+    <div class="app">
+        <!-- ===== HEADER ===== -->
+        <header class="header" id="mainHeader">
+            <a href="jobs.html" class="logo">
+                <svg viewBox="0 0 512 512">
+                    <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
+                    <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+                    <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+                </svg>
+                Rise <span>Roles</span>
+            </a>
+            <nav class="header-menu">
+                <a href="jobs.html">Jobs</a>
+                <a href="skills.html">Skills</a>
+                <a href="roles.html" class="active">Roles</a>
+            </nav>
+            <div class="user-settings">
+                <div class="dark-light" id="darkModeToggle" title="Toggle dark mode">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </div>
+                <span class="user-name" style="font-size:14px;font-weight:600;">John Doe</span>
+            </div>
+        </header>
+
+        <!-- ===== WRAPPER ===== -->
+        <div class="wrapper" id="mainWrapper">
+
+            <div class="roles-header">
+                <h2>🎯 Job Roles</h2>
+                <input type="text" id="roleSearch" placeholder="Search roles..." oninput="filterRoles()" />
+            </div>
+
+            <div class="roles-grid" id="rolesGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading roles...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav class="bottom-nav">
+            <a href="jobs.html" class="nav-item">
+                <span class="icon">💼</span>
+                <span class="label">Jobs</span>
+            </a>
+            <a href="search.html" class="nav-item">
+                <span class="icon">🔍</span>
+                <span class="label">Search</span>
+            </a>
+            <a href="jobs.html" class="nav-item center-btn">
+                <span class="icon">➕</span>
+                <span class="label">Jobs</span>
+            </a>
+            <a href="account.html?tab=saved" class="nav-item" data-tab="saved">
+                <span class="icon">⭐</span>
+                <span class="label">Saved</span>
+                <span class="badge">3</span>
+            </a>
+            <a href="account.html" class="nav-item" data-tab="profile">
+                <span class="icon">👤</span>
+                <span class="label">Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // ============================================================
+        // BRAINTRUST ROLES API
+        // ============================================================
+        const API_BASE = 'https://app.usebraintrust.com/api';
+        let allRoles = [];
+        let filteredRoles = [];
+
+        const rolesGrid = document.getElementById('rolesGrid');
+        const roleSearch = document.getElementById('roleSearch');
+
+        // ============================================================
+        // FETCH ROLES
+        // ============================================================
+        async function fetchRoles() {
+            try {
+                const response = await fetch(`${API_BASE}/roles/`);
+                const data = await response.json();
+                allRoles = data;
+                filteredRoles = allRoles;
+                renderRoles();
+            } catch (error) {
+                console.error('Error fetching roles:', error);
+                rolesGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>⚠️ Failed to load roles</h3>
+                        <p>Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================================
+        // RENDER ROLES
+        // ============================================================
+        function renderRoles() {
+            if (filteredRoles.length === 0) {
+                rolesGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>🔍 No roles found</h3>
+                        <p>Try adjusting your search.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            rolesGrid.innerHTML = '';
+            filteredRoles.forEach(role => {
+                const card = document.createElement('div');
+                card.className = 'role-card';
+
+                const colorClass = role.color || 'teal';
+                const badgeText = role.is_featured ? '⭐ Featured' : '';
+
+                card.innerHTML = `
+                    <div class="role-name">${role.name}</div>
+                    <div class="role-plural">${role.name_plural || ''}</div>
+                    ${badgeText ? `<span class="role-badge ${colorClass}">${badgeText}</span>` : ''}
+                `;
+
+                card.addEventListener('click', () => {
+                    window.location.href = `jobs.html?role=${role.id}`;
+                });
+
+                rolesGrid.appendChild(card);
+            });
+        }
+
+        // ============================================================
+        // FILTER ROLES
+        // ============================================================
+        function filterRoles() {
+            const query = roleSearch.value.toLowerCase().trim();
+            if (!query) {
+                filteredRoles = allRoles;
+            } else {
+                filteredRoles = allRoles.filter(r =>
+                    r.name.toLowerCase().includes(query) ||
+                    (r.name_plural && r.name_plural.toLowerCase().includes(query))
+                );
+            }
+            renderRoles();
+        }
+
+        // ============================================================
+        // DARK MODE
+        // ============================================================
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // ============================================================
+        // HEADER SHADOW
+        // ============================================================
+        const wrapper = document.getElementById('mainWrapper');
+        const header = document.getElementById('mainHeader');
+        wrapper.addEventListener('scroll', function() {
+            header.classList.toggle('header-shadow', this.scrollTop > 30);
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        fetchRoles();
+
+        console.log('🎯 Braintrust Roles loaded successfully!');
+    </script>
+
+</body>
+</html>

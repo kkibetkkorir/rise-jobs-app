@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise · Apply for Job</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0b1a2f;
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            padding: 16px;
+        }
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #2563eb;
+            text-decoration: none;
+            margin-bottom: 16px;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #1d4ed8;
+        }
+
+        .application-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eef2f6;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        body.dark-mode .application-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .application-card h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #0b1a2f;
+        }
+        body.dark-mode .application-card h1 {
+            color: #e2e8f0;
+        }
+
+        .application-card .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        body.dark-mode .application-card .subtitle {
+            color: #94a3b8;
+        }
+
+        .job-summary {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border-left: 4px solid #2563eb;
+        }
+        body.dark-mode .job-summary {
+            background: #334155;
+        }
+        .job-summary .label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        body.dark-mode .job-summary .label {
+            color: #94a3b8;
+        }
+        .job-summary .value {
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+        body.dark-mode .job-summary .value {
+            color: #e2e8f0;
+        }
+        .job-summary .company {
+            font-size: 14px;
+            color: #64748b;
+        }
+        body.dark-mode .job-summary .company {
+            color: #94a3b8;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #0b1a2f;
+        }
+        body.dark-mode .form-group label {
+            color: #e2e8f0;
+        }
+        .form-group label .required {
+            color: #ef4444;
+        }
+        .form-group .hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        body.dark-mode .form-group .hint {
+            color: #94a3b8;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #f8fafc;
+            color: #0b1a2f;
+            transition: border-color 0.2s, background 0.3s;
+            font-family: inherit;
+        }
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea,
+        body.dark-mode .form-group select {
+            background: #334155;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group .file-upload {
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+        body.dark-mode .form-group .file-upload {
+            border-color: #475569;
+        }
+        .form-group .file-upload:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+        body.dark-mode .form-group .file-upload:hover {
+            background: #334155;
+        }
+        .form-group .file-upload input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .form-group .file-upload .icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .form-group .file-upload .text {
+            font-size: 14px;
+            color: #64748b;
+        }
+        body.dark-mode .form-group .file-upload .text {
+            color: #94a3b8;
+        }
+        .form-group .file-upload .subtext {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .form-group .file-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .form-group .file-list .file-item {
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        body.dark-mode .form-group .file-list .file-item {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        .form-group .file-list .file-item .remove {
+            cursor: pointer;
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            font-size: 14px;
+            color: #0b1a2f;
+            cursor: pointer;
+        }
+        body.dark-mode .checkbox-group label {
+            color: #e2e8f0;
+        }
+
+        .application-questions {
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        body.dark-mode .application-questions {
+            border-top-color: #334155;
+        }
+        .application-questions h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            font-family: inherit;
+        }
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-message .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .success-message h2 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        .success-message p {
+            color: #64748b;
+        }
+        body.dark-mode .success-message p {
+            color: #94a3b8;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        body.dark-mode .error-message {
+            background: #450a0a;
+            color: #f87171;
+        }
+
+        @media (max-width: 640px) {
+            .application-card {
+                padding: 20px 16px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .form-group .file-upload {
+                padding: 16px;
+            }
+            .application-card h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../bottom-nav.css" />
+</head>
+<body>
+
+<div class="container">
+    <a href="jobs.html" class="back-link">← Back to Jobs</a>
+
+    <div class="application-card" id="appCard">
+        <h1>📝 Apply for Job</h1>
+        <p class="subtitle">Complete your application to submit your proposal</p>
+
+        <!-- Job Summary -->
+        <div class="job-summary" id="jobSummary">
+            <div class="label">Position</div>
+            <div class="value" id="jobTitle">Loading job...</div>
+            <div class="company" id="jobCompany">Loading company...</div>
+            <div style="margin-top:6px;display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:#64748b;">
+                <span id="jobBudget">Budget: -</span>
+                <span id="jobType">Type: -</span>
+                <span id="jobOpenings">Openings: -</span>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- Application Form -->
+        <form id="applicationForm" onsubmit="submitApplication(event)">
+
+            <!-- Personal Info -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" id="lastName" placeholder="Doe" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" id="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+                <label>LinkedIn URL</label>
+                <input type="url" id="linkedin" placeholder="https://www.linkedin.com/in/username/" />
+            </div>
+
+            <div class="form-group">
+                <label>Website / Portfolio</label>
+                <input type="url" id="website" placeholder="https://yourportfolio.com/" />
+            </div>
+
+            <!-- Proposal Details -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Proposed Rate <span class="required">*</span></label>
+                    <input type="number" id="paymentAmount" placeholder="5000" required />
+                    <div class="hint">Enter your proposed rate in USD</div>
+                </div>
+                <div class="form-group">
+                    <label>Payment Type <span class="required">*</span></label>
+                    <select id="paymentType" required>
+                        <option value="hourly">Hourly</option>
+                        <option value="fixed_price">Fixed Price</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="annual">Annual</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Timezone Requirement</label>
+                <select id="timezoneRequirement">
+                    <option value="Yes">Yes - I can work in required timezone</option>
+                    <option value="No">No - I can work flexibly</option>
+                    <option value="Partial">Partial overlap</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Availability Start</label>
+                <input type="text" id="availabilityStart" placeholder="e.g., After June 30, 2026" />
+            </div>
+
+            <div class="form-group">
+                <label>Calendar/Booking URL</label>
+                <input type="url" id="calendarUrl" placeholder="https://calendly.com/username" />
+            </div>
+
+            <!-- Work Authorization -->
+            <div class="form-group">
+                <label>Work Authorization</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="legallyAuthorized" checked />
+                    <label for="legallyAuthorized">I am legally authorized to work</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="visaSponsorship" />
+                    <label for="visaSponsorship">I may require visa sponsorship</label>
+                </div>
+            </div>
+
+            <!-- Resume Upload -->
+            <div class="form-group">
+                <label>Resume/CV <span class="required">*</span></label>
+                <div class="file-upload" id="resumeUpload">
+                    <span class="icon">📄</span>
+                    <div class="text">Click to upload or drag & drop</div>
+                    <div class="subtext">PDF, DOC, DOCX (max 10MB)</div>
+                    <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" required />
+                </div>
+                <div class="file-list" id="resumeList"></div>
+            </div>
+
+            <!-- Additional Files -->
+            <div class="form-group">
+                <label>Additional Files (optional)</label>
+                <div class="file-upload" id="attachmentUpload">
+                    <span class="icon">📎</span>
+                    <div class="text">Click to upload attachments</div>
+                    <div class="subtext">Up to 3 files, max 10MB each</div>
+                    <input type="file" id="attachmentFiles" accept=".pdf,.doc,.docx,.jpg,.png,.zip" multiple />
+                </div>
+                <div class="file-list" id="attachmentList"></div>
+            </div>
+
+            <!-- Client Questions -->
+            <div class="application-questions" id="questionsContainer">
+                <h3>📋 Client Questions</h3>
+                <div id="questionsList">
+                    <p style="color:#64748b;font-size:14px;">Loading questions...</p>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Application →</button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <div class="icon">✅</div>
+            <h2>Application Submitted!</h2>
+            <p>Your proposal has been sent to the employer.</p>
+            <a href="jobs.html" style="display:inline-block;margin-top:12px;padding:10px 28px;background:#2563eb;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Browse More Jobs</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // BRAINTRUST API CONFIGURATION
+    // ============================================================
+    const API_BASE = 'https://app.usebraintrust.com/api';
+    let jobData = null;
+    let questions = [];
+
+    // ============================================================
+    // GET JOB ID FROM URL
+    // ============================================================
+    function getJobId() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('job_id');
+    }
+
+    // ============================================================
+    // FETCH JOB DETAILS
+    // ============================================================
+    async function fetchJobDetails(jobId) {
+        if (!jobId) {
+            showError('No job ID provided.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/jobs/${jobId}/`);
+            if (!response.ok) throw new Error('Job not found');
+            jobData = await response.json();
+            updateJobSummary(jobData);
+            loadQuestions(jobData);
+        } catch (error) {
+            console.error('Error fetching job:', error);
+            showError('Failed to load job details.');
+        }
+    }
+
+    function updateJobSummary(job) {
+        document.getElementById('jobTitle').textContent = job.title || 'Position';
+        document.getElementById('jobCompany').textContent = job.employer?.name || 'Company';
+        document.getElementById('jobBudget').textContent =
+            `Budget: $${parseFloat(job.budget_minimum_usd || 0).toFixed(0)} - $${parseFloat(job.budget_maximum_usd || 0).toFixed(0)}`;
+        document.getElementById('jobType').textContent = `Type: ${job.job_type || 'freelance'}`;
+        document.getElementById('jobOpenings').textContent = `Openings: ${job.openings_left || 0}`;
+    }
+
+    // ============================================================
+    // LOAD QUESTIONS
+    // ============================================================
+    function loadQuestions(job) {
+        const container = document.getElementById('questionsList');
+        const questionsData = job.application_questions || [];
+
+        if (questionsData.length === 0) {
+            container.innerHTML = '<p style="color:#64748b;font-size:14px;">No additional questions from the employer.</p>';
+            return;
+        }
+
+        container.innerHTML = '';
+        questionsData.forEach((q, index) => {
+            const group = document.createElement('div');
+            group.className = 'form-group';
+            group.innerHTML = `
+                <label>${index + 1}. ${q.question} ${q.is_required ? '<span class="required">*</span>' : ''}</label>
+                <textarea id="question_${q.id}" placeholder="Your answer..." ${q.is_required ? 'required' : ''}></textarea>
+            `;
+            container.appendChild(group);
+        });
+        questions = questionsData;
+    }
+
+    // ============================================================
+    // FILE UPLOAD HANDLING
+    // ============================================================
+    // Resume upload
+    document.getElementById('resumeFile').addEventListener('change', function(e) {
+        const list = document.getElementById('resumeList');
+        list.innerHTML = '';
+        if (this.files.length > 0) {
+            const file = this.files[0];
+            const item = document.createElement('div');
+            item.className = 'file-item';
+            item.innerHTML = `
+                📄 ${file.name} (${(file.size / 1024).toFixed(0)}KB)
+                <span class="remove" onclick="document.getElementById('resumeFile').value=''; this.parentElement.remove();">✕</span>
+            `;
+            list.appendChild(item);
+            document.getElementById('resumeUpload').querySelector('.text').textContent = '✅ File uploaded';
+        } else {
+            document.getElementById('resumeUpload').querySelector('.text').textContent = 'Click to upload or drag & drop';
+        }
+    });
+
+    // Attachments upload
+    document.getElementById('attachmentFiles').addEventListener('change', function(e) {
+        const list = document.getElementById('attachmentList');
+        list.innerHTML = '';
+        const files = Array.from(this.files);
+        if (files.length > 3) {
+            alert('Maximum 3 files allowed.');
+            this.value = '';
+            return;
+        }
+        files.forEach(file => {
+            if (file.size > 10 * 1024 * 1024) {
+                alert(`File ${file.name} exceeds 10MB limit.`);
+                this.value = '';
+                return;
+            }
+            const item = document.createElement('div');
+            item.className = 'file-item';
+            item.innerHTML = `
+                📎 ${file.name} (${(file.size / 1024).toFixed(0)}KB)
+                <span class="remove" onclick="this.parentElement.remove();">✕</span>
+            `;
+            list.appendChild(item);
+        });
+    });
+
+    // ============================================================
+    // SUBMIT APPLICATION
+    // ============================================================
+    async function submitApplication(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('errorMessage');
+        const form = document.getElementById('applicationForm');
+
+        errorMsg.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+            // Build payload
+            const payload = {
+                first_name: document.getElementById('firstName').value.trim(),
+                last_name: document.getElementById('lastName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                linkedin_url: document.getElementById('linkedin').value.trim(),
+                website_url: document.getElementById('website').value.trim(),
+                payment_amount: parseFloat(document.getElementById('paymentAmount').value),
+                payment_type: document.getElementById('paymentType').value,
+                timezone_requirement: document.getElementById('timezoneRequirement').value,
+                availability_start: document.getElementById('availabilityStart').value.trim(),
+                calendar_url: document.getElementById('calendarUrl').value.trim(),
+                legally_authorized_to_work: document.getElementById('legallyAuthorized').checked,
+                visa_sponsorship_may_be_required: document.getElementById('visaSponsorship').checked,
+                job_id: getJobId(),
+            };
+
+            // Collect question answers
+            const answers = [];
+            questions.forEach(q => {
+                const answer = document.getElementById(`question_${q.id}`)?.value.trim() || '';
+                answers.push({
+                    question_id: q.id,
+                    answer: answer
+                });
+            });
+            payload.answers = answers;
+
+            // Simulate submission (in production, send to actual endpoint)
+            console.log('📤 Submitting application:', payload);
+
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Show success
+            form.style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.querySelector('.job-summary').style.display = 'none';
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            errorMsg.textContent = 'Submission failed. Please try again.';
+            errorMsg.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Application →';
+        }
+    }
+
+    // ============================================================
+    // HELPER FUNCTIONS
+    // ============================================================
+    function showError(message) {
+        const errorMsg = document.getElementById('errorMessage');
+        errorMsg.textContent = '⚠️ ' + message;
+        errorMsg.style.display = 'block';
+    }
+
+    // ============================================================
+    // DARK MODE
+    // ============================================================
+    document.getElementById('darkModeToggle')?.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+    });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    const jobId = getJobId();
+    if (jobId) {
+        fetchJobDetails(jobId);
+    } else {
+        showError('No job selected. Please go back and choose a job.');
+    }
+
+    console.log('📝 Braintrust Application loaded successfully!');
+    console.log('📌 Job ID:', jobId);
+</script>
+
+</body>
+</html>

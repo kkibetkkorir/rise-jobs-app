@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - Jobly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #1d4ed8; }
+
+        .job-detail-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: background 0.3s ease;
+        }
+        body.dark-mode .job-detail-card { background: #1e293b; }
+
+        .job-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #2563eb;
+        }
+
+        .job-logo-section {
+            padding: 0 28px;
+            margin-top: -40px;
+            position: relative;
+        }
+
+        .job-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            border: 4px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 32px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .job-logo { border-color: #1e293b; }
+
+        .job-content {
+            padding: 20px 28px 32px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .job-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+        }
+        body.dark-mode .job-title { color: #e2e8f0; }
+
+        .job-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .job-actions svg {
+            width: 24px;
+            height: 24px;
+            stroke: #94a3b8;
+            cursor: pointer;
+            transition: stroke 0.2s;
+        }
+        .job-actions svg:hover { stroke: #2563eb; }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            font-size: 14px;
+            color: #64748b;
+            margin: 4px 0 16px;
+        }
+        body.dark-mode .job-meta { color: #94a3b8; }
+        .job-meta strong { color: #1e293b; }
+        body.dark-mode .job-meta strong { color: #e2e8f0; }
+
+        .job-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .job-badge {
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+        body.dark-mode .job-badge {
+            background: #334155;
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        .job-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            background: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        body.dark-mode .job-stats { background: #334155; }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 2px;
+        }
+        body.dark-mode .stat-value { color: #e2e8f0; }
+
+        .job-description {
+            margin-top: 16px;
+        }
+        .job-description h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        body.dark-mode .job-description h3 { color: #e2e8f0; }
+        .job-description p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+        body.dark-mode .job-description p { color: #94a3b8; }
+
+        .job-description ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .job-description li {
+            font-size: 14px;
+            color: #64748b;
+            padding: 3px 0;
+            line-height: 1.6;
+        }
+        body.dark-mode .job-description li { color: #94a3b8; }
+
+        .apply-section {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .apply-section { border-color: #334155; }
+
+        .btn-primary {
+            padding: 12px 32px;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        .btn-secondary {
+            padding: 12px 32px;
+            background: #f1f5f9;
+            color: #1e293b;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: #e2e8f0; }
+        body.dark-mode .btn-secondary {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        body.dark-mode .btn-secondary:hover { background: #475569; }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        .loading-state .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #2563eb;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        body.dark-mode .loading-state .spinner { border-color: #334155; border-top-color: #2563eb; }
+
+        @media (max-width: 640px) {
+            .job-title { font-size: 20px; }
+            .job-stats { grid-template-columns: 1fr 1fr; }
+            .job-logo { width: 64px; height: 64px; font-size: 24px; }
+            .job-content { padding: 16px 16px 24px; }
+            .job-logo-section { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <a href="jobly.html" class="back-link">← Back to Jobs</a>
+
+    <div id="content">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading job details...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // JSEARCH API CONFIGURATION
+    // ============================================================
+    const JSEARCH_API_KEY = 'ak_dbuohxmw2qlthhk36ae5iaaerdtwaoaalu7u1eje1t6vnqb'; // ← REPLACE WITH YOUR RAPIDAPI KEY
+    const JSEARCH_BASE_URL = 'https://jsearch.p.rapidapi.com';
+
+    // ============================================================
+    // GET JOB ID FROM URL
+    // ============================================================
+    function getJobIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    // ============================================================
+    // FETCH JOB DETAILS
+    // ============================================================
+    async function fetchJobDetails(jobId) {
+        if (!jobId) {
+            showError('No job ID provided.');
+            return;
+        }
+
+        try {
+            const url = new URL(`${JSEARCH_BASE_URL}/job-details`);
+            url.searchParams.append('job_id', jobId);
+
+            const response = await fetch(url.toString(), {
+                headers: { 'x-api-key': JSEARCH_API_KEY, 'Accept': 'application/json' }
+            });
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+
+            if (data.status === 'OK' && data.data) {
+                renderJobDetail(data.data);
+            } else {
+                showError('Job not found.');
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            showError('Failed to load job details. Please try again.');
+        }
+    }
+
+    // ============================================================
+    // RENDER JOB DETAIL
+    // ============================================================
+    function renderJobDetail(job) {
+        const container = document.getElementById('content');
+
+        const color = getColor(job.employer_name || '');
+        const initial = (job.employer_name || 'C').charAt(0).toUpperCase();
+        const empType = (job.job_employment_types && job.job_employment_types.length > 0)
+            ? job.job_employment_types[0]
+            : job.job_employment_type || 'Full Time';
+
+        let html = `
+            <div class="job-detail-card">
+                <img class="job-banner" src="https://picsum.photos/seed/${job.job_id || Math.random()}/900/200" alt="${job.employer_name || 'Company'}" style="background:${color};">
+
+                <div class="job-logo-section">
+                    <div class="job-logo" style="background:${color};">${initial}</div>
+                </div>
+
+                <div class="job-content">
+                    <div class="job-header">
+                        <div class="job-title">${job.job_title || 'Position Title'}</div>
+                        <div class="job-actions">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="saveJob('${job.job_id}')">
+                                <path d="M20.8 4.6a5.5 5.5 0 00-7.7 0l-1.1 1-1-1a5.5 5.5 0 00-7.8 7.8l1 1 7.8 7.8 7.8-7.7 1-1.1a5.5 5.5 0 000-7.8z"/>
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="shareJob('${job.job_id}')">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="job-meta">
+                        <span><strong>${job.employer_name || 'Company'}</strong></span>
+                        <span>📍 ${job.job_location || 'Remote'}</span>
+                        <span>📅 Posted ${job.job_posted_at || 'recently'}</span>
+                    </div>
+
+                    <div class="job-badges">
+                        <span class="job-badge">${empType}</span>
+                        ${job.seniority_level ? `<span class="job-badge">${job.seniority_level}</span>` : ''}
+                        ${job.job_min_salary && job.job_max_salary ? `<span class="job-badge">$${Math.round(job.job_min_salary)} - $${Math.round(job.job_max_salary)}</span>` : ''}
+                        ${job.job_apply_type ? `<span class="job-badge">${job.job_apply_type}</span>` : ''}
+                    </div>
+
+                    <div class="job-stats">
+                        <div>
+                            <div class="stat-label">Experience</div>
+                            <div class="stat-value">${job.required_experience_years ? `Minimum ${job.required_experience_years} Year${job.required_experience_years > 1 ? 's' : ''}` : 'Not specified'}</div>
+                        </div>
+                        <div>
+                            <div class="stat-label">Work Level</div>
+                            <div class="stat-value">${job.seniority_level || 'Not specified'}</div>
+                        </div>
+                        <div>
+                            <div class="stat-label">Employee Type</div>
+                            <div class="stat-value">${empType}</div>
+                        </div>
+                        <div>
+                            <div class="stat-label">Salary</div>
+                            <div class="stat-value">${job.job_min_salary && job.job_max_salary ? `$${Math.round(job.job_min_salary)} - $${Math.round(job.job_max_salary)}` : 'Not specified'}</div>
+                        </div>
+                    </div>
+
+                    <div class="job-description">
+                        <h3>About the Role</h3>
+                        <p>${job.job_description || 'No description available.'}</p>
+                    </div>
+
+                    ${job.job_highlights ? `
+                        ${job.job_highlights.Responsibilities && job.job_highlights.Responsibilities.length > 0 ? `
+                            <div class="job-description" style="margin-top:16px;">
+                                <h3>Key Responsibilities</h3>
+                                <ul>
+                                    ${job.job_highlights.Responsibilities.map(r => `<li>${r}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                        ${job.job_highlights.Qualifications && job.job_highlights.Qualifications.length > 0 ? `
+                            <div class="job-description" style="margin-top:16px;">
+                                <h3>Qualifications & Requirements</h3>
+                                <ul>
+                                    ${job.job_highlights.Qualifications.map(q => `<li>${q}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    ` : ''}
+
+                    <div class="apply-section">
+                        ${job.job_apply_link ? `
+                            <a href="${job.job_apply_link}" target="_blank" class="btn-primary">Apply Now →</a>
+                        ` : `
+                            <button class="btn-primary" onclick="alert('Apply link not available.')">Apply Now →</button>
+                        `}
+                        <button class="btn-secondary" onclick="saveJob('${job.job_id}')">💾 Save Job</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // HELPER FUNCTIONS
+    // ============================================================
+    function getColor(str) {
+        const colors = ['#2563eb', '#f76754', '#55acee', '#2e2882', '#fe5b5f', '#5c6bc0', '#ea4c88', '#fbbb00', '#28b446', '#f14336'];
+        let hash = 0;
+        for (let i = 0; i < (str || '').length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        return colors[Math.abs(hash) % colors.length];
+    }
+
+    function saveJob(jobId) {
+        // Fetch job from API to get full details
+        fetch(`${JSEARCH_BASE_URL}/job-details?job_id=${jobId}`, {
+            headers: { 'x-api-key': JSEARCH_API_KEY, 'Accept': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'OK' && data.data) {
+                const saved = JSON.parse(localStorage.getItem('jobly_saved') || '[]');
+                if (!saved.find(j => j.job_id === jobId)) {
+                    saved.push(data.data);
+                    localStorage.setItem('jobly_saved', JSON.stringify(saved));
+                    alert('✅ Job saved!');
+                } else {
+                    alert('Already saved.');
+                }
+            }
+        })
+        .catch(() => alert('Failed to save job.'));
+    }
+
+    function shareJob(jobId) {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('📋 Link copied to clipboard!');
+            });
+        }
+    }
+
+    function showError(message) {
+        document.getElementById('content').innerHTML = `
+            <div class="job-detail-card" style="padding:40px; text-align:center;">
+                <h3 style="color:#ef4444; margin-bottom:8px;">⚠️ ${message}</h3>
+                <p style="color:#64748b;">Please go back and try again.</p>
+                <a href="jobly.html" class="btn-primary" style="display:inline-block; margin-top:16px;">Back to Jobs</a>
+            </div>
+        `;
+    }
+
+    // ============================================================
+    // DARK MODE TOGGLE
+    // ============================================================
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('jobly-dark') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Listen for dark mode toggle events from main page
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'jobly-dark') {
+            if (e.newValue === 'true') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+    });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    const jobId = getJobIdFromUrl();
+    fetchJobDetails(jobId);
+
+    console.log('🔍 Jobly - Single Job View');
+    console.log('📌 Replace YOUR_API_KEY_HERE with your RapidAPI key');
+</script>
+
+</body>
+</html>

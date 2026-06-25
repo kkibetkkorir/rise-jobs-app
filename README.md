@@ -145,7 +145,7 @@ Here's `index.html` with only the navigation header that you can integrate with 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="styles.css" /> <link rel="stylesheet" href="nav.css" />
 </head>
 <body>
 
@@ -294,8 +294,8 @@ Here's `index.html` with a bottom navigation bar designed for mobile phones, wit
 <nav class="bottom-nav" id="bottomNav">
     <!-- Home -->
     <a href="index.html" class="nav-item active" data-tab="home">
-        <span class="icon">🏠</span>
-        <span class="label">Home</span>
+        <span class="icon">💼</span>
+        <span class="label">Jobs</span>
     </a>
 
     <!-- Search -->
@@ -305,9 +305,9 @@ Here's `index.html` with a bottom navigation bar designed for mobile phones, wit
     </a>
 
     <!-- Center Action Button (Post/Apply) -->
-    <a href="employers.html" class="nav-item center-btn" data-tab="post">
+    <a href="jobs.html" class="nav-item center-btn" data-tab="jobs">
         <span class="icon">➕</span>
-        <span class="label">Employers</span>
+        <span class="label">Jobs</span>
     </a>
 
     <!-- Saved Jobs -->
@@ -1671,3 +1671,129 @@ This complete `index.html` now includes:
 8. **Responsive Design** - Works on all screen sizes
 9. **SEO Optimized** - Full meta tags and structured data
 10. **PWA Ready** - Service worker and manifest support
+
+
+
+# Braintrust Job Application - Complete Implementation
+
+Based on your requirements, I'll create the complete job application flow with the Braintrust API integration, maintaining the Rise app design language.
+
+## 1. `braintrust/jobs.html` - Main Job Listing Page
+
+## 2. `braintrust/application.html` - Job Application Page
+
+## 3. `braintrust/skills.html` - Skills Page
+
+## 4. `braintrust/roles.html` - Roles Page
+
+## Summary of Files Created
+
+| File | Purpose | Key Features |
+|------|---------|--------------|
+| `jobs.html` | Main job listing page | Search, role filter, contract filter, pagination, dark mode |
+| `application.html` | Job application form | File uploads, client questions, form validation, dark mode |
+| `braintrust/skills.html` | Skills directory | Search, pagination, skill cards with usage counts |
+| `roles.html` | Roles directory | Search, role cards with color badges, featured roles |
+
+## API Integration Notes
+
+1. **Jobs API**: `/api/jobs/?page=1&search=&role=&contract_type=`
+2. **Job Detail**: `/api/jobs/{job_id}/`
+3. **Skills API**: `/api/skills/`
+4. **Roles API**: `/api/roles/`
+5. **Application Submit**: Would normally POST to `/api/jobs/{job_id}/proposals/` (simulated in demo)
+
+## Design Consistency with Rise App
+
+- **Colors**: Dark navy (#0b1a2f), blue (#2563eb), slate grays
+- **Typography**: Inter font family
+- **Components**: Cards, chips, badges, dark mode toggle
+- **Layout**: Sticky header, responsive grid, bottom navigation
+- **Interactions**: Hover effects, smooth transitions, loading states
+
+
+# make sure jobs load in `jobs.html` at first even without user try to alter filtering , use our ipapi api to filter search jobs in user contry by default and add =dripdown for all counries . also include salary range feature and the create job alert feature 'Create Job Alert' and use black instead of blue . also create skills.html and single skill .html for listing jobs related to that skill search
+
+Here's the complete updated `braintrust/jobs.html` with IP-based location detection, country filter, salary range, job alert feature, and black color scheme, plus `braintrust/skills.html` and `braintrust/skill.html` for skill-based job listings.
+
+## 1. `braintrust/jobs.html` (Updated with Location Detection)
+
+## 2. `braintrust/skills.html`
+
+## 3. `braintrust/skill.html` (Single Skill - Jobs by Skill)
+
+## Summary of Changes
+
+### 1. `braintrust/jobs.html` Updates:
+- **Location Detection**: Uses `ipapi.co` to detect user's country on load
+- **Country Filter**: Dropdown with all countries, auto-selects user's country
+- **Salary Range**: Min/Max salary inputs with client-side filtering
+- **Job Alert**: "Create Job Alert" section with keyword input
+- **Color Scheme**: Changed from blue (#2563eb) to black (#0b1a2f) throughout
+- **Initial Load**: Fetches jobs with user's country as default filter
+
+### 2. `braintrust/skills.html`:
+- Lists all skills from `/api/skills/`
+- Search functionality
+- Pagination
+- Click on skill navigates to `braintrust/skill.html`
+
+### 3. `braintrust/skill.html`:
+- Shows jobs filtered by a specific skill
+- Uses `/api/jobs/?skills={skill_id}`
+- Displays skill name and job count
+- Pagination support
+- Apply links to job application
+
+### File Structure:
+```
+braintrust/jobs.html      - Main job listing with filters
+braintrust/skills.html    - Skills directory
+braintrust/skill.html     - Jobs by specific skill
+roles.html     - Roles directory
+application.html - Job application form
+```
+
+# create braintrust/single-job.html for job details
+
+
+Here's `braintrust/single-job.html` for displaying detailed job information with full description, employer details, similar jobs, and application functionality.
+
+## `braintrust/single-job.html`
+
+
+## Features
+
+### Job Detail Page Includes:
+
+1. **Full Job Information**
+   - Job title, company name with logo
+   - Job type, contract type, payment type
+   - Budget range, hours/week, openings count
+   - Posted date
+
+2. **Job Description**
+   - Full HTML description
+   - Extracted responsibilities section
+   - Extracted requirements/qualifications section
+
+3. **Sidebar**
+   - Quick Actions (Apply Now, Save Job)
+   - Job Details summary
+   - Employer information (industry, size, location, website)
+
+4. **Similar Jobs**
+   - Fetches from `/api/jobs_similar_jobs/`
+   - Shows 6 similar jobs
+   - Clickable to view details
+
+5. **Save Functionality**
+   - Saves to localStorage
+   - Prevents duplicate saves
+
+6. **Dark Mode Support**
+   - Full dark mode compatibility
+
+7. **Responsive Design**
+   - Desktop: 2-column layout
+   - Tablet/Phone: Single column with stacked sidebar
