@@ -153,11 +153,14 @@ Here's `index.html` with only the navigation header that you can integrate with 
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <!-- Logo -->
-        <a href="index.html" class="nav-logo">
-            <span class="logo-icon">🚀</span>
-            <span class="logo-text">Rise</span>
-            <span class="logo-badge">Jobs</span>
-        </a>
+            <a href="index.html" class="logo">
+              <svg viewBox="0 0 512 512">
+                  <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
+                  <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+                  <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+              </svg>
+              Rise <span>Jobs</span>
+            </a>
 
         <!-- Desktop Links -->
         <ul class="nav-links">
@@ -1653,11 +1656,11 @@ The updated `index.html` now supports:
 - ✅ Proper data parsing from different API response structures
 - ✅ Client-side filtering for search and categories when needed
 
-# rewrite the entire as index2.html instead
+# rewrite the entire as index.html instead
 
 Here's the complete rewritten `index.html` with all the enhanced features and endpoints integrated:
 
-`index2.html`
+`index.html`
 
 This complete `index.html` now includes:
 

@@ -592,20 +592,24 @@
             .amount-section .amount { font-size: 2rem; }
         }
     </style>
-<link rel="stylesheet" href="styles.css" /> <link rel="stylesheet" href="nav.css" />
-<link rel="stylesheet" href="bottom-nav.css" />
+    <link rel="stylesheet" href="styles.css" /> 
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
 </head>
 <body>
 <!-- ===== NAVIGATION ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <!-- Logo -->
-    <a href="index.html" class="nav-logo">
-      <span class="logo-icon">🚀</span>
-      <span class="logo-text">Rise</span>
-      <span class="logo-badge">Jobs</span>
+    <a href="index.html" class="logo">
+        <svg viewBox="0 0 512 512">
+            <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
+            <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+            <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+        </svg>
+        Rise <span>Jobs</span>
     </a>
-
+    
     <!-- Desktop Links -->
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -664,8 +668,8 @@
                 <button data-currency="KES" data-rate="130">KES</button>
                 <button data-currency="NGN" data-rate="1500">NGN</button>
                 <button data-currency="GHS" data-rate="12">GHS</button>
-                <button data-currency="GBP" data-rate="0.78">GBP</button>
-                <button data-currency="EUR" data-rate="0.92">EUR</button>
+                <button data-currency="GBP" data-rate="0.78" style="display: none;">GBP</button>
+                <button data-currency="EUR" data-rate="0.92" style="display: none;">EUR</button>
                 <button data-currency="ZAR" data-rate="18">ZAR</button>
                 <button data-currency="EGP" data-rate="48">EGP</button>
             </div>
@@ -698,6 +702,40 @@
                 <option value="NL">Netherlands</option>
             </select>
         </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <h3>Payment Method</h3>
+                    <div class="method-grid" id="methodGrid">
+                        <button class="method-btn active" data-method="card">
+                            <span class="method-icon">💳</span>
+                            <span class="method-label">Card</span>
+                        </button>
+                        <button class="method-btn" data-method="mobile_money">
+                            <span class="method-icon">📱</span>
+                            <span class="method-label">Mobile Money</span>
+                        </button>
+                        <button class="method-btn" data-method="bank_transfer">
+                            <span class="method-icon">🏦</span>
+                            <span class="method-label">Bank Transfer</span>
+                        </button>
+                        <button class="method-btn" data-method="ussd">
+                            <span class="method-icon">📞</span>
+                            <span class="method-label">USSD</span>
+                        </button>
+                        <button class="method-btn" data-method="opay">
+                            <span class="method-icon">⚡</span>
+                            <span class="method-label">OPay</span>
+                        </button>
+                        <button class="method-btn" data-method="apple_pay">
+                            <span class="method-icon">🍎</span>
+                            <span class="method-label">Apple Pay</span>
+                        </button>
+                    </div>
+                    <div class="payment-method-info" id="methodInfo">
+                        <span id="methodInfoText"></span>
+                    </div>
+                </div>
 
         <!-- Mobile Input (for Mobile Money) -->
         <div class="mobile-input" id="mobileInput">
@@ -745,39 +783,6 @@
             <input type="text" id="cardName" placeholder="John Doe" />
         </div>
 
-        <!-- Payment Methods -->
-        <div class="payment-methods">
-            <h3>Payment Method</h3>
-            <div class="method-grid" id="methodGrid">
-                <button class="method-btn active" data-method="card">
-                    <span class="method-icon">💳</span>
-                    <span class="method-label">Card</span>
-                </button>
-                <button class="method-btn" data-method="mobile_money">
-                    <span class="method-icon">📱</span>
-                    <span class="method-label">Mobile Money</span>
-                </button>
-                <button class="method-btn" data-method="bank_transfer">
-                    <span class="method-icon">🏦</span>
-                    <span class="method-label">Bank Transfer</span>
-                </button>
-                <button class="method-btn" data-method="ussd">
-                    <span class="method-icon">📞</span>
-                    <span class="method-label">USSD</span>
-                </button>
-                <button class="method-btn" data-method="opay">
-                    <span class="method-icon">⚡</span>
-                    <span class="method-label">OPay</span>
-                </button>
-                <button class="method-btn" data-method="apple_pay">
-                    <span class="method-icon">🍎</span>
-                    <span class="method-label">Apple Pay</span>
-                </button>
-            </div>
-            <div class="payment-method-info" id="methodInfo">
-                <span id="methodInfoText"></span>
-            </div>
-        </div>
 
         <!-- Pay Button -->
         <button class="pay-btn" id="payBtn" onclick="processPayment()">
@@ -847,7 +852,7 @@
     
 <script>
     // ===== CONFIGURATION =====
-    const API_BASE_URL = 'https://powerful-flexibility-production-bbe5.up.railway.app';
+    const API_BASE_URL = 'https://powerful-flexibility-production-989e.up.railway.app';
     const BASE_AMOUNT_USD = 2.00;
     const EXCHANGE_RATES = {
         USD: 1,
@@ -1139,7 +1144,7 @@
             
             switch(selectedMethod) {
                 case 'card':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
+                    apiEndpoint = `${API_BASE_URL}/api/initiate/card`;
                     payload = {
                         card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
                         cvv: document.getElementById('cvv').value,
@@ -1156,7 +1161,7 @@
                     break;
                     
                 case 'mobile_money':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
+                    apiEndpoint = `${API_BASE_URL}/api/mpesa`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: currency,
@@ -1168,7 +1173,7 @@
                     break;
                     
                 case 'bank_transfer':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/bank-transfer`;
+                    apiEndpoint = `${API_BASE_URL}/api/initiate/bank-transfer`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: currency,
@@ -1180,7 +1185,7 @@
                     
                 case 'ussd':
                     // USSD goes through the same endpoint as mobile money
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/mpesa`;
+                    apiEndpoint = `${API_BASE_URL}/api/initiate/mpesa`;
                     payload = {
                         amount: amount.toFixed(2),
                         currency: 'NGN',
@@ -1192,7 +1197,7 @@
                     break;
                     
                 case 'apple_pay':
-                    apiEndpoint = `${API_BASE_URL}/api/flow/initiate/card`;
+                    apiEndpoint = `${API_BASE_URL}/api/initiate/card`;
                     payload = {
                         card_number: document.getElementById('cardNumber').value.replace(/\s/g, ''),
                         cvv: document.getElementById('cvv').value,
@@ -1341,7 +1346,7 @@
 
     async function checkPaymentStatus(checkoutId) {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/flow/status`, {
+            const response = await fetch(`${API_BASE_URL}/api/status`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

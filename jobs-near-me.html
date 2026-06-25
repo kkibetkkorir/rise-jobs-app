@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
@@ -568,18 +568,22 @@
             border-radius: 12px;
         }
     </style>
-<link rel="stylesheet" href="styles.css" /> <link rel="stylesheet" href="nav.css" />
-<link rel="stylesheet" href="bottom-nav.css" />
+    <link rel="stylesheet" href="styles.css" /> 
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="bottom-nav.css" />
 </head>
 <body>
 <!-- ===== NAVIGATION ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <!-- Logo -->
-    <a href="index.html" class="nav-logo">
-      <span class="logo-icon">🚀</span>
-      <span class="logo-text">Rise</span>
-      <span class="logo-badge">Jobs</span>
+    <a href="index.html" class="logo">
+        <svg viewBox="0 0 512 512">
+            <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
+            <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+            <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+        </svg>
+        Rise <span>Jobs</span>
     </a>
 
     <!-- Desktop Links -->
@@ -616,6 +620,10 @@
     </div>
   </div>
 </nav>
+
+<script src="./nav.js"></script>
+    <script src="./bottom-nav.js"></script>
+    
 <div class="container">
     <!-- Header -->
     <div class="header">
@@ -705,9 +713,6 @@
       <span class="label">Profile</span>
     </a>
 </nav>
-
-<script src="./nav.js"></script>
-    <script src="./bottom-nav.js"></script>
 <script>
     // ===== CONFIGURATION =====
     const RISE_API = 'https://api.joinrise.io/api/v1/jobs/public';
@@ -830,6 +835,64 @@
             // Only reload if user moved significantly (optional)
         });
     }
+
+    // Add this helper function
+async function geocodeLocation(locationName) {
+    // Use a free geocoding API to convert "New York" to coordinates
+    try {
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationName)}&format=json&limit=1`
+        );
+        const data = await response.json();
+        if (data && data.length > 0) {
+            return {
+                lat: parseFloat(data[0].lat),
+                lon: parseFloat(data[0].lon)
+            };
+        }
+    } catch (error) {
+        console.warn('Geocoding failed:', error);
+    }
+    return null;
+}
+
+
+async function reverseGeocode(lat, lon) {
+    try {
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+        );
+        const data = await response.json();
+        if (data && data.address) {
+            const city = data.address.city || data.address.town || data.address.village;
+            const country = data.address.country;
+            return country ||  city || 'Remote';
+        }
+    } catch (error) {
+        console.warn('Reverse geocoding failed:', error);
+    }
+    return null;
+}
+
+    // ===== FETCH JOBS =====
+    async function fetchNearbyJobs(lat, lon, radius) {
+    // First, get the city name from coordinates
+    const cityName = await reverseGeocode(lat, lon);
+    
+    // Use the same search logic as index.html
+    // Build a search URL with location parameter
+    const searchUrl = `https://api.joinrise.io/api/v1/jobs/public?page=1&limit=50&sort=desc&sortedBy=createdAt&search=${encodeURIComponent(cityName)}`;
+    
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+    const jobs = data.result?.jobs || [];
+    
+    // These jobs already match your city
+    renderJobList(jobs);
+    // For map, just show them centered on user location
+    // without individual markers (or use one marker for the city)
+}
+
 
     // ===== FETCH JOBS =====
     async function fetchNearbyJobs(lat, lon, radius) {
