@@ -185,19 +185,23 @@
             gap: 6px;
             font-weight: 500;
             font-size: 0.85rem;
-            color: #2b4d77;
+            color: var(--color-text-secondary);
             text-decoration: none;
             padding: 6px 14px;
             border-radius: 40px;
-            background: #f0f6fe;
-            transition: 0.15s;
+            background: var(--color-primary-subtle);
+            transition: all var(--transition-base);
             margin-bottom: 20px;
             border: 1px solid transparent;
         }
 
+        body.dark-mode .back-link {
+            background: var(--color-gray-700);
+        }
+
         .back-link:hover {
-            background: #e3edfb;
-            border-color: #c7daf0;
+            background: var(--color-bg-hover);
+            border-color: var(--color-border);
         }
 
         .payment-header {
@@ -214,59 +218,68 @@
             font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: -0.02em;
+            color: var(--color-text-primary);
         }
 
         .payment-header p {
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
             font-size: 0.9rem;
             margin-top: 2px;
         }
 
         .job-summary {
-            background: #f8fbfe;
+            background: var(--color-bg-secondary);
             border-radius: 16px;
             padding: 16px 20px;
             margin-bottom: 24px;
-            border: 1px solid #eef4fa;
+            border: 1px solid var(--color-border-light);
+        }
+
+        body.dark-mode .job-summary {
+            background: var(--color-gray-800);
         }
 
         .job-summary .label {
             font-size: 0.75rem;
-            color: #6b8aa8;
+            color: var(--color-text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-weight: 600;
+            font-weight: 6s00;
         }
 
         .job-summary .value {
             font-weight: 600;
             font-size: 1rem;
             margin-top: 2px;
-            color: #0b1a2f;
+            color: var(--color-text-primary);
         }
 
         .job-summary .company {
             font-size: 0.85rem;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .amount-section {
             text-align: center;
             padding: 16px 0 20px;
-            border-bottom: 1px solid #edf2f8;
+            border-bottom: 1px solid var(--color-border);
             margin-bottom: 24px;
+        }
+
+        body.dark-mode .amount-section {
+            border-bottom-color: var(--color-gray-700);
         }
 
         .amount-section .amount {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #0b1a2f;
+            color: var(--color-text-primary);
         }
 
         .amount-section .amount small {
             font-size: 1rem;
             font-weight: 500;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .amount-section .currency-selector {
@@ -279,25 +292,25 @@
 
         .amount-section .currency-selector button {
             padding: 4px 14px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 40px;
-            background: white;
+            background: var(--color-bg-card);
             font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
-            transition: 0.15s;
+            transition: all var(--transition-base);
             font-family: inherit;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .amount-section .currency-selector button.active {
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
         }
 
         .amount-section .currency-selector button:hover:not(.active) {
-            background: #f0f5fc;
+            background: var(--color-bg-hover);
         }
 
         .payment-methods {
@@ -308,7 +321,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #0a1d32;
+            color: var(--color-text-primary);
         }
 
         .method-grid {
@@ -319,27 +332,31 @@
 
         .method-btn {
             padding: 10px 12px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
-            background: white;
+            background: var(--color-bg-card);
             cursor: pointer;
-            transition: 0.15s;
+            transition: all var(--transition-base);
             font-family: inherit;
             text-align: center;
             font-size: 0.75rem;
             font-weight: 500;
-            color: #2a4a68;
+            color: var(--color-text-secondary);
         }
 
         .method-btn:hover {
-            border-color: #b0c8e0;
-            background: #f8fbfe;
+            border-color: var(--color-primary);
+            background: var(--color-bg-hover);
         }
 
         .method-btn.active {
-            border-color: #0b1a2f;
-            background: #f0f6fe;
+            border-color: var(--color-primary);
+            background: var(--color-primary-subtle);
             box-shadow: 0 0 0 2px rgba(11, 26, 47, 0.06);
+        }
+
+        body.dark-mode .method-btn.active {
+            background: var(--color-gray-700);
         }
 
         .method-btn .method-icon {
@@ -362,23 +379,27 @@
             font-weight: 500;
             display: block;
             margin-bottom: 4px;
-            color: #1a3753;
+            color: var(--color-text-primary);
         }
 
         .country-selector select {
             width: 100%;
             padding: 10px 14px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             font-size: 0.9rem;
-            background: #fafcfe;
+            background: var(--color-bg-secondary);
             font-family: inherit;
-            color: #0b1a2f;
+            color: var(--color-text-primary);
+        }
+
+        body.dark-mode .country-selector select {
+            background: var(--color-gray-800);
         }
 
         .country-selector select:focus {
             outline: none;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
         }
 
         .mobile-input {
@@ -390,7 +411,7 @@
             font-weight: 500;
             display: block;
             margin-bottom: 4px;
-            color: #1a3753;
+            color: var(--color-text-primary);
         }
 
         .mobile-input .phone-group {
@@ -401,28 +422,38 @@
         .mobile-input .phone-group select {
             width: 100px;
             padding: 10px 8px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             font-size: 0.85rem;
-            background: #fafcfe;
+            background: var(--color-bg-secondary);
             font-family: inherit;
             flex-shrink: 0;
+            color: var(--color-text-primary);
+        }
+
+        body.dark-mode .mobile-input .phone-group select {
+            background: var(--color-gray-800);
         }
 
         .mobile-input .phone-group input {
             flex: 1;
             padding: 10px 14px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             font-size: 0.9rem;
-            background: #fafcfe;
+            background: var(--color-bg-secondary);
             font-family: inherit;
+            color: var(--color-text-primary);
+        }
+
+        body.dark-mode .mobile-input .phone-group input {
+            background: var(--color-gray-800);
         }
 
         .mobile-input .phone-group input:focus,
         .mobile-input .phone-group select:focus {
             outline: none;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
         }
 
         .card-details {
@@ -434,23 +465,28 @@
             font-weight: 500;
             display: block;
             margin-bottom: 4px;
-            color: #1a3753;
+            color: var(--color-text-primary);
         }
 
         .card-details input {
             width: 100%;
             padding: 10px 14px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             font-size: 0.9rem;
-            background: #fafcfe;
+            background: var(--color-bg-secondary);
             font-family: inherit;
             margin-bottom: 10px;
+            color: var(--color-text-primary);
+        }
+
+        body.dark-mode .card-details input {
+            background: var(--color-gray-800);
         }
 
         .card-details input:focus {
             outline: none;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
         }
 
         .card-row {
@@ -462,14 +498,14 @@
         .pay-btn {
             width: 100%;
             padding: 14px;
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
             border: none;
             border-radius: 60px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: 0.15s;
+            transition: all var(--transition-base);
             font-family: inherit;
             display: flex;
             align-items: center;
@@ -478,8 +514,9 @@
         }
 
         .pay-btn:hover:not(:disabled) {
-            background: #1d3452;
-            transform: scale(1.01);
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .pay-btn:disabled {
@@ -512,14 +549,14 @@
 
         .terms-text {
             font-size: 0.75rem;
-            color: #6b8aa8;
+            color: var(--color-text-muted);
             text-align: center;
             margin-top: 16px;
             line-height: 1.5;
         }
 
         .terms-text a {
-            color: #0b1a2f;
+            color: var(--color-primary);
             text-decoration: underline;
         }
 
@@ -537,25 +574,28 @@
         .success-message h2 {
             font-size: 1.3rem;
             margin-bottom: 4px;
+            color: var(--color-text-primary);
         }
 
         .success-message p {
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
             margin-bottom: 16px;
         }
 
         .success-message .apply-link {
             display: inline-block;
             padding: 12px 32px;
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 600;
+            transition: all var(--transition-base);
         }
 
         .success-message .apply-link:hover {
-            background: #1d3452;
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
         }
 
         .hidden {
@@ -563,8 +603,8 @@
         }
 
         .error-message {
-            background: #ffebee;
-            color: #c62828;
+            background: var(--color-error-light);
+            color: var(--color-error);
             padding: 10px 16px;
             border-radius: 12px;
             margin-bottom: 16px;
@@ -574,12 +614,17 @@
 
         .payment-method-info {
             font-size: 0.8rem;
-            color: #6b8aa8;
+            color: var(--color-text-muted);
             margin-top: 4px;
             padding: 8px 12px;
-            background: #f8fbfe;
+            background: var(--color-bg-secondary);
             border-radius: 8px;
             display: none;
+        }
+
+        body.dark-mode .payment-method-info {
+            background: var(--color-gray-800);
+        }
         }
 
         .payment-method-info.show {
@@ -850,6 +895,8 @@
 <script src="./theme.js"></script>
 <script src="./nav.js"></script>
     <script src="./bottom-nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-client.js"></script>
 
 <script>
     // ===== CONFIGURATION =====

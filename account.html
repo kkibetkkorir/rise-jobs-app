@@ -186,7 +186,11 @@
         gap: 16px;
         margin-bottom: 28px;
         padding-bottom: 20px;
-        border-bottom: 1px solid #edf2f8;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      body.dark-mode .account-header {
+        border-bottom-color: var(--color-gray-700);
       }
 
       .account-header h1 {
@@ -196,44 +200,55 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        color: var(--color-text-primary);
       }
 
       .account-header h1 span {
-        background: #f0f6fe;
+        background: var(--color-primary-subtle);
         font-size: 0.75rem;
         padding: 2px 14px;
         border-radius: 40px;
         font-weight: 500;
-        color: #1d3d60;
+        color: var(--color-primary);
+      }
+
+      body.dark-mode .account-header h1 span {
+        background: var(--color-gray-700);
+        color: var(--color-gray-300);
       }
 
       .logout-btn {
-        background: #ffebee;
-        color: #c62828;
+        background: var(--color-error-light);
+        color: var(--color-error);
         border: none;
         padding: 8px 20px;
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.85rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
       }
 
       .logout-btn:hover {
-        background: #ffcdd2;
+        background: var(--color-error);
+        color: white;
       }
 
       /* Tabs */
       .tabs {
         display: flex;
         gap: 4px;
-        background: #f0f5fc;
+        background: var(--color-gray-100);
         border-radius: 60px;
         padding: 4px;
         margin-bottom: 28px;
         overflow-x: auto;
         flex-wrap: nowrap;
+      }
+
+      body.dark-mode .tabs {
+        background: var(--color-gray-700);
       }
 
       .tab-btn {
@@ -243,21 +258,25 @@
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.9rem;
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         white-space: nowrap;
         font-family: inherit;
       }
 
       .tab-btn.active {
-        background: white;
-        color: #0b1a2f;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        background: var(--color-bg-card);
+        color: var(--color-text-primary);
+        box-shadow: var(--shadow-sm);
+      }
+
+      body.dark-mode .tab-btn.active {
+        background: var(--color-gray-800);
       }
 
       .tab-btn:hover:not(.active) {
-        color: #0b1a2f;
+        color: var(--color-text-primary);
       }
 
       .tab-content {
@@ -297,37 +316,49 @@
         height: 120px;
         border-radius: 50%;
         object-fit: cover;
-        background: #eef2f6;
-        border: 3px solid white;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        background: var(--color-gray-100);
+        border: 3px solid var(--color-bg-card);
+        box-shadow: var(--shadow-md);
         margin-bottom: 12px;
+      }
+
+      body.dark-mode .profile-avatar {
+        background: var(--color-gray-700);
+        border-color: var(--color-gray-600);
       }
 
       .profile-avatar-section h3 {
         font-size: 1.1rem;
         font-weight: 600;
+        color: var(--color-text-primary);
       }
 
       .profile-avatar-section p {
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         font-size: 0.9rem;
       }
 
       .change-photo-btn {
-        background: #f0f5fc;
-        border: 1px solid #dce5ef;
+        background: var(--color-bg-hover);
+        border: 1px solid var(--color-border);
         padding: 6px 18px;
         border-radius: 40px;
         font-size: 0.85rem;
         font-weight: 500;
         cursor: pointer;
         margin-top: 8px;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
+        color: var(--color-text-primary);
       }
 
       .change-photo-btn:hover {
-        background: #e3edfb;
+        background: var(--color-gray-200);
+        border-color: var(--color-primary);
+      }
+
+      body.dark-mode .change-photo-btn:hover {
+        background: var(--color-gray-600);
       }
 
       .profile-form .form-group {
@@ -339,27 +370,43 @@
         font-weight: 500;
         font-size: 0.85rem;
         margin-bottom: 3px;
-        color: #1a3753;
+        color: var(--color-text-primary);
       }
 
       .profile-form input,
       .profile-form textarea {
         width: 100%;
         padding: 10px 14px;
-        border: 1px solid #dce5ef;
+        border: 1px solid var(--color-border);
         border-radius: 12px;
         font-size: 0.95rem;
-        transition: 0.15s;
-        background: #fafcfe;
+        transition: all var(--transition-base);
+        background: var(--color-bg-secondary);
         font-family: inherit;
+        color: var(--color-text-primary);
+      }
+
+      body.dark-mode .profile-form input,
+      body.dark-mode .profile-form textarea {
+        background: var(--color-gray-800);
       }
 
       .profile-form input:focus,
       .profile-form textarea:focus {
         outline: none;
-        border-color: #0b1a2f;
-        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.06);
-        background: white;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.1);
+        background: var(--color-bg-card);
+      }
+
+      body.dark-mode .profile-form input:focus,
+      body.dark-mode .profile-form textarea:focus {
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.3);
+      }
+
+      .profile-form input::placeholder,
+      .profile-form textarea::placeholder {
+        color: var(--color-text-light);
       }
 
       .profile-form textarea {
@@ -368,7 +415,7 @@
       }
 
       .save-btn {
-        background: #0b1a2f;
+        background: var(--color-primary);
         color: white;
         border: none;
         padding: 10px 32px;
@@ -376,13 +423,14 @@
         font-weight: 600;
         font-size: 0.95rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
         margin-top: 4px;
       }
 
       .save-btn:hover {
-        background: #1d3452;
+        background: var(--color-primary-hover);
+        transform: translateY(-1px);
       }
 
       /* Saved Jobs Tab */
@@ -397,16 +445,25 @@
         align-items: center;
         justify-content: space-between;
         padding: 16px 20px;
-        background: #fafcfe;
+        background: var(--color-bg-secondary);
         border-radius: 16px;
-        border: 1px solid #eef4fa;
-        transition: 0.15s;
+        border: 1px solid var(--color-border-light);
+        transition: all var(--transition-base);
         gap: 12px;
         flex-wrap: wrap;
       }
 
+      body.dark-mode .saved-job-item {
+        background: var(--color-gray-800);
+      }
+
       .saved-job-item:hover {
-        border-color: #d0dff0;
+        border-color: var(--color-border);
+        box-shadow: var(--shadow-sm);
+      }
+
+      body.dark-mode .saved-job-item:hover {
+        border-color: var(--color-gray-600);
       }
 
       .saved-job-info {
@@ -417,10 +474,11 @@
         font-weight: 600;
         font-size: 1rem;
         margin-bottom: 2px;
+        color: var(--color-text-primary);
       }
 
       .saved-job-info p {
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         font-size: 0.85rem;
       }
 
@@ -432,35 +490,36 @@
       .saved-job-actions button {
         padding: 6px 16px;
         border-radius: 40px;
-        border: 1px solid #dce5ef;
-        background: white;
+        border: 1px solid var(--color-border);
+        background: var(--color-bg-card);
         font-size: 0.8rem;
         font-weight: 500;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
+        color: var(--color-text-primary);
       }
 
       .saved-job-actions .apply-btn-small {
-        background: #0b1a2f;
+        background: var(--color-primary);
         color: white;
         border: none;
       }
 
       .saved-job-actions .apply-btn-small:hover {
-        background: #1d3452;
+        background: var(--color-primary-hover);
       }
 
       .saved-job-actions .remove-btn:hover {
-        background: #ffebee;
-        border-color: #ffcdd2;
-        color: #c62828;
+        background: var(--color-error-light);
+        border-color: var(--color-error);
+        color: var(--color-error);
       }
 
       .empty-state {
         text-align: center;
         padding: 40px 20px;
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
       }
 
       .empty-state .big-icon {
@@ -475,7 +534,11 @@
 
       .notification-group {
         padding: 16px 0;
-        border-bottom: 1px solid #edf2f8;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      body.dark-mode .notification-group {
+        border-bottom-color: var(--color-gray-700);
       }
 
       .notification-group:last-child {
@@ -496,10 +559,11 @@
       .notification-group .toggle-row .info h4 {
         font-weight: 600;
         font-size: 0.95rem;
+        color: var(--color-text-primary);
       }
 
       .notification-group .toggle-row .info p {
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         font-size: 0.85rem;
       }
 
@@ -524,8 +588,8 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: #d0d9e6;
-        transition: 0.2s;
+        background: var(--color-gray-300);
+        transition: all var(--transition-base);
         border-radius: 34px;
       }
 
@@ -537,13 +601,13 @@
         left: 4px;
         bottom: 4px;
         background: white;
-        transition: 0.2s;
+        transition: all var(--transition-base);
         border-radius: 50%;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-sm);
       }
 
       .toggle-switch input:checked + .toggle-slider {
-        background: #0b1a2f;
+        background: var(--color-primary);
       }
 
       .toggle-switch input:checked + .toggle-slider::before {
@@ -557,7 +621,11 @@
 
       .settings-group {
         padding: 16px 0;
-        border-bottom: 1px solid #edf2f8;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      body.dark-mode .settings-group {
+        border-bottom-color: var(--color-gray-700);
       }
 
       .settings-group:last-child {
@@ -574,49 +642,57 @@
       .settings-group .setting-row .info h4 {
         font-weight: 600;
         font-size: 0.95rem;
+        color: var(--color-text-primary);
       }
 
       .settings-group .setting-row .info p {
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         font-size: 0.85rem;
       }
 
       .settings-group select,
       .settings-group input[type='text'] {
         padding: 6px 14px;
-        border: 1px solid #dce5ef;
+        border: 1px solid var(--color-border);
         border-radius: 8px;
         font-size: 0.9rem;
-        background: #fafcfe;
+        background: var(--color-bg-secondary);
         font-family: inherit;
         min-width: 120px;
+        color: var(--color-text-primary);
+      }
+
+      body.dark-mode .settings-group select,
+      body.dark-mode .settings-group input[type='text'] {
+        background: var(--color-gray-800);
       }
 
       .settings-group select:focus {
         outline: none;
-        border-color: #0b1a2f;
+        border-color: var(--color-primary);
       }
 
       .danger-btn {
-        background: #ffebee;
-        color: #c62828;
+        background: var(--color-error-light);
+        color: var(--color-error);
         border: none;
         padding: 6px 20px;
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.85rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
       }
 
       .danger-btn:hover {
-        background: #ffcdd2;
+        background: var(--color-error);
+        color: white;
       }
 
       .success-message {
-        background: #e8f5e9;
-        color: #1e7e34;
+        background: var(--color-success-light);
+        color: var(--color-success);
         padding: 10px 16px;
         border-radius: 12px;
         margin-bottom: 12px;
@@ -1028,6 +1104,10 @@ Software engineer passionate about building great products. Looking for new oppo
     <script src="./nav.js"></script>
     <script src="./bottom-nav.js"></script>
 
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-client.js"></script>
+
     <script>
       // ===== Tab Switching =====
       function switchTab(tabId) {
@@ -1050,7 +1130,7 @@ Software engineer passionate about building great products. Looking for new oppo
       }
 
       // ===== Profile Functions =====
-      function saveProfile() {
+      async function saveProfile() {
         const name = document.getElementById('fullName').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;

@@ -177,15 +177,20 @@
 
     <style>
       .auth-container {
-        background: white;
+        background: var(--color-bg-card);
         border-radius: 20px;
         padding: 32px 36px 44px;
         max-width: 460px;
         width: 100%;
-        box-shadow: 0 20px 48px -12px rgba(0, 20, 40, 0.12);
-        border: 1px solid #e6edf5;
-        transition: all 0.2s;
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--color-border);
+        transition: all var(--transition-base);
         margin: 0 auto;
+        animation: fadeInUp 0.5s ease-out;
+      }
+
+      body.dark-mode .auth-container {
+        background: var(--color-bg-secondary);
       }
 
       .auth-header {
@@ -197,14 +202,14 @@
         font-size: 1.8rem;
         font-weight: 700;
         letter-spacing: -0.02em;
-        background: linear-gradient(145deg, #0b1a2f 0%, #2a405c 100%);
+        background: linear-gradient(145deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
 
       .auth-header p {
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         font-size: 0.95rem;
         margin-top: 4px;
       }
@@ -212,10 +217,14 @@
       .tab-container {
         display: flex;
         gap: 4px;
-        background: #f0f5fc;
+        background: var(--color-gray-100);
         border-radius: 60px;
         padding: 4px;
         margin-bottom: 28px;
+      }
+
+      body.dark-mode .tab-container {
+        background: var(--color-gray-700);
       }
 
       .tab-btn {
@@ -226,19 +235,19 @@
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.95rem;
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
       }
 
       .tab-btn.active {
-        background: white;
-        color: #0b1a2f;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        background: var(--color-bg-card);
+        color: var(--color-text-primary);
+        box-shadow: var(--shadow-sm);
       }
 
       .tab-btn:hover:not(.active) {
-        color: #0b1a2f;
+        color: var(--color-text-primary);
       }
 
       .form-group {
@@ -250,36 +259,49 @@
         font-weight: 500;
         font-size: 0.9rem;
         margin-bottom: 4px;
-        color: #1a3753;
+        color: var(--color-text-primary);
       }
 
       .form-group input {
         width: 100%;
         padding: 12px 16px;
-        border: 1px solid #dce5ef;
+        border: 1px solid var(--color-border);
         border-radius: 12px;
         font-size: 0.95rem;
-        transition: 0.15s;
-        background: #fafcfe;
+        transition: all var(--transition-base);
+        background: var(--color-bg-secondary);
         font-family: inherit;
+        color: var(--color-text-primary);
       }
 
       .form-group input:focus {
         outline: none;
-        border-color: #0b1a2f;
-        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.08);
-        background: white;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.1);
+        background: var(--color-bg-card);
+      }
+
+      body.dark-mode .form-group input:focus {
+        box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.3);
+      }
+
+      .form-group input::placeholder {
+        color: var(--color-text-light);
       }
 
       .form-group .hint {
         font-size: 0.8rem;
-        color: #6b8aa8;
+        color: var(--color-text-muted);
         margin-top: 4px;
       }
 
       .referral-input {
-        background: #f8fbfe;
+        background: var(--color-gray-50);
         border-style: dashed;
+      }
+
+      body.dark-mode .referral-input {
+        background: var(--color-gray-800);
       }
 
       .referral-input:focus {
@@ -296,18 +318,18 @@
       .checkbox-group input[type='checkbox'] {
         width: 18px;
         height: 18px;
-        accent-color: #0b1a2f;
+        accent-color: var(--color-primary);
         cursor: pointer;
       }
 
       .checkbox-group label {
         font-size: 0.9rem;
-        color: #2a4a68;
+        color: var(--color-text-secondary);
         cursor: pointer;
       }
 
       .checkbox-group a {
-        color: #0b1a2f;
+        color: var(--color-primary);
         text-decoration: underline;
         text-underline-offset: 2px;
       }
@@ -315,26 +337,40 @@
       .submit-btn {
         width: 100%;
         padding: 14px;
-        background: #0b1a2f;
+        background: var(--color-primary);
         color: white;
         border: none;
         border-radius: 60px;
         font-weight: 600;
         font-size: 1rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
 
-      .submit-btn:hover {
-        background: #1d3452;
-        transform: scale(1.01);
+      .submit-btn:hover:not(:disabled) {
+        background: var(--color-primary-hover);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
       }
 
       .submit-btn:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         transform: none;
+      }
+
+      .submit-btn .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
       }
 
       .divider {
@@ -349,12 +385,12 @@
         content: '';
         flex: 1;
         height: 1px;
-        background: #e2eaf2;
+        background: var(--color-border);
       }
 
       .divider span {
         font-size: 0.85rem;
-        color: #6b8aa8;
+        color: var(--color-text-muted);
         white-space: nowrap;
       }
 
@@ -371,21 +407,21 @@
         justify-content: center;
         gap: 10px;
         padding: 12px;
-        border: 1px solid #dce5ef;
+        border: 1px solid var(--color-border);
         border-radius: 12px;
-        background: white;
+        background: var(--color-bg-card);
         font-weight: 500;
         font-size: 0.9rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: all var(--transition-base);
         font-family: inherit;
-        color: #0b1a2f;
+        color: var(--color-text-primary);
         text-decoration: none;
       }
 
       .social-btn:hover {
-        background: #f8fbfe;
-        border-color: #b0c8e0;
+        background: var(--color-bg-hover);
+        border-color: var(--color-primary);
         transform: translateY(-1px);
       }
 
@@ -402,19 +438,20 @@
         text-align: center;
         margin-top: 20px;
         font-size: 0.95rem;
-        color: #4f6f8f;
+        color: var(--color-text-secondary);
       }
 
       .form-toggle a {
-        color: #0b1a2f;
+        color: var(--color-primary);
         font-weight: 600;
         cursor: pointer;
         text-decoration: underline;
         text-underline-offset: 2px;
+        transition: color var(--transition-fast);
       }
 
       .form-toggle a:hover {
-        color: #1d3452;
+        color: var(--color-primary-hover);
       }
 
       .hidden {
@@ -422,8 +459,8 @@
       }
 
       .success-message {
-        background: #e8f5e9;
-        color: #1e7e34;
+        background: var(--color-success-light);
+        color: var(--color-success);
         padding: 12px 16px;
         border-radius: 12px;
         margin-bottom: 16px;
@@ -431,11 +468,12 @@
         align-items: center;
         gap: 8px;
         font-weight: 500;
+        animation: fadeInDown 0.3s ease-out;
       }
 
       .error-message {
-        background: #ffebee;
-        color: #c62828;
+        background: var(--color-error-light);
+        color: var(--color-error);
         padding: 12px 16px;
         border-radius: 12px;
         margin-bottom: 16px;
@@ -444,6 +482,7 @@
         gap: 8px;
         font-weight: 500;
         font-size: 0.9rem;
+        animation: fadeInDown 0.3s ease-out;
       }
 
       .password-toggle {
@@ -461,10 +500,15 @@
         transform: translateY(-50%);
         background: none;
         border: none;
-        color: #6b8aa8;
+        color: var(--color-text-muted);
         cursor: pointer;
         font-size: 1.1rem;
         padding: 4px;
+        transition: color var(--transition-fast);
+      }
+
+      .toggle-visibility:hover {
+        color: var(--color-text-primary);
       }
 
       @media (max-width: 480px) {

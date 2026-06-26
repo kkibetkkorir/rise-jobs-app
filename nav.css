@@ -74,6 +74,16 @@ body.dark-mode .navbar {
   transition: background var(--transition-fast);
 }
 
+/* Logo SVG theming */
+.logo svg path {
+  fill: var(--color-primary);
+  transition: fill var(--transition-base);
+}
+
+body.dark-mode .logo svg path {
+  fill: var(--color-gray-100);
+}
+
 .logo-badge {
   font-size: 0.65rem;
   font-weight: var(--font-weight-semibold);
