@@ -1,67 +1,124 @@
-// ===== Bottom Navigation Active State =====
-const navItems = document.querySelectorAll('.nav-item');
+/**
+ * Rise Jobs - Bottom Navigation Manager
+ * Handles active states, badges, and center button interactions
+ */
 
-navItems.forEach((item) => {
-  item.addEventListener('click', function (e) {
-    // Don't remove active from center button if it's a link
-    if (this.dataset.tab === 'jobs') return;
+(function() {
+  'use strict';
 
-    // Remove active from all
-    navItems.forEach((i) => i.classList.remove('active'));
+  const bottomNav = document.getElementById('bottomNav');
+  if (!bottomNav) {
+    console.warn('Bottom nav not found');
+    return;
+  }
 
-    // Add active to clicked
-    this.classList.add('active');
+  const navItems = bottomNav.querySelectorAll('.nav-item');
 
-    // Update the badge if needed (just demo)
-    if (this.dataset.tab === 'saved') {
-      const badge = this.querySelector('.badge');
-      if (badge) {
-        badge.textContent = '0';
-        badge.style.display = 'none';
+  // ===== ACTIVE STATE MANAGEMENT =====
+  function setActiveState() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+    navItems.forEach(item => {
+      if (item.classList.contains('center-btn')) return;
+
+      const href = item.getAttribute('href') || '';
+      const tab = item.dataset.tab;
+
+      // Check if this item matches current page
+      let isActive = false;
+
+      if (href.includes(currentPath)) {
+        isActive = true;
+      } else if (currentPath === 'index.html' && tab === 'home') {
+        isActive = true;
+      } else if (currentPath === 'search.html' && tab === 'search') {
+        isActive = true;
+      } else if (currentPath === 'account.html' && (tab === 'profile' || tab === 'saved')) {
+        const params = new URLSearchParams(window.location.search);
+        const tabParam = params.get('tab');
+        if (tabParam === 'saved' && tab === 'saved') {
+          isActive = true;
+        } else if (!tabParam && tab === 'profile') {
+          isActive = true;
+        }
       }
-    }
-  });
-});
 
-// ===== Handle tab switching with URL params =====
-(function checkTabFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const tab = params.get('tab');
-
-  if (tab) {
-    navItems.forEach((item) => {
-      item.classList.remove('active');
-      if (item.dataset.tab === tab) {
+      if (isActive) {
         item.classList.add('active');
+      } else {
+        item.classList.remove('active');
       }
     });
   }
-})();
 
-// ===== Demo: Show notification badge on home =====
-// You can dynamically update badges based on notifications
-function updateBadge(tab, count) {
-  navItems.forEach((item) => {
-    if (item.dataset.tab === tab) {
-      let badge = item.querySelector('.badge');
-      if (!badge) {
-        badge = document.createElement('span');
-        badge.className = 'badge';
-        item.appendChild(badge);
+  setActiveState();
+
+  // ===== CLICK HANDLER WITH RIPPLE =====
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      // Add click feedback animation
+      this.style.transform = this.classList.contains('center-btn') ? 'scale(0.95)' : 'scale(0.9)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+
+      // Haptic feedback if supported
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10);
       }
-      if (count > 0) {
-        badge.textContent = count;
-        badge.style.display = 'flex';
-      } else {
-        badge.style.display = 'none';
-      }
-    }
+    });
   });
-}
 
-// Example: Update notifications badge
-// updateBadge('notifications', 5);
+  // ===== BADGE UPDATES =====
+  window.updateBadge = function(tab, count) {
+    navItems.forEach(item => {
+      if (item.dataset.tab === tab) {
+        let badge = item.querySelector('.badge');
+        if (!badge && count > 0) {
+          badge = document.createElement('span');
+          badge.className = 'badge';
+          item.appendChild(badge);
+        }
+        if (badge) {
+          if (count > 0) {
+            badge.textContent = count > 99 ? '99+' : count;
+            badge.style.display = 'flex';
+          } else {
+            badge.style.display = 'none';
+          }
+        }
+      }
+    });
+  };
 
-console.log('✅ Bottom navigation ready.');
-console.log('📌 Tabs: Home, Search, Jobs (center), Saved, Profile');
-console.log('🔔 Saved jobs badge shows 3 by default (demo).');
+  // ===== LOAD SAVED JOBS COUNT =====
+  function loadSavedJobsCount() {
+    try {
+      const savedJobs = JSON.parse(localStorage.getItem('savedJobs') || '[]');
+      window.updateBadge('saved', savedJobs.length);
+    } catch (e) {
+      console.warn('Could not load saved jobs count');
+    }
+  }
+
+  loadSavedJobsCount();
+
+  // ===== HANDLE TAB FROM URL =====
+  (function checkTabFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+
+    if (tab) {
+      navItems.forEach(item => {
+        if (item.dataset.tab === tab) {
+          item.classList.add('active');
+        } else if (!item.classList.contains('center-btn')) {
+          item.classList.remove('active');
+        }
+      });
+    }
+  })();
+
+  console.log('Bottom navigation initialized');
+
+})();

@@ -1,210 +1,219 @@
+/* ============================================
+   RISE JOBS - Bottom Navigation Styles
+   ============================================ */
+
 /* ===== BOTTOM NAVIGATION ===== */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
-  border-top: 1px solid #e6edf5;
+  background: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 72px;
-  padding: 0 8px;
-  z-index: 1000;
-  backdrop-filter: blur(12px);
+  height: 68px;
+  padding: 0 var(--spacing-2);
+  z-index: var(--z-fixed);
+  backdrop-filter: blur(16px);
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
-
-
-  height: 64px;
-  background: rgba(255, 255, 255, 0.94);
+  transition: all var(--transition-base);
 }
 
 body.dark-mode .bottom-nav {
   background: rgba(30, 41, 59, 0.94);
-  border-top-color: #334155;
+  border-top-color: var(--color-border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Hide bottom nav on larger screens can be toggled via class */
+.bottom-nav.hidden {
+  transform: translateY(100%);
+}
+
+/* ===== NAVIGATION ITEMS ===== */
 .bottom-nav .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #8b9bb0;
-  font-size: 0.65rem;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 12px;
-  transition: 0.15s;
-  min-width: 56px;
+  color: var(--color-text-light);
+  font-size: 0.6rem;
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  min-width: 52px;
   position: relative;
   gap: 2px;
   -webkit-tap-highlight-color: transparent;
+}
 
-  font-size: 0.6rem;
+.bottom-nav .nav-item:hover {
+  background: var(--color-bg-hover);
 }
 
 .bottom-nav .nav-item .icon {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 1;
-  transition: 0.15s;
-
-  font-size: 1.4rem;
+  transition: all var(--transition-base);
 }
 
 .bottom-nav .nav-item .label {
-  font-size: 0.6rem;
-  letter-spacing: 0.2px;
-
   font-size: 0.55rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.3px;
+  transition: color var(--transition-fast);
 }
 
+/* ===== ACTIVE STATE ===== */
 .bottom-nav .nav-item.active {
-  color: #0b1a2f;
+  color: var(--color-primary);
 }
 
 body.dark-mode .bottom-nav .nav-item.active {
-  color: #e2e8f0;
+  color: var(--color-text-primary);
 }
 
 .bottom-nav .nav-item.active .icon {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
+.bottom-nav .nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+/* ===== BADGE ===== */
 .bottom-nav .nav-item .badge {
   position: absolute;
   top: 0;
   right: 4px;
-  background: #c62828;
-  color: white;
-  font-size: 0.55rem;
-  font-weight: 700;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 40px;
+  background: var(--color-error);
+  color: var(--color-white);
+  font-size: 0.5rem;
+  font-weight: var(--font-weight-bold);
+  min-width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5px;
-  border: 2px solid white;
-
-  min-width: 16px;
-  height: 16px;
   padding: 0 4px;
+  border: 2px solid var(--color-bg-card);
+  animation: scaleIn 0.3s ease-out;
 }
 
 body.dark-mode .bottom-nav .nav-item .badge {
-  border-color: #1e293b;
+  border-color: var(--color-gray-700);
 }
 
-/* Center action button (floating) */
+/* ===== CENTER ACTION BUTTON ===== */
 .bottom-nav .nav-item.center-btn {
   position: relative;
-  top: -12px;
-  background: #0b1a2f;
-  color: white;
-  border-radius: 50%;
+  top: -14px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
   width: 56px;
   height: 56px;
   padding: 0;
   min-width: auto;
-  box-shadow: 0 4px 16px rgba(11, 26, 47, 0.2);
-  transition: 0.15s;
-
-  width: 52px;
-  height: 52px;
-}
-
-body.dark-mode .bottom-nav .nav-item.center-btn {
-  background: #0b1a2f;
+  box-shadow: 0 4px 20px rgba(11, 26, 47, 0.25);
+  transition: all var(--transition-base);
+  z-index: 1;
 }
 
 .bottom-nav .nav-item.center-btn:hover {
-  transform: scale(1.04);
-  background: #1d3452;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 28px rgba(11, 26, 47, 0.35);
+  background: var(--color-primary-hover);
+}
+
+.bottom-nav .nav-item.center-btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .bottom-nav .nav-item.center-btn .icon {
-  font-size: 1.8rem;
-
   font-size: 1.6rem;
+  color: var(--color-white);
 }
 
 .bottom-nav .nav-item.center-btn .label {
   display: none;
 }
 
-/* ===== PLACEHOLDER CONTENT ===== */
-.placeholder {
-  text-align: center;
-  padding: 60px 20px;
-  color: #4f6f8f;
+/* Center button before pseudo-element for extra styling */
+.bottom-nav .nav-item.center-btn::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+  background: var(--color-bg-primary);
+  border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+  z-index: -1;
 }
 
-.placeholder .big-icon {
-  font-size: 4rem;
-  margin-bottom: 12px;
+body.dark-mode .bottom-nav .nav-item.center-btn::before {
+  background: var(--color-bg-secondary);
 }
 
-.placeholder h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #0b1a2f;
-  margin-bottom: 4px;
+/* Remove the top indicator for center button */
+.bottom-nav .nav-item.center-btn::after {
+  display: none;
 }
 
-.placeholder p {
-  color: #6b8aa8;
+/* ===== RIPPLE EFFECT ===== */
+.bottom-nav .nav-item.ripple {
+  overflow: hidden;
 }
 
-.job-card-preview {
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-  border: 1px solid #eef4fa;
+.bottom-nav .nav-item.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--color-primary) 10%, transparent 10.01%);
+  background-size: 100% 100%;
+  background-position: center;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+  pointer-events: none;
 }
 
-.job-card-preview .company-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+.bottom-nav .nav-item.ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
 }
 
-.job-card-preview .company-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #eef2f6;
-}
-
-.job-card-preview .job-title {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.job-card-preview .job-meta {
-  font-size: 0.85rem;
-  color: #4f6f8f;
-}
-
-
+/* ===== DESKTOP STYLES ===== */
 @media (min-width: 769px) {
-  /* On desktop, bottom nav can still work or you can hide it */
   .bottom-nav {
     max-width: 480px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 24px 24px 0 0;
-    border: 1px solid #e6edf5;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    border: 1px solid var(--color-border);
     border-bottom: none;
   }
 
   body.dark-mode .bottom-nav {
-    border-color: #334155;
+    border-color: var(--color-border);
   }
 }
 
@@ -212,23 +221,127 @@ body.dark-mode .bottom-nav .nav-item.center-btn {
 @media (max-width: 480px) {
   .bottom-nav {
     height: 64px;
+    padding: 0 var(--spacing-1);
   }
+
   .bottom-nav .nav-item {
     min-width: 44px;
-    padding: 2px 8px;
+    padding: var(--spacing-1) var(--spacing-2);
   }
+
   .bottom-nav .nav-item .icon {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
+
   .bottom-nav .nav-item .label {
     font-size: 0.5rem;
   }
+
   .bottom-nav .nav-item.center-btn {
-    width: 48px;
-    height: 48px;
-    top: -10px;
+    width: 50px;
+    height: 50px;
+    top: -12px;
   }
+
   .bottom-nav .nav-item.center-btn .icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
+
+  .bottom-nav .nav-item .badge {
+    min-width: 14px;
+    height: 14px;
+    font-size: 0.45rem;
+    padding: 0 3px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav .nav-item {
+    min-width: 40px;
+  }
+
+  .bottom-nav .nav-item .icon {
+    font-size: 1.1rem;
+  }
+
+  .bottom-nav .nav-item .label {
+    font-size: 0.45rem;
+  }
+}
+
+/* ===== SAFE AREA (for notched phones) ===== */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(68px + env(safe-area-inset-bottom));
+  }
+
+  @media (max-width: 480px) {
+    .bottom-nav {
+      height: calc(64px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* ===== PLACEHOLDER/DEMO CONTENT ===== */
+.placeholder {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-secondary);
+}
+
+.placeholder .big-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-3);
+}
+
+.placeholder h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-1);
+}
+
+.placeholder p {
+  color: var(--color-text-muted);
+}
+
+/* ===== JOB CARD PREVIEW (for demo) ===== */
+.job-card-preview {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+}
+
+.job-card-preview:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border);
+}
+
+.job-card-preview .company-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+}
+
+.job-card-preview .company-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--color-gray-100);
+}
+
+.job-card-preview .job-title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.job-card-preview .job-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }

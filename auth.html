@@ -476,9 +476,10 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="styles.css" /> 
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav.css" />
     <link rel="stylesheet" href="bottom-nav.css" />
+    <script src="theme.js"></script>
   </head>
   <body>
     <!-- ===== NAVIGATION ===== -->
@@ -763,6 +764,10 @@
     <script src="./nav.js"></script>
     <script src="./bottom-nav.js"></script>
 
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-client.js"></script>
+
     <script>
       // ===== Tab Switching =====
       function switchTab(tab) {
@@ -818,7 +823,7 @@
       }
 
       // ===== Form Handlers =====
-      function handleLogin(e) {
+      async function handleLogin(e) {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
@@ -834,14 +839,33 @@
           return;
         }
 
-        // Simulate login
-        showMessage('✅ Login successful! Redirecting...', 'success');
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 1500);
+        // Show loading state
+        const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner"></span> Signing in...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signIn(email, password);
+
+          if (result.success) {
+            showMessage('Login successful! Redirecting...', 'success');
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 1000);
+          } else {
+            showMessage(result.error || 'Login failed. Please try again.', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          showMessage('An error occurred. Please try again.', 'error');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
       }
 
-      function handleRegister(e) {
+      async function handleRegister(e) {
         e.preventDefault();
         const name = document.getElementById('registerName').value;
         const email = document.getElementById('registerEmail').value;
@@ -880,19 +904,38 @@
           return;
         }
 
-        // Simulate registration
-        let message = '✅ Account created successfully!';
-        if (referral) {
-          message += ` Referral code "${referral}" applied! 🎉`;
+        // Show loading state
+        const submitBtn = document.querySelector('#registerForm button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner"></span> Creating account...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signUp(email, password, name);
+
+          if (result.success) {
+            let message = 'Account created successfully!';
+            if (referral) {
+              message += ` Referral code "${referral}" applied!`;
+            }
+            showMessage(message, 'success');
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 1500);
+          } else {
+            showMessage(result.error || 'Registration failed. Please try again.', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          showMessage('An error occurred. Please try again.', 'error');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
         }
-        showMessage(message, 'success');
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 2000);
       }
 
       // ===== Social Authentication =====
-      function handleSocialAuth(provider) {
+      async function handleSocialAuth(provider) {
         const providerNames = {
           google: 'Google',
           facebook: 'Facebook',
@@ -905,18 +948,24 @@
           .forEach((el) => el.remove());
 
         showMessage(
-          `🔐 Connecting to ${providerNames[provider]}...`,
+          `Connecting to ${providerNames[provider]}...`,
           'success'
         );
-        setTimeout(() => {
-          showMessage(
-            `✅ Successfully authenticated with ${providerNames[provider]}! Redirecting...`,
-            'success'
-          );
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 1200);
-        }, 1000);
+
+        try {
+          const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
+            provider: provider,
+            options: {
+              redirectTo: window.location.origin + '/index.html'
+            }
+          });
+
+          if (error) {
+            showMessage(error.message, 'error');
+          }
+        } catch (error) {
+          showMessage(`Failed to connect with ${providerNames[provider]}`, 'error');
+        }
       }
 
       // ===== Message Helpers =====
@@ -958,14 +1007,19 @@
       (function checkReferralFromURL() {
         const params = new URLSearchParams(window.location.search);
         const ref = params.get('ref');
+        const tab = params.get('tab');
         if (ref) {
           document.getElementById('referralCode').value = ref;
+        }
+        if (tab === 'register') {
+          switchTab('register');
         }
       })();
 
       console.log(
-        '🔐 Auth page loaded. Features: Login, Register, Referral codes, Social auth (Google, Facebook, Apple)'
+        'Auth page loaded with Supabase integration.'
       );
+    </script>
       console.log('💡 Try: auth.html?ref=RISE2026 to auto-fill referral code');
     </script>
   </body>
