@@ -185,7 +185,8 @@
         gap: 16px;
         margin-bottom: 24px;
         padding-bottom: 20px;
-        border-bottom: 1px solid #edf2f8;
+        border-bottom: 1px solid var(--color-border);
+        animation: fadeInDown 0.4s ease-out;
       }
 
       .notif-header h1 {
@@ -195,15 +196,16 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        color: var(--color-text-primary);
       }
 
       .notif-header h1 span {
-        background: #f0f6fe;
+        background: var(--color-primary-light);
         font-size: 0.75rem;
         padding: 2px 14px;
         border-radius: 40px;
         font-weight: 500;
-        color: #1d3d60;
+        color: var(--color-primary);
       }
 
       .notif-actions {
@@ -215,36 +217,36 @@
       .notif-actions button {
         padding: 8px 18px;
         border-radius: 40px;
-        border: 1px solid #dce5ef;
-        background: white;
+        border: 1px solid var(--color-border);
+        background: var(--color-bg-card);
         font-size: 0.85rem;
         font-weight: 500;
         cursor: pointer;
-        transition: 0.15s;
+        transition: var(--transition-base);
         font-family: inherit;
-        color: #0b1a2f;
+        color: var(--color-text-primary);
       }
 
       .notif-actions button:hover {
-        background: #f0f5fc;
-        border-color: #b0c8e0;
+        background: var(--color-bg-secondary);
+        border-color: var(--color-border-hover);
       }
 
       .notif-actions .mark-all-btn {
-        background: #0b1a2f;
-        color: white;
+        background: var(--color-primary);
+        color: var(--color-text-inverse);
         border: none;
       }
 
       .notif-actions .mark-all-btn:hover {
-        background: #1d3452;
+        background: var(--color-primary-dark);
       }
 
       /* Filter tabs */
       .filter-tabs {
         display: flex;
         gap: 4px;
-        background: #f0f5fc;
+        background: var(--color-bg-secondary);
         border-radius: 60px;
         padding: 4px;
         margin-bottom: 24px;
@@ -259,21 +261,21 @@
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.85rem;
-        color: #4f6f8f;
+        color: var(--color-text-tertiary);
         cursor: pointer;
-        transition: 0.15s;
+        transition: var(--transition-base);
         white-space: nowrap;
         font-family: inherit;
       }
 
       .filter-tab.active {
-        background: white;
-        color: #0b1a2f;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        background: var(--color-bg-card);
+        color: var(--color-text-primary);
+        box-shadow: var(--shadow-sm);
       }
 
       .filter-tab:hover:not(.active) {
-        color: #0b1a2f;
+        color: var(--color-text-primary);
       }
 
       /* Notification list */
@@ -288,22 +290,27 @@
         gap: 16px;
         padding: 16px 20px;
         border-radius: 16px;
-        background: #fafcfe;
-        border: 1px solid #eef4fa;
-        transition: all 0.15s;
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        transition: var(--transition-base);
         cursor: pointer;
         align-items: flex-start;
         position: relative;
+        animation: fadeInUp 0.3s ease-out backwards;
       }
 
+      .notif-item:nth-child(1) { animation-delay: 0.05s; }
+      .notif-item:nth-child(2) { animation-delay: 0.1s; }
+      .notif-item:nth-child(3) { animation-delay: 0.15s; }
+
       .notif-item:hover {
-        border-color: #d0dff0;
-        background: #f8fbfe;
+        border-color: var(--color-border-hover);
+        background: var(--color-bg-secondary);
       }
 
       .notif-item.unread {
-        background: #f0f6fe;
-        border-color: #c4d6ed;
+        background: var(--color-primary-light);
+        border-color: var(--color-primary);
       }
 
       .notif-item.unread::before {
@@ -313,7 +320,7 @@
         top: 20%;
         bottom: 20%;
         width: 4px;
-        background: #0b1a2f;
+        background: var(--color-primary);
         border-radius: 0 4px 4px 0;
       }
 
@@ -332,15 +339,16 @@
         font-weight: 600;
         font-size: 0.95rem;
         margin-bottom: 2px;
+        color: var(--color-text-primary);
       }
 
       .notif-content .message {
-        color: #2a4a68;
+        color: var(--color-text-secondary);
         font-size: 0.9rem;
       }
 
       .notif-content .time {
-        color: #6b8aa8;
+        color: var(--color-text-tertiary);
         font-size: 0.8rem;
         margin-top: 4px;
         display: flex;
@@ -352,12 +360,12 @@
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: #0b1a2f;
+        background: var(--color-primary);
         display: inline-block;
       }
 
       .notif-item.read .notif-content .time .dot {
-        background: #d0d9e6;
+        background: var(--color-border);
       }
 
       .notif-actions-item {
@@ -370,30 +378,30 @@
       .notif-actions-item button {
         background: none;
         border: none;
-        color: #6b8aa8;
+        color: var(--color-text-tertiary);
         cursor: pointer;
         padding: 4px 8px;
         border-radius: 8px;
         font-size: 0.8rem;
-        transition: 0.15s;
+        transition: var(--transition-base);
         font-family: inherit;
       }
 
       .notif-actions-item button:hover {
-        background: #f0f5fc;
-        color: #0b1a2f;
+        background: var(--color-bg-secondary);
+        color: var(--color-text-primary);
       }
 
       .notif-actions-item .delete-btn:hover {
-        background: #ffebee;
-        color: #c62828;
+        background: var(--color-error-light);
+        color: var(--color-error);
       }
 
       /* Empty state */
       .empty-state {
         text-align: center;
         padding: 60px 20px;
-        color: #4f6f8f;
+        color: var(--color-text-tertiary);
       }
 
       .empty-state .big-icon {
@@ -404,12 +412,12 @@
       .empty-state h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #0b1a2f;
+        color: var(--color-text-primary);
         margin-bottom: 4px;
       }
 
       .empty-state p {
-        color: #6b8aa8;
+        color: var(--color-text-tertiary);
       }
 
       /* Toast message */
@@ -417,13 +425,13 @@
         position: fixed;
         bottom: 24px;
         right: 24px;
-        background: #0b1a2f;
-        color: white;
+        background: var(--color-primary);
+        color: var(--color-text-inverse);
         padding: 14px 24px;
         border-radius: 16px;
         font-weight: 500;
         font-size: 0.95rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        box-shadow: var(--shadow-lg);
         animation: slideUp 0.3s ease;
         z-index: 1000;
         max-width: 400px;
@@ -488,9 +496,9 @@
         <!-- Logo -->
         <a href="index.html" class="logo">
           <svg viewBox="0 0 512 512">
-              <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
-              <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
-              <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+              <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z"/>
+              <path d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+              <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z"/>
           </svg>
           Rise <span>Jobs</span>
         </a>
@@ -639,97 +647,93 @@
     <script src="./nav.js"></script>
     <script src="./bottom-nav.js"></script>
 
-    <script>
-      // ===== Sample Notification Data =====
-      let notifications = [
-        {
-          id: 1,
-          type: 'job',
-          icon: '💼',
-          title: 'New job match: Senior Software Engineer',
-          message: 'A new job at Google matches your profile. Check it out!',
-          time: '2 minutes ago',
-          read: false,
-          timestamp: Date.now() - 120000,
-        },
-        {
-          id: 2,
-          type: 'application',
-          icon: '📝',
-          title: 'Application viewed',
-          message:
-            'Your application for Product Manager at Microsoft was viewed.',
-          time: '1 hour ago',
-          read: false,
-          timestamp: Date.now() - 3600000,
-        },
-        {
-          id: 3,
-          type: 'system',
-          icon: '⚙️',
-          title: 'Profile updated successfully',
-          message: 'Your profile information has been updated.',
-          time: '3 hours ago',
-          read: true,
-          timestamp: Date.now() - 10800000,
-        },
-        {
-          id: 4,
-          type: 'job',
-          icon: '🔥',
-          title: 'Trending job: Staff Engineer at Twilio',
-          message: 'This job is getting a lot of attention. Apply now!',
-          time: '5 hours ago',
-          read: true,
-          timestamp: Date.now() - 18000000,
-        },
-        {
-          id: 5,
-          type: 'application',
-          icon: '✅',
-          title: 'Application submitted',
-          message:
-            'Your application for UX Designer at Apple was submitted successfully.',
-          time: '1 day ago',
-          read: true,
-          timestamp: Date.now() - 86400000,
-        },
-        {
-          id: 6,
-          type: 'system',
-          icon: '🔐',
-          title: 'Security alert',
-          message: 'New login detected from Chrome on Windows. Was this you?',
-          time: '2 days ago',
-          read: false,
-          timestamp: Date.now() - 172800000,
-        },
-        {
-          id: 7,
-          type: 'job',
-          icon: '⭐',
-          title: 'Saved job closing soon',
-          message:
-            'Your saved job "Engineering Manager" at TrustedHousesitters closes in 3 days.',
-          time: '3 days ago',
-          read: true,
-          timestamp: Date.now() - 259200000,
-        },
-        {
-          id: 8,
-          type: 'application',
-          icon: '📊',
-          title: 'Application status update',
-          message:
-            'Your application for Data Scientist at Netflix has been moved to the next round.',
-          time: '4 days ago',
-          read: true,
-          timestamp: Date.now() - 345600000,
-        },
-      ];
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-client.js"></script>
 
+    <script>
+      // ===== Notifications State =====
+      let notifications = [];
       let currentFilter = 'all';
-      let currentNotifications = [...notifications];
+      let currentNotifications = [];
+      let isLoading = false;
+
+      // ===== Auth Check =====
+      async function checkAuth() {
+        const user = await window.getCurrentUser();
+        if (!user) {
+          // Show login prompt for unauthenticated users
+          document.getElementById('notifList').innerHTML = `
+            <div class="empty-state">
+              <div class="big-icon">🔐</div>
+              <h3>Sign in to view notifications</h3>
+              <p>Get personalized job alerts and application updates.</p>
+              <a href="auth.html" class="submit-btn" style="display:inline-block;margin-top:16px;text-decoration:none;">Sign In</a>
+            </div>
+          `;
+          document.getElementById('notifCount').textContent = '0';
+          return false;
+        }
+        return true;
+      }
+
+      // ===== Load Notifications from Supabase =====
+      async function loadNotifications() {
+        const isAuthed = await checkAuth();
+        if (!isAuthed) return;
+
+        isLoading = true;
+        document.getElementById('notifList').innerHTML = `
+          <div class="empty-state">
+            <div class="big-icon" style="animation: spin 1s linear infinite;">⏳</div>
+            <h3>Loading notifications...</h3>
+          </div>
+        `;
+
+        try {
+          notifications = await window.getNotifications();
+
+          // If no notifications, add welcome notification
+          if (notifications.length === 0) {
+            await window.createNotification({
+              type: 'system',
+              title: 'Welcome to Rise!',
+              message: 'Thanks for joining. We\'ll notify you about new job matches and application updates.',
+              icon: '👋'
+            });
+            notifications = await window.getNotifications();
+          }
+
+          renderNotifications(currentFilter);
+        } catch (error) {
+          console.error('Load notifications error:', error);
+          document.getElementById('notifList').innerHTML = `
+            <div class="empty-state">
+              <div class="big-icon">⚠️</div>
+              <h3>Failed to load notifications</h3>
+              <p>Please try again later.</p>
+            </div>
+          `;
+        } finally {
+          isLoading = false;
+        }
+      }
+
+      // ===== Format Time Ago =====
+      function formatTimeAgo(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diff = now - date;
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+
+        if (minutes < 1) return 'Just now';
+        if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+        if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
+        return date.toLocaleDateString();
+      }
 
       // ===== Render Notifications =====
       function renderNotifications(filter = 'all') {
@@ -745,8 +749,8 @@
           filtered = filtered.filter((n) => n.type === filter);
         }
 
-        // Sort by timestamp (newest first)
-        filtered.sort((a, b) => b.timestamp - a.timestamp);
+        // Sort by created_at (newest first)
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         currentNotifications = filtered;
 
@@ -756,82 +760,80 @@
 
         if (filtered.length === 0) {
           container.innerHTML = `
-                <div class="empty-state">
-                    <div class="big-icon">🔕</div>
-                    <h3>No notifications</h3>
-                    <p>${
-                      filter === 'all'
-                        ? "You're all caught up!"
-                        : 'No notifications match this filter.'
-                    }</p>
-                </div>
-            `;
+            <div class="empty-state">
+              <div class="big-icon">🔕</div>
+              <h3>No notifications</h3>
+              <p>${filter === 'all' ? "You're all caught up!" : 'No notifications match this filter.'}</p>
+            </div>
+          `;
           return;
         }
 
         container.innerHTML = filtered
-          .map(
-            (notif) => `
-            <div class="notif-item ${notif.read ? 'read' : 'unread'}" 
+          .map((notif) => `
+            <div class="notif-item ${notif.read ? 'read' : 'unread'}"
                  data-id="${notif.id}"
-                 onclick="markAsRead(${notif.id})">
-                <div class="notif-icon">${notif.icon}</div>
+                 onclick="markAsRead('${notif.id}')">
+                <div class="notif-icon">${notif.icon || '🔔'}</div>
                 <div class="notif-content">
                     <div class="title">${notif.title}</div>
-                    <div class="message">${notif.message}</div>
+                    <div class="message">${notif.message || ''}</div>
                     <div class="time">
-                        <span>${notif.time}</span>
+                        <span>${formatTimeAgo(notif.created_at)}</span>
                         ${!notif.read ? '<span class="dot"></span>' : ''}
-                        <span style="background:#eaf0f8;padding:0 12px;border-radius:40px;font-size:0.7rem;text-transform:capitalize;">${
-                          notif.type
-                        }</span>
+                        <span style="background:var(--color-bg-secondary);padding:0 12px;border-radius:40px;font-size:0.7rem;text-transform:capitalize;">${notif.type}</span>
                     </div>
                 </div>
                 <div class="notif-actions-item">
-                    ${
-                      !notif.read
-                        ? `<button onclick="event.stopPropagation(); markAsRead(${notif.id})" title="Mark as read">✓</button>`
-                        : ''
-                    }
-                    <button class="delete-btn" onclick="event.stopPropagation(); deleteNotification(${
-                      notif.id
-                    })" title="Delete">✕</button>
+                    ${!notif.read ? `<button onclick="event.stopPropagation(); markAsRead('${notif.id}')" title="Mark as read">✓</button>` : ''}
+                    <button class="delete-btn" onclick="event.stopPropagation(); deleteNotification('${notif.id}')" title="Delete">✕</button>
                 </div>
             </div>
-        `
-          )
+          `)
           .join('');
       }
 
       // ===== Actions =====
-      function markAsRead(id) {
+      async function markAsRead(id) {
         const notif = notifications.find((n) => n.id === id);
         if (notif) {
           notif.read = true;
           renderNotifications(currentFilter);
           showToast('✓ Marked as read');
+
+          // Update in Supabase
+          await window.markNotificationRead(id);
         }
       }
 
-      function markAllAsRead() {
+      async function markAllAsRead() {
         notifications.forEach((n) => (n.read = true));
         renderNotifications(currentFilter);
         showToast('✓ All notifications marked as read');
+
+        // Update all in Supabase
+        await window.markAllNotificationsRead();
       }
 
-      function deleteNotification(id) {
+      async function deleteNotification(id) {
         if (confirm('Delete this notification?')) {
           notifications = notifications.filter((n) => n.id !== id);
           renderNotifications(currentFilter);
           showToast('🗑️ Notification deleted');
+
+          // Delete from Supabase
+          await window.deleteNotification(id);
         }
       }
 
-      function clearAll() {
+      async function clearAll() {
         if (confirm('Delete all notifications?')) {
           notifications = [];
           renderNotifications(currentFilter);
           showToast('🗑️ All notifications cleared');
+
+          // Clear all in Supabase
+          await window.clearAllNotifications();
         }
       }
 
@@ -867,83 +869,8 @@
         }, 2500);
       }
 
-      // ===== Simulate New Notifications =====
-      function simulateNewNotification() {
-        const types = ['job', 'application', 'system'];
-        const icons = {
-          job: ['💼', '🔥', '⭐', '🎯'],
-          application: ['📝', '✅', '📊', '📨'],
-          system: ['⚙️', '🔐', '🔄', '📌'],
-        };
-        const titles = {
-          job: [
-            'New job match',
-            'Trending position',
-            'Recommended for you',
-            'Job alert',
-          ],
-          application: [
-            'Application update',
-            'Application viewed',
-            'Interview invitation',
-            'Application submitted',
-          ],
-          system: [
-            'Profile update',
-            'Security alert',
-            'System notification',
-            'Account reminder',
-          ],
-        };
-        const messages = {
-          job: [
-            'A new position matches your skills and preferences.',
-            'This job is trending in your area of expertise.',
-            'Based on your profile, this job is a great fit.',
-            "Don't miss this opportunity!",
-          ],
-          application: [
-            'Your application status has been updated.',
-            'The hiring manager reviewed your application.',
-            "You've been selected for the next round.",
-            'Your application was received successfully.',
-          ],
-          system: [
-            'Your account settings were updated.',
-            'New login detected from an unfamiliar device.',
-            'A system update is available.',
-            'Your profile needs your attention.',
-          ],
-        };
-
-        const type = types[Math.floor(Math.random() * types.length)];
-        const iconList = icons[type];
-        const titleList = titles[type];
-        const messageList = messages[type];
-
-        const newNotif = {
-          id: Date.now(),
-          type: type,
-          icon: iconList[Math.floor(Math.random() * iconList.length)],
-          title: titleList[Math.floor(Math.random() * titleList.length)],
-          message: messageList[Math.floor(Math.random() * messageList.length)],
-          time: 'Just now',
-          read: false,
-          timestamp: Date.now(),
-        };
-
-        notifications.unshift(newNotif);
-        renderNotifications(currentFilter);
-        showToast('🔔 New notification received!');
-      }
-
       // ===== Keyboard shortcuts =====
       document.addEventListener('keydown', function (e) {
-        // Ctrl/Cmd + Shift + N = New notification (demo)
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'N') {
-          e.preventDefault();
-          simulateNewNotification();
-        }
         // Ctrl/Cmd + Shift + M = Mark all as read
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'M') {
           e.preventDefault();
@@ -952,16 +879,11 @@
       });
 
       // ===== Initialize =====
-      renderNotifications('all');
+      loadNotifications();
 
-      // Auto-refresh every 30 seconds to simulate real-time updates
+      // Auto-refresh every 30 seconds
       let refreshInterval = setInterval(() => {
-        // In a real app, you'd fetch from API
-        // For demo, we'll just update the timestamps
-        // and occasionally add a new notification (20% chance)
-        if (Math.random() < 0.3) {
-          simulateNewNotification();
-        }
+        loadNotifications();
       }, 30000);
 
       // Stop interval when page is hidden to save resources
@@ -970,36 +892,21 @@
           clearInterval(refreshInterval);
         } else {
           refreshInterval = setInterval(() => {
-            if (Math.random() < 0.3) {
-              simulateNewNotification();
-            }
+            loadNotifications();
           }, 30000);
         }
       });
-
-      console.log(
-        '🔔 Notifications page loaded. Features: Filter, Read/Unread, Delete, Clear All'
-      );
-      console.log(
-        '💡 Keyboard shortcuts: Ctrl+Shift+N = New notification, Ctrl+Shift+M = Mark all as read'
-      );
-      console.log(
-        '📌 Try: notifications.html?filter=unread to open with filter applied'
-      );
 
       // Handle URL params
       (function checkFilterFromURL() {
         const params = new URLSearchParams(window.location.search);
         const filter = params.get('filter');
-        if (
-          filter &&
-          ['all', 'unread', 'read', 'job', 'application', 'system'].includes(
-            filter
-          )
-        ) {
+        if (filter && ['all', 'unread', 'read', 'job', 'application', 'system'].includes(filter)) {
           filterNotifications(filter);
         }
       })();
+
+      console.log('🔔 Notifications page loaded with Supabase integration.');
     </script>
   </body>
 </html>

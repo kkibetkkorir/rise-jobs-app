@@ -179,12 +179,12 @@
       .container {
         max-width: 860px;
         margin: 0 auto;
-        background: white;
+        background: var(--color-bg-card);
         border-radius: 32px;
         padding: 36px 32px 40px;
-        box-shadow: 0 10px 30px -8px rgba(0, 20, 40, 0.06),
-          0 1px 2px rgba(0, 0, 0, 0.02);
-        border: 1px solid #e6edf5;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--color-border);
+        animation: fadeInUp 0.4s ease-out;
       }
 
       .back-link {
@@ -193,18 +193,18 @@
         gap: 6px;
         font-weight: 500;
         font-size: 0.9rem;
-        color: #2b4d77;
+        color: var(--color-primary);
         text-decoration: none;
         margin-bottom: 24px;
         padding: 6px 12px;
         border-radius: 40px;
-        background: #f0f6fe;
-        transition: 0.15s;
+        background: var(--color-primary-light);
+        transition: var(--transition-base);
         border: 1px solid transparent;
       }
       .back-link:hover {
-        background: #e3edfb;
-        border-color: #c7daf0;
+        background: var(--color-bg-secondary);
+        border-color: var(--color-border);
       }
 
       .company-header {
@@ -220,8 +220,8 @@
         height: 68px;
         border-radius: 18px;
         object-fit: cover;
-        background: #eef2f6;
-        border: 1px solid #e2eaf2;
+        background: var(--color-bg-secondary);
+        border: 1px solid var(--color-border);
         flex-shrink: 0;
       }
 
@@ -229,17 +229,18 @@
         font-size: 1.3rem;
         font-weight: 700;
         letter-spacing: -0.01em;
+        color: var(--color-text-primary);
       }
       .company-info .meta {
         display: flex;
         flex-wrap: wrap;
         gap: 8px 18px;
         margin-top: 4px;
-        color: #3d5f7e;
+        color: var(--color-text-secondary);
         font-size: 0.9rem;
       }
       .company-info .meta span {
-        background: #f0f5fc;
+        background: var(--color-bg-secondary);
         padding: 2px 14px;
         border-radius: 40px;
         font-size: 0.8rem;
@@ -252,6 +253,7 @@
         line-height: 1.2;
         margin: 12px 0 8px;
         letter-spacing: -0.02em;
+        color: var(--color-text-primary);
       }
 
       .job-location-type {
@@ -259,9 +261,9 @@
         flex-wrap: wrap;
         gap: 14px 28px;
         margin-bottom: 28px;
-        color: #2e4b6b;
+        color: var(--color-text-secondary);
         font-size: 1rem;
-        border-bottom: 1px solid #edf2f8;
+        border-bottom: 1px solid var(--color-border);
         padding-bottom: 20px;
       }
       .job-location-type svg {
@@ -281,10 +283,10 @@
         font-size: 1.1rem;
         font-weight: 600;
         margin: 24px 0 10px;
-        color: #0a1d32;
+        color: var(--color-text-primary);
       }
       .job-description p {
-        color: #1e3853;
+        color: var(--color-text-secondary);
         margin-bottom: 16px;
         white-space: pre-wrap;
         word-break: break-word;
@@ -292,7 +294,7 @@
       .job-description ul {
         padding-left: 22px;
         margin: 12px 0 18px;
-        color: #1e3853;
+        color: var(--color-text-secondary);
       }
       .job-description li {
         margin-bottom: 6px;
@@ -304,35 +306,35 @@
         gap: 16px;
         align-items: center;
         justify-content: space-between;
-        border-top: 1px solid #ecf2f9;
+        border-top: 1px solid var(--color-border);
         padding-top: 28px;
         margin-top: 12px;
       }
       .apply-btn {
-        background: #0b1a2f;
-        color: white;
+        background: var(--color-primary);
+        color: var(--color-text-inverse);
         border: none;
         padding: 14px 40px;
         border-radius: 60px;
         font-weight: 600;
         font-size: 1rem;
         cursor: pointer;
-        transition: 0.15s;
+        transition: var(--transition-base);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        box-shadow: 0 4px 10px rgba(11, 26, 47, 0.08);
+        box-shadow: var(--shadow-md);
       }
       .apply-btn:hover {
-        background: #1d3452;
+        background: var(--color-primary-dark);
         transform: scale(1.01);
       }
 
       .external-badge {
         font-size: 0.85rem;
-        color: #52718f;
-        background: #f0f5fc;
+        color: var(--color-text-tertiary);
+        background: var(--color-bg-secondary);
         padding: 6px 18px;
         border-radius: 40px;
       }
@@ -340,7 +342,33 @@
       .loading-shimmer {
         padding: 40px 20px;
         text-align: center;
-        color: #4f6f8f;
+        color: var(--color-text-tertiary);
+      }
+
+      .save-job-btn {
+        background: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-primary);
+        padding: 12px 24px;
+        border-radius: 60px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition-base);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .save-job-btn:hover {
+        background: var(--color-bg-secondary);
+        border-color: var(--color-primary);
+      }
+
+      .save-job-btn.saved {
+        background: var(--color-primary-light);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
       }
 
       @media (max-width: 640px) {
@@ -375,9 +403,9 @@
         <!-- Logo -->
         <a href="index.html" class="logo">
           <svg viewBox="0 0 512 512">
-              <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
-              <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
-              <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+              <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z"/>
+              <path d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+              <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z"/>
           </svg>
           Rise <span>Jobs</span>
         </a>
