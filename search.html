@@ -185,6 +185,7 @@
             align-items: center;
             gap: 16px;
             margin-bottom: 20px;
+            animation: fadeInDown 0.4s ease-out;
         }
 
         .page-header h1 {
@@ -194,29 +195,40 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--color-text-primary);
         }
 
         .page-header h1 span {
-            background: #f0f6fe;
+            background: var(--color-primary-subtle);
             font-size: 0.75rem;
             padding: 2px 14px;
             border-radius: 40px;
             font-weight: 500;
-            color: #1d3d60;
+            color: var(--color-primary);
+        }
+
+        body.dark-mode .page-header h1 span {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
         }
 
         .results-count {
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
             font-size: 0.9rem;
         }
 
         /* Filter Bar */
         .filter-bar {
-            background: white;
+            background: var(--color-bg-card);
             border-radius: 16px;
             padding: 16px 20px;
-            border: 1px solid #e6edf5;
+            border: 1px solid var(--color-border);
             margin-bottom: 20px;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        body.dark-mode .filter-bar {
+            background: var(--color-bg-secondary);
         }
 
         .filter-row {
@@ -236,26 +248,37 @@
         .filter-group label {
             font-size: 0.8rem;
             font-weight: 500;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .filter-group select,
         .filter-group input {
             padding: 8px 14px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 40px;
             font-size: 0.85rem;
-            background: #fafcfe;
+            background: var(--color-bg-secondary);
             font-family: inherit;
-            color: #0b1a2f;
+            color: var(--color-text-primary);
             outline: none;
             min-width: 120px;
+            transition: all var(--transition-base);
+        }
+
+        body.dark-mode .filter-group select,
+        body.dark-mode .filter-group input {
+            background: var(--color-gray-800);
         }
 
         .filter-group select:focus,
         .filter-group input:focus {
-            border-color: #0b1a2f;
-            box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.06);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.1);
+        }
+
+        body.dark-mode .filter-group select:focus,
+        body.dark-mode .filter-group input:focus {
+            box-shadow: 0 0 0 3px rgba(11, 26, 47, 0.3);
         }
 
         .filter-group input[type="date"] {
@@ -285,26 +308,27 @@
             font-size: 0.85rem;
             cursor: pointer;
             font-family: inherit;
-            transition: 0.15s;
+            transition: all var(--transition-base);
         }
 
         .btn-primary {
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
         }
 
         .btn-primary:hover {
-            background: #1d3452;
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
         }
 
         .btn-outline {
             background: transparent;
-            color: #0b1a2f;
-            border: 1px solid #dce5ef;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border);
         }
 
         .btn-outline:hover {
-            background: #f0f5fc;
+            background: var(--color-bg-hover);
         }
 
         /* Chips */
@@ -313,33 +337,37 @@
             flex-wrap: wrap;
             gap: 8px;
             padding: 12px 0 4px;
-            border-top: 1px solid #edf2f8;
+            border-top: 1px solid var(--color-border);
             margin-top: 12px;
+        }
+
+        body.dark-mode .chips-container {
+            border-top-color: var(--color-gray-700);
         }
 
         .chip {
             padding: 6px 16px;
             border-radius: 40px;
-            border: 1px solid #dce5ef;
-            background: white;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-card);
             font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
-            transition: 0.15s;
+            transition: all var(--transition-base);
             font-family: inherit;
-            color: #2a4a68;
+            color: var(--color-text-secondary);
             white-space: nowrap;
         }
 
         .chip:hover {
-            border-color: #b0c8e0;
-            background: #f8fbfe;
+            border-color: var(--color-primary);
+            background: var(--color-bg-hover);
         }
 
         .chip.active {
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
         }
 
         .chip .count {
@@ -362,18 +390,23 @@
         }
 
         .job-card {
-            background: white;
+            background: var(--color-bg-card);
             border-radius: 16px;
             padding: 18px 20px;
-            border: 1px solid #eef4fa;
-            transition: 0.15s;
+            border: 1px solid var(--color-border-light);
+            transition: all var(--transition-base);
             cursor: pointer;
+            animation: fadeInUp 0.4s ease-out;
         }
 
         .job-card:hover {
-            border-color: #c4d6ed;
+            border-color: var(--color-border);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px -8px rgba(0, 20, 40, 0.06);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        body.dark-mode .job-card:hover {
+            border-color: var(--color-gray-600);
         }
 
         .job-card .company-row {
@@ -388,18 +421,23 @@
             height: 40px;
             border-radius: 10px;
             object-fit: cover;
-            background: #eef2f6;
-            border: 1px solid #e2eaf2;
+            background: var(--color-gray-100);
+            border: 1px solid var(--color-border-light);
+        }
+
+        body.dark-mode .job-card .company-avatar {
+            background: var(--color-gray-700);
         }
 
         .job-card .company-name {
             font-weight: 600;
             font-size: 0.85rem;
+            color: var(--color-text-primary);
         }
 
         .job-card .company-sector {
             font-size: 0.7rem;
-            color: #6b8aa8;
+            color: var(--color-text-muted);
         }
 
         .job-card .job-title {
@@ -407,6 +445,7 @@
             font-size: 1rem;
             margin-bottom: 4px;
             line-height: 1.3;
+            color: var(--color-text-primary);
         }
 
         .job-card .job-meta {
@@ -414,14 +453,18 @@
             flex-wrap: wrap;
             gap: 6px 12px;
             font-size: 0.8rem;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
             margin-bottom: 10px;
         }
 
         .job-card .job-meta span {
-            background: #f0f5fc;
+            background: var(--color-bg-hover);
             padding: 2px 10px;
             border-radius: 40px;
+        }
+
+        body.dark-mode .job-card .job-meta span {
+            background: var(--color-gray-700);
         }
 
         .job-card .job-footer {
@@ -429,23 +472,28 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 10px;
-            border-top: 1px solid #edf2f8;
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        body.dark-mode .job-card .job-footer {
+            border-top-color: var(--color-gray-700);
         }
 
         .job-card .job-footer .apply-link {
             font-size: 0.8rem;
             font-weight: 600;
-            color: #0b1a2f;
+            color: var(--color-primary);
             text-decoration: none;
+            transition: color var(--transition-fast);
         }
 
         .job-card .job-footer .apply-link:hover {
-            text-decoration: underline;
+            color: var(--color-primary-hover);
         }
 
         .job-card .job-footer .date {
             font-size: 0.75rem;
-            color: #6b8aa8;
+            color: var(--color-text-muted);
         }
 
         /* Pagination */
@@ -459,20 +507,22 @@
 
         .pagination button {
             padding: 8px 20px;
-            border: 1px solid #dce5ef;
+            border: 1px solid var(--color-border);
             border-radius: 40px;
-            background: white;
+            background: var(--color-bg-card);
             font-weight: 500;
             font-size: 0.85rem;
             cursor: pointer;
             font-family: inherit;
-            transition: 0.15s;
+            transition: all var(--transition-base);
+            color: var(--color-text-primary);
         }
 
         .pagination button:hover:not(:disabled) {
-            background: #0b1a2f;
+            background: var(--color-primary);
             color: white;
-            border-color: #0b1a2f;
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
         }
 
         .pagination button:disabled {
@@ -482,19 +532,19 @@
 
         .pagination .page-info {
             font-size: 0.9rem;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         /* Loading */
         .loading {
             text-align: center;
             padding: 40px 20px;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .loading .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #0b1a2f;
+            border: 3px solid var(--color-border);
+            border-top: 3px solid var(--color-primary);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -509,7 +559,7 @@
         .no-results {
             text-align: center;
             padding: 60px 20px;
-            color: #4f6f8f;
+            color: var(--color-text-secondary);
         }
 
         .no-results .icon {
@@ -519,18 +569,22 @@
 
         /* Recommendations */
         .recommendations {
-            background: white;
+            background: var(--color-bg-card);
             border-radius: 16px;
             padding: 16px 20px;
-            border: 1px solid #e6edf5;
+            border: 1px solid var(--color-border);
             margin-bottom: 20px;
+        }
+
+        body.dark-mode .recommendations {
+            background: var(--color-bg-secondary);
         }
 
         .recommendations h3 {
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #0a1d32;
+            color: var(--color-text-primary);
         }
 
         .recommendation-chips {
@@ -540,12 +594,17 @@
         }
 
         .recommendation-chips .chip {
-            background: #f0f6fe;
-            border-color: #d0dff0;
+            background: var(--color-primary-subtle);
+            border-color: var(--color-primary-light);
+        }
+
+        body.dark-mode .recommendation-chips .chip {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
         }
 
         .recommendation-chips .chip:hover {
-            background: #e3edfb;
+            background: var(--color-bg-hover);
         }
 
         /* Responsive */
@@ -602,9 +661,9 @@
     <!-- Logo -->
     <a href="index.html" class="logo">
         <svg viewBox="0 0 512 512">
-            <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z" fill="#0b1a2f"/>
-            <path fill="#0b1a2f" d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
-            <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z" fill="#0b1a2f"/>
+            <path d="M512 503.5H381.7a48 48 0 01-45.3-32.1L265 268.1l-9-25.5 2.7-124.6L338.2 8.5l23.5 67.1L512 503.5z"/>
+            <path d="M361.7 75.6L265 268.1l-9-25.5 2.7-124.6L338.2 8.5z"/>
+            <path d="M338.2 8.5l-82.2 234-80.4 228.9a48 48 0 01-45.3 32.1H0l173.8-495h164.4z"/>
         </svg>
         Rise <span>Jobs</span>
     </a>
